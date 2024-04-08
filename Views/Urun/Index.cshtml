@@ -1,0 +1,60 @@
+﻿@using mvc_net_Crm.Models.Siniflar
+@model List<Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Urun Listesi</h2>
+
+<table class="table table-striped table-bordered" style="margin-top:20px">
+    <tr>
+        <th>ID</th>
+        <th>Urun Adi</th>
+        <th>Marka</th>
+        <th>Stok</th>
+        <th>Alis Fiyati</th>
+        <th>Satis Fiyati</th>
+        <th>Kategori</th>
+        <th>Gorsel</th>
+        <th style="width: 150px" align="right">#</th>
+        <th style="width: 150px">#</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>
+                @u.Urunid
+            </td>
+            <td>
+                @u.UrunAd
+            </td>
+            <td>
+                @u.Marka
+            </td>
+            <td>
+                @u.Stok
+            </td>
+            <td>
+                @u.AlisFiyat
+            </td>
+            <td>
+                @u.SatisFiyat
+            </td>
+            <td>
+                @u.Kategori.KategoriAd<!-- BURDA ILISKILI TABLODAN BILGI CEKILIYOR-->
+            </td>
+            <td>
+                @u.UrunGorsel
+            </td>
+            <td align="center">
+                <a href="/Urun/UrunGetir/@u.Urunid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
+            </td>
+            <td align="center">
+                <a href="/Urun/UrunSil/@u.Urunid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Urun/UrunEkle/" class="btn btn-primary">Urun Ekle</a>
+

@@ -9,6 +9,11 @@ namespace mvc_net_Crm.Models.Siniflar
 {
 	public class Gider
 	{
+        public Gider() //DEFAULT BILGILER VERILIYOR
+        {
+            Durum = true;
+        }
+
         [Key]
         public int Giderid { get; set; }
 
@@ -17,6 +22,8 @@ namespace mvc_net_Crm.Models.Siniflar
         public string Aciklama { get; set; }
         public DateTime Tarih { get; set; }
         public decimal Tutar { get; set; }
+
+        public bool Durum {  get; set; }    
     }
 }
 

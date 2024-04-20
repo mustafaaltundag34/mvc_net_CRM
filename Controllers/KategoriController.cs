@@ -13,10 +13,13 @@ namespace mvc_net_Crm.Controllers
         // GET: Kategori
         Context c= new Context();   //DB CONTEXTTEN BIR SINIF URETIYORUZ
 
+        
+
         public ActionResult Index()
         {
-            var degerler=c.Kategoris.ToList();  
-            return View(degerler);
+            //var kategoriler=c.Kategoris.ToList();
+            var kategoriler = c.Kategoris.Where(x => x.Durum == true).ToList();//KOSULLU LISTELEME
+            return View(kategoriler);
         }
 
         [HttpGet]
@@ -29,6 +32,7 @@ namespace mvc_net_Crm.Controllers
         [HttpPost]
         public ActionResult KategoriEkle(Kategori k) //DB KAYDETME ISLEMI
         {
+            k.Durum=true;
             c.Kategoris.Add(k);
             c.SaveChanges();
             return RedirectToAction("Index");
@@ -37,7 +41,8 @@ namespace mvc_net_Crm.Controllers
         {
             var kate=c.Kategoris.Find(id);
             kate.KategoriID = id;
-            c.Kategoris.Remove(kate);
+            kate.Durum = false;
+            //c.Kategoris.Remove(kate);
             c.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -9,6 +9,11 @@ namespace mvc_net_Crm.Models.Siniflar
 {
 	public class Cariler
 	{
+        public Cariler() //DEFAULT BILGILER VERILIYOR
+        {
+            Durum = true;
+        }
+
         [Key]
         public int Cariid { get; set; }
 
@@ -29,9 +34,9 @@ namespace mvc_net_Crm.Models.Siniflar
         public string CariMail { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(100)]
+        [StringLength(80)]
         public string CariOzelSoruCevap { get; set; }
-
+        public bool Durum { get; set; }
         public ICollection<SatisHareket> SatisHarekets { get; set; }
     }
 }

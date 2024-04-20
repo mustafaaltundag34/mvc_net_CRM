@@ -1,0 +1,23 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Departman
+@{
+    ViewBag.Title = "DepartmanGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Departman Guncelle</h2>
+<br />
+@using (Html.BeginForm("DepartmanGuncelle", "Departman", FormMethod.Post))
+{
+    <div class="form-group">
+    @Html.HiddenFor(x => x.Departmanid)
+    @Html.LabelFor(x => x.DepartmanAd)
+    @Html.TextBoxFor(x => x.DepartmanAd, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Durum)
+    @*Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.Durum, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}
+

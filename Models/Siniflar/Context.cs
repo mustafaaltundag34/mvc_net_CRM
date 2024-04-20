@@ -27,6 +27,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public DbSet<Personel> Personels { get; set; }
         public DbSet<SatisHareket> SatisHarekets { get; set; }
         public DbSet<Urun> Uruns { get; set; }
+        public DbSet<Marka> Markas { get; set; }
 
         public Context(): base("Context") { }//MYSQLDE FARKLI OLARAK BURASI EKLENDI //Reference the name of your connection string:
     }

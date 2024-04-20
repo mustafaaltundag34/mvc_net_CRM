@@ -15,13 +15,12 @@ namespace mvc_net_Crm.Models.Siniflar
 
         public Urun() //DEFAULT BILGILER VERILIYOR
         {
-            Marka = "Markaniz";
             Stok = 0;
-            AlisFiyat = 1000;
-            SatisFiyat = 1100;
+            AlisFiyat = 0;
+            SatisFiyat = 0;
             Durum = true;
             Kategoriid = 1;
-            UrunGorsel = "TestGorsel";
+            Markaid = 1;
         }
 
         [Key]
@@ -30,10 +29,6 @@ namespace mvc_net_Crm.Models.Siniflar
 		[Column(TypeName="Varchar")]
         [StringLength(30)]
         public string UrunAd { get; set; }
-
-        [Column(TypeName = "Varchar")]
-        [StringLength(40)]
-        public string Marka { get; set; }
 
         public short  Stok { get; set; }
 
@@ -53,6 +48,9 @@ namespace mvc_net_Crm.Models.Siniflar
         public string Barkod { get; set; }
         public int Kategoriid {  get; set; }
 		public virtual Kategori  Kategori { get; set; }//Kategori 1- % Urun //BURADA VIRTUAL ILE ILISKILI TABLODAN CEKILIYOR BILGI
+
+        public int Markaid { get; set; }
+        public virtual Marka Marka { get; set; }//Marka 1- % Urun //BURADA VIRTUAL ILE ILISKILI TABLODAN CEKILIYOR BILGI
         public ICollection<SatisHareket> SatisHarekets { get; set; }
 
     }

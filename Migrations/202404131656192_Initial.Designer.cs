@@ -7,13 +7,13 @@ namespace mvc_net_Crm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddColumnyeni1 : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddColumnyeni1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202404081424485_AddColumnyeni1"; }
+            get { return "202404131656192_Initial"; }
         }
         
         string IMigrationMetadata.Source

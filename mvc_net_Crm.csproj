@@ -84,7 +84,7 @@
       <HintPath>packages\MySql.Data.EntityFramework.8.0.21\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
-      <HintPath>packages\MySqlConnector.2.3.6\lib\net471\MySqlConnector.dll</HintPath>
+      <HintPath>packages\MySqlConnector.2.0.0\lib\net471\MySqlConnector.dll</HintPath>
     </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
@@ -206,19 +206,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CariController.cs" />
+    <Compile Include="Controllers\DepartmanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
+    <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202404081424485_AddColumnyeni1.cs" />
-    <Compile Include="Migrations\202404081424485_AddColumnyeni1.Designer.cs">
-      <DependentUpon>202404081424485_AddColumnyeni1.cs</DependentUpon>
+    <Compile Include="Migrations\202404131656192_Initial.cs" />
+    <Compile Include="Migrations\202404131656192_Initial.Designer.cs">
+      <DependentUpon>202404131656192_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
+    <Compile Include="Models\Siniflar\Marka.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
     <Compile Include="Models\Siniflar\Departman.cs" />
     <Compile Include="Models\Siniflar\faturaKalem.cs" />
@@ -305,13 +309,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -368,6 +365,24 @@
     <Content Include="Views\Urun\Index.cshtml" />
     <Content Include="Views\Urun\UrunEkle.cshtml" />
     <Content Include="Views\Urun\UrunGetir.cshtml" />
+    <Content Include="Views\Departman\Index.cshtml" />
+    <Content Include="Views\Departman\DepartmanEkle.cshtml" />
+    <Content Include="Views\Departman\DepartmanGetir.cshtml" />
+    <Content Include="Views\Marka\MarkaEkle.cshtml" />
+    <Content Include="Views\Marka\MarkaGetir.cshtml" />
+    <Content Include="Views\Marka\Index.cshtml" />
+    <Content Include="Views\Departman\DepartmanDetay.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Departman\DepartmanPersonelSatis.cshtml" />
+    <Content Include="Views\Cari\Index.cshtml" />
+    <Content Include="Views\Cari\CariEkle.cshtml" />
+    <Content Include="Views\Cari\CariGetir.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -403,8 +418,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404081424485_AddColumnyeni1.resx">
-      <DependentUpon>202404081424485_AddColumnyeni1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202404131656192_Initial.resx">
+      <DependentUpon>202404131656192_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

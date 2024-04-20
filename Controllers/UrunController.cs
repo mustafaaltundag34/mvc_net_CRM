@@ -22,22 +22,30 @@ namespace mvc_net_Crm.Controllers
         public ActionResult UrunEkle() //BOS FORM SAYFASI CAGIRIYOR
         {
             //DROPDOWN DB LISTESINDEN VERI CEKILIYOR
-            List<SelectListItem> deger1 = (from x in c.Kategoris.ToList()
+            List<SelectListItem> Kategoriler = (from x in c.Kategoris.Where(x => x.Durum == true).ToList()
                                            select new SelectListItem
                                            {
                                                Text =x.KategoriAd,
                                                Value=x.KategoriID.ToString()
                                            }
                                           ).ToList();
-            ViewBag.dgr1=deger1;
+            ViewBag.dgr1=Kategoriler;
 
-            List<SelectListItem> Markalar = new List<SelectListItem>();
-            Markalar.Add(new SelectListItem { Text = "Arcelik", Value = "Arcelik" });
-            Markalar.Add(new SelectListItem { Text = "Beko", Value = "Beko" });
-            Markalar.Add(new SelectListItem { Text = "Sony", Value = "Sony" });
-            Markalar.Add(new SelectListItem { Text = "Samsung", Value = "Samsung" });
-            Markalar.Add(new SelectListItem { Text = "Iphone", Value = "Iphone" });
+
+            List<SelectListItem> Markalar = (from x in c.Markas.Where(x=> x.Durum==true).ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.MarkaAd,
+                                               Value = x.MarkaID.ToString()
+                                           }
+                              ).ToList();
             ViewBag.dgr2 = Markalar;
+
+            List<SelectListItem> Durumlistesi = new List<SelectListItem>();
+            Durumlistesi.Add(new SelectListItem { Text = "Aktif", Value = "True" });
+            Durumlistesi.Add(new SelectListItem { Text = "Pasif", Value = "False" });
+
+            ViewBag.dgr3 = Durumlistesi;
 
             return View();
         }
@@ -45,6 +53,7 @@ namespace mvc_net_Crm.Controllers
         [HttpPost]
         public ActionResult UrunEkle(Urun p) //DB KAYDETME ISLEMI
         {
+            //p.Durum = true;//AKTIF KAYIT
             c.Uruns.Add(p);
             c.SaveChanges();
             return RedirectToAction("Index");
@@ -62,22 +71,28 @@ namespace mvc_net_Crm.Controllers
         {
             var urunbul = c.Uruns.Find(id);
 
-            List<SelectListItem> deger1 = (from x in c.Kategoris.ToList()
-                                           select new SelectListItem
-                                           {
-                                               Text = x.KategoriAd,
-                                               Value = x.KategoriID.ToString()
-                                           }
-                              ).ToList();
-            ViewBag.dgr1 = deger1;
+            List<SelectListItem> Kategoriler = (from x in c.Kategoris.Where(x => x.Durum==true).ToList()
+                                                                      select new SelectListItem
+                                                                      {
+                                                                          Text = x.KategoriAd,
+                                                                          Value = x.KategoriID.ToString()
+                                                                      }).ToList();
+            ViewBag.dgr1 = Kategoriler;
 
-            List<SelectListItem> Markalar = new List<SelectListItem>();
-            Markalar.Add(new SelectListItem { Text = "Arcelik", Value = "Arcelik" });
-            Markalar.Add(new SelectListItem { Text = "Beko", Value = "Beko" });
-            Markalar.Add(new SelectListItem { Text = "Sony", Value = "Sony" });
-            Markalar.Add(new SelectListItem { Text = "Samsung", Value = "Samsung" });
-            Markalar.Add(new SelectListItem { Text = "Iphone", Value = "Iphone" });
+            List<SelectListItem> Markalar = (from x in c.Markas.Where(x=> x.Durum==true).ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.MarkaAd,
+                                                 Value = x.MarkaID.ToString()
+                                             }
+                              ).ToList();
             ViewBag.dgr2 = Markalar;
+
+            List<SelectListItem> Durumlistesi = new List<SelectListItem>();
+            Durumlistesi.Add(new SelectListItem { Text = "Aktif", Value = "True" });
+            Durumlistesi.Add(new SelectListItem { Text = "Pasif", Value = "False" });
+
+            ViewBag.dgr3 = Durumlistesi;
 
             return View("UrunGetir", urunbul);
         }
@@ -86,7 +101,7 @@ namespace mvc_net_Crm.Controllers
         {
             var urungun = c.Uruns.Find(u.Urunid);
             urungun.UrunAd = u.UrunAd;
-            urungun.Marka = u.Marka;
+            urungun.Markaid = u.Markaid;
             urungun.AlisFiyat = u.AlisFiyat;
             urungun.SatisFiyat = u.SatisFiyat;
             urungun.Kategoriid = u.Kategoriid;

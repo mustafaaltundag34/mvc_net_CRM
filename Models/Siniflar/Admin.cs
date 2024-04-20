@@ -9,6 +9,11 @@ namespace mvc_net_Crm.Models.Siniflar
 {
 	public class Admin
 	{
+        public Admin() //DEFAULT BILGILER VERILIYOR
+        {
+            Durum = true;
+        }
+
         [Key]
         public int Adminid { get; set; }
 
@@ -23,6 +28,7 @@ namespace mvc_net_Crm.Models.Siniflar
         [Column(TypeName = "Char")]
         [StringLength(1)]
         public string Yetki { get; set; }
+        public bool Durum { get; set; } 
     }
 }
 

@@ -9,6 +9,11 @@ namespace mvc_net_Crm.Models.Siniflar
 {
     public class Faturalar
     {
+        public Faturalar() //DEFAULT BILGILER VERILIYOR
+        {
+            Durum = true;
+        }
+
         [Key]
         public int Faturaid { get; set; }
 
@@ -33,6 +38,8 @@ namespace mvc_net_Crm.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string TeslimAlan { get; set; }
+
+        public bool Durum {  get; set; }    
         public ICollection<faturaKalem> FaturaKalems { get; set; }//Faturalar 1 - % FaturaKalem
     }
 

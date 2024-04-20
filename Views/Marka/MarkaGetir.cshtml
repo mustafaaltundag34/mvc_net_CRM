@@ -1,0 +1,22 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Marka
+@{
+    ViewBag.Title = "MarkaGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Marka Guncelleme</h2>
+<br />
+@using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.MarkaID)
+        @Html.LabelFor(x => x.MarkaAd)
+        @Html.TextBoxFor(x => x.MarkaAd, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Durum)
+        @*Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })*@
+        @Html.DropDownListFor(x => x.Durum, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        <br />
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}

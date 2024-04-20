@@ -1,38 +1,39 @@
-﻿@using mvc_net_Crm.Models.Siniflar;
-@model List<Kategori>
+﻿@using mvc_net_Crm.Models.Siniflar
+@model List<Marka>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Kategori Listesi</h2>
+<h2>Marka Listesi</h2>
 <br />
 <table class="table table-striped table-bordered" style="margin-top:20px">
     <tr>
         <th>ID</th>
-        <th>Kategori Adi</th>
+        <th>Marka Adi</th>
+        <th>Durum</th>
         <th style="width: 150px" align="right">#</th>
-        <th style="width: 150px" >#</th>
+        <th style="width: 150px">#</th>
     </tr>
     @foreach (var k in Model)
     {
         <tr>
             <td>
-                @k.KategoriID
+                @k.MarkaID
             </td>
             <td>
-                @k.KategoriAd
+                @k.MarkaAd
             </td>
             <td>
                 @k.Durum
             </td>
             <td align="center">
-                <a href="/Kategori/KategoriGetir/@k.KategoriID" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
+                <a href="/Marka/MarkaGetir/@k.MarkaID" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
             </td>
             <td align="center">
-                <a href="/Kategori/KategoriSil/@k.KategoriID" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
+                <a href="/Marka/MarkaSil/@k.MarkaID" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
             </td>
         </tr>
     }
 </table>
-<a href="/Kategori/KategoriEkle" class="btn btn-primary">Kategori Ekle</a>
+<a href="/Marka/MarkaEkle" class="btn btn-primary">Marka Ekle</a>

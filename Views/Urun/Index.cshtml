@@ -4,9 +4,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-
+<br />
 <h2>Urun Listesi</h2>
-
+<br />
 <table class="table table-striped table-bordered" style="margin-top:20px">
     <tr>
         <th>ID</th>
@@ -30,7 +30,7 @@
                 @u.UrunAd
             </td>
             <td>
-                @u.Marka
+                @u.Marka.MarkaAd<!-- BURDA ILISKILI TABLODAN BILGI CEKILIYOR-->
             </td>
             <td>
                 @u.Stok

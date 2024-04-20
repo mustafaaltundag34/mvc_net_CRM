@@ -377,6 +377,7 @@
     <Content Include="Views\Cari\Index.cshtml" />
     <Content Include="Views\Cari\CariEkle.cshtml" />
     <Content Include="Views\Cari\CariGetir.cshtml" />
+    <Content Include="Views\Cari\MusteriSatis.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

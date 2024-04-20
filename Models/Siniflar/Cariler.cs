@@ -18,11 +18,13 @@ namespace mvc_net_Crm.Models.Siniflar
         public int Cariid { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(30)]
+        [StringLength(30, ErrorMessage="En Fazla 30 Karakter Girebilirsiniz")]
+        [Required(ErrorMessage ="Bu Alani Bos Gecemezsiniz!")]
         public string CariAd { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(30)]
+        [StringLength(30, ErrorMessage = "En Fazla 30 Karakter Girebilirsiniz")]
+        [Required(ErrorMessage = "Bu Alani Bos Gecemezsiniz!")]
         public string CariSoyad { get; set; }
 
         [Column(TypeName = "Varchar")]

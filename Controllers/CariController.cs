@@ -27,6 +27,10 @@ namespace mvc_net_Crm.Controllers
             Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
             Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
             Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
 
             ViewBag.dgr1 = Sehirlistesi;
             return View();
@@ -35,10 +39,32 @@ namespace mvc_net_Crm.Controllers
         [HttpPost]
         public ActionResult CariEkle(Cariler d) //DB KAYDETME ISLEMI
         {
-            d.Durum = true;
-            c.Carilers.Add(d);
-            c.SaveChanges();
-            return RedirectToAction("Index");
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> Sehirlistesi = new List<SelectListItem>();
+                Sehirlistesi.Add(new SelectListItem { Text = "Adana", Value = "Adana" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Adiyaman", Value = "Adiyaman" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Afyon", Value = "Afyon" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
+
+                ViewBag.dgr1 = Sehirlistesi;
+
+                return View("CariEkle");
+
+            }
+            else
+            {
+                d.Durum = true;
+                c.Carilers.Add(d);
+                c.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult CariSil(int id)//DB SILME ISLEMI
@@ -61,6 +87,10 @@ namespace mvc_net_Crm.Controllers
             Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
             Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
             Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
+            Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
 
             ViewBag.dgr1 = Sehirlistesi;
 
@@ -75,15 +105,54 @@ namespace mvc_net_Crm.Controllers
 
         public ActionResult CariGuncelle(Cariler k) //DB KAYDETME ISLEMI
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> Sehirlistesi = new List<SelectListItem>();
+                Sehirlistesi.Add(new SelectListItem { Text = "Adana", Value = "Adana" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Adiyaman", Value = "Adiyaman" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Afyon", Value = "Afyon" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
+                Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
 
-            var cari = c.Carilers.Find(k.Cariid);
-            cari.CariAd = k.CariAd;
-            cari.CariSoyad = k.CariSoyad;
-            cari.CariSehir = k.CariSehir;
-            cari.CariMail = k.CariMail;
-            cari.Durum=k.Durum; 
-            c.SaveChanges();
-            return RedirectToAction("Index");
+                ViewBag.dgr1 = Sehirlistesi;
+
+                List<SelectListItem> Durumlistesi = new List<SelectListItem>();
+                Durumlistesi.Add(new SelectListItem { Text = "Aktif", Value = "True" });
+                Durumlistesi.Add(new SelectListItem { Text = "Pasif", Value = "False" });
+
+                ViewBag.dgr2 = Durumlistesi;
+
+                var cari = c.Carilers.Find(k.Cariid);
+                return View("CariGetir",cari);
+                //return View("Cariler");
+
+
+            }
+            else
+            {
+                var cari = c.Carilers.Find(k.Cariid);
+                cari.CariAd = k.CariAd;
+                cari.CariSoyad = k.CariSoyad;
+                cari.CariSehir = k.CariSehir;
+                cari.CariMail = k.CariMail;
+                cari.Durum = k.Durum;
+                c.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public ActionResult MusteriSatis(int id)
+        {
+            var degerler=c.SatisHarekets.Where(x=>x.Cariid==id).ToList();
+            var musteri = c.Carilers.Where(x => x.Cariid == id).Select(y => y.CariAd + " " + y.CariSoyad).FirstOrDefault();
+            ViewBag.dgr1 = musteri;
+            return View(degerler);
         }
 
     }

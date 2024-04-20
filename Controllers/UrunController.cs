@@ -53,7 +53,7 @@ namespace mvc_net_Crm.Controllers
         [HttpPost]
         public ActionResult UrunEkle(Urun p) //DB KAYDETME ISLEMI
         {
-            //p.Durum = true;//AKTIF KAYIT
+            p.Durum = true;//AKTIF KAYIT
             c.Uruns.Add(p);
             c.SaveChanges();
             return RedirectToAction("Index");

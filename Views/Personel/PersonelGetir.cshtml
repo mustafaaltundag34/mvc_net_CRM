@@ -1,0 +1,36 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Personel
+@{
+    ViewBag.Title = "PersonelGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Personel Guncelleme</h2>
+<br />
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(x => x.Personelid)
+        @*Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })*@
+        <br />
+        @Html.LabelFor(x => x.PersonelAd)
+        @Html.TextBoxFor(x => x.PersonelAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelAd, "", new { @style = "color:red" })
+        <br />
+        @Html.LabelFor(x => x.PersonelSoyad)
+        @Html.TextBoxFor(x => x.PersonelSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelSoyad, "", new { @style = "color:red" })
+        <br />
+        @Html.LabelFor(x => x.PersonelGorsel)
+        @Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Departmanid)
+        @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Durum)
+        @Html.DropDownListFor(x => x.Durum, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}
+
+

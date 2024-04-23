@@ -1,0 +1,37 @@
+﻿@model mvc_net_Crm.Models.Siniflar.SatisHareket
+@{
+    ViewBag.Title = "SatisGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Satis Detaylari</h2>
+<br />
+@using (Html.BeginForm("SatisGuncelle", "Satis", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.Satisid)
+        <br />
+        @Html.LabelFor(x => x.Urun)
+        @Html.DropDownListFor(x => x.Urunid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Cariid)
+        @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Personel)
+        @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Adet)
+        @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Fiyat)
+        @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.ToplamTutar)
+        @Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Durum)
+        @Html.DropDownListFor(x => x.Durum, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+        <br />
+    </div>
+    <button class="btn btn-warning">Satis Guncelle</button>
+}

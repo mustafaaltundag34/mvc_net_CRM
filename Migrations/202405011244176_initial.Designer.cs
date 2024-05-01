@@ -7,13 +7,13 @@ namespace mvc_net_Crm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class StokHareket : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(StokHareket));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202404281311353_StokHareket"; }
+            get { return "202405011244176_initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -21,6 +21,7 @@ namespace mvc_net_Crm.Models.Siniflar
         //urun
         //cari
         //personel
+        //ambar
         public DateTime Tarih { get; set; }
         public int Adet { get; set; }
         public decimal Fiyat { get; set; }
@@ -34,9 +35,13 @@ namespace mvc_net_Crm.Models.Siniflar
         public int Urunid { get; set; }
         public int Cariid { get; set; }
         public int Personelid { get; set; }
+        public int Ambarid { get; set; }
+
         public virtual Urun Urun { get; set; }
         public virtual Cariler Cariler { get; set; }
         public virtual Personel Personel { get; set; }
+        public virtual Ambar Ambar { get; set; }
+
         public bool Durum { get; set; }
     }
 }

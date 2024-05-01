@@ -1,0 +1,22 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Ambar
+@{
+    ViewBag.Title = "AmbarGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Ambar Guncelleme</h2>
+<br />
+@using (Html.BeginForm("AmbarGuncelle", "Ambar", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.AmbarID)
+        @Html.LabelFor(x => x.AmbarID)
+        @Html.TextBoxFor(x => x.AmbarID, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.AmbarAdi)
+        @Html.TextBoxFor(x => x.AmbarAdi, new { @class = "form-control" })
+        <br />
+
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}

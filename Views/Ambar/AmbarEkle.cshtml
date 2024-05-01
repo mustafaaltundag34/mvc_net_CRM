@@ -1,0 +1,15 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Ambar
+@{
+    ViewBag.Title = "AmbarEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Yeni Ambar Ekleme</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.AmbarAdi)
+    @Html.TextBoxFor(x => x.AmbarAdi, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+</form>

@@ -16,8 +16,11 @@
     @Html.LabelFor(x => x.Personel)
     @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
     <br />
+    @Html.LabelFor(x => x.Ambar)
+    @Html.DropDownListFor(x => x.Ambarid, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+    <br />
     @Html.LabelFor(x => x.StokHareketTuru)
-    @Html.DropDownListFor(x => x.StokHareketTuru, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.StokHareketTuru, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
     <br />
     @Html.LabelFor(x => x.Adet)
     @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
@@ -26,7 +29,7 @@
     @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control" })
     <br />
     @Html.LabelFor(x => x.ToplamTutar)
-    @Html.TextBoxFor(x => x.ToplamTutar, new { disabled = "disabled", @class = "form-control" } )
+    @Html.TextBoxFor(x => x.ToplamTutar, new { disabled = "disabled", @class = "form-control" })
     <br />
     <button class="btn btn-success">Stok Hareket Islemini Kaydet</button>
 

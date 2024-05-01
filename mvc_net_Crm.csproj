@@ -206,6 +206,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AmbarController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\DepartmanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,12 +219,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202404281311353_StokHareket.cs" />
-    <Compile Include="Migrations\202404281311353_StokHareket.Designer.cs">
-      <DependentUpon>202404281311353_StokHareket.cs</DependentUpon>
+    <Compile Include="Migrations\202405011244176_initial.cs" />
+    <Compile Include="Migrations\202405011244176_initial.Designer.cs">
+      <DependentUpon>202405011244176_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
+    <Compile Include="Models\Siniflar\Ambar.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
     <Compile Include="Models\Siniflar\StokHareket.cs" />
     <Compile Include="Models\Siniflar\Marka.cs" />
@@ -392,6 +394,9 @@
     <Content Include="Views\StokHareket\StokHareketEkle.cshtml" />
     <Content Include="Views\StokHareket\StokHareketGetir.cshtml" />
     <Content Include="Views\Urun\UrunStokHareket.cshtml" />
+    <Content Include="Views\Ambar\Index.cshtml" />
+    <Content Include="Views\Ambar\AmbarEkle.cshtml" />
+    <Content Include="Views\Ambar\AmbarGetir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -433,8 +438,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404281311353_StokHareket.resx">
-      <DependentUpon>202404281311353_StokHareket.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405011244176_initial.resx">
+      <DependentUpon>202405011244176_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

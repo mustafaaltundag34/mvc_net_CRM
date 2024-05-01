@@ -30,6 +30,8 @@ namespace mvc_net_Crm.Models.Siniflar
         public DbSet<Marka> Markas { get; set; } 
         public DbSet<StokHareket> StokHarekets { get; set; }
 
+        public DbSet<Ambar> Ambars { get; set; }
+
         public Context(): base("Context") { }//MYSQLDE FARKLI OLARAK BURASI EKLENDI //Reference the name of your connection string:
     }
 }

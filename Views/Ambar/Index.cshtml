@@ -1,0 +1,40 @@
+﻿@using mvc_net_Crm.Models.Siniflar
+@model List<Ambar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Ambar Listesi</h2>
+<br />
+<table class="table table-striped table-bordered" style="margin-top:20px">
+    <tr>
+        <th>ID</th>
+        <th>Ambar Adi</th>
+        <th style="width: 150px" align="center">#</th>
+        <th style="width: 150px" align="center">#</th>
+        <th style="width: 150px" align="center">#</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>
+                @k.AmbarID
+            </td>
+            <td>
+                @k.AmbarAdi
+            </td>
+            <td>
+                @k.Durum
+            </td>
+            <td align="center">
+                <a href="/Ambar/AmbarGetir/@k.AmbarID" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
+            </td>
+            <td align="center">
+                <a href="/Ambar/AmbarSil/@k.AmbarID" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Ambar/AmbarEkle" class="btn btn-primary">Ambar Ekle</a>
+

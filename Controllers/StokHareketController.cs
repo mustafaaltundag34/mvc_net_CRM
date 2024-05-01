@@ -48,12 +48,21 @@ namespace mvc_net_Crm.Controllers
       ).ToList();
             ViewBag.dgr3 = Personeller;
 
+            List<SelectListItem> ambar = (from x in c.Ambars.Where(x => x.Durum == true).ToList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.AmbarAdi,
+                                                    Value = x.AmbarID.ToString()
+                                                }
+).ToList();
+            ViewBag.dgr4 = ambar;
+
             List<SelectListItem> HareketTuruListesi = new List<SelectListItem>();
             HareketTuruListesi.Add(new SelectListItem { Text = "GIRIS", Value = "GIRIS" });
             HareketTuruListesi.Add(new SelectListItem { Text = "CIKIS", Value = "CIKIS" });
 
 
-            ViewBag.dgr4 = HareketTuruListesi;
+            ViewBag.dgr5 = HareketTuruListesi;
             return View();
         }
 
@@ -107,12 +116,20 @@ namespace mvc_net_Crm.Controllers
       ).ToList();
             ViewBag.dgr3 = Personeller;
 
+            List<SelectListItem> ambar = (from x in c.Ambars.Where(x => x.Durum == true).ToList()
+                                          select new SelectListItem
+                                          {
+                                              Text = x.AmbarAdi,
+                                              Value = x.AmbarID.ToString()
+                                          }
+      ).ToList();
+            ViewBag.dgr4 = ambar;
 
             List<SelectListItem> HareketTuruListesi = new List<SelectListItem>();
             HareketTuruListesi.Add(new SelectListItem { Text = "GIRIS", Value = "GIRIS" });
             HareketTuruListesi.Add(new SelectListItem { Text = "CIKIS", Value = "CIKIS" });
 
-            ViewBag.dgr4 = HareketTuruListesi;
+            ViewBag.dgr5 = HareketTuruListesi;
 
             return View("StokHareketGetir", stokhareketbul);
         }
@@ -129,6 +146,7 @@ namespace mvc_net_Crm.Controllers
             stokhareketler.Durum = u.Durum;
             stokhareketler.StokHareketTuru=u.StokHareketTuru;
             stokhareketler.Tarih = u.Tarih;
+            stokhareketler.Ambarid = u.Ambarid;
             c.SaveChanges();
             return RedirectToAction("Index");
         }

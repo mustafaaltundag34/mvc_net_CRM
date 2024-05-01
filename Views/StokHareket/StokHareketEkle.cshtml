@@ -1,0 +1,33 @@
+﻿@model mvc_net_Crm.Models.Siniflar.StokHareket
+@{
+    ViewBag.Title = "StokHareketEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Yeni Stok Hareket Islemi</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.Urun)
+    @Html.DropDownListFor(x => x.Urunid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Cariid)
+    @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Personel)
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.StokHareketTuru)
+    @Html.DropDownListFor(x => x.StokHareketTuru, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Adet)
+    @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Fiyat)
+    @Html.TextBoxFor(x => x.Fiyat, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ToplamTutar)
+    @Html.TextBoxFor(x => x.ToplamTutar, new { disabled = "disabled", @class = "form-control" } )
+    <br />
+    <button class="btn btn-success">Stok Hareket Islemini Kaydet</button>
+
+</form>

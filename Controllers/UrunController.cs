@@ -108,5 +108,13 @@ namespace mvc_net_Crm.Controllers
             c.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult UrunStokHareket(int id)
+        {
+            var degerler = c.StokHarekets.Where(x => x.Urunid == id && x.Durum == true).ToList();//LINQ SORGUSUNDA AND && OR || ILE KULLANALIM
+            var urun = c.Uruns.Where(x => x.Urunid == id).Select(y => y.UrunAd).FirstOrDefault();
+            ViewBag.dgr1 = urun;
+            return View(degerler);
+        }
     }
 }

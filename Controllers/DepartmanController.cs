@@ -80,9 +80,9 @@ namespace mvc_net_Crm.Controllers
             return View(degerler);
         }
 
-        public ActionResult DepartmanPersonelSatis(int id) //PERSONEL SATIS CAGIRMA
+        public ActionResult DepartmanPersonelStokHareket(int id) //PERSONEL STOKHAREKET CAGIRMA
         {
-            var degerler1 = c.SatisHarekets.Where(x => x.Personelid == id).ToList();
+            var degerler1 = c.StokHarekets.Where(x => x.Personelid == id && x.Durum==true).ToList();
             var per = c.Personels.Where(x => x.Personelid == id).Select(y => y.PersonelAd+" "+y.PersonelSoyad).FirstOrDefault();
             ViewBag.dgr1 = per;
             return View(degerler1);

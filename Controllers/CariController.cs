@@ -147,9 +147,9 @@ namespace mvc_net_Crm.Controllers
 
         }
 
-        public ActionResult MusteriSatis(int id)
+        public ActionResult MusteriStokHareket(int id)
         {
-            var degerler=c.SatisHarekets.Where(x=>x.Cariid==id).ToList();
+            var degerler=c.StokHarekets.Where(x=>x.Cariid==id && x.Durum==true).ToList();
             var musteri = c.Carilers.Where(x => x.Cariid == id).Select(y => y.CariAd + " " + y.CariSoyad).FirstOrDefault();
             ViewBag.dgr1 = musteri;
             return View(degerler);

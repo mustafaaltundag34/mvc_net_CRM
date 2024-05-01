@@ -213,17 +213,19 @@
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\SatisController.cs" />
+    <Compile Include="Controllers\StokHareketController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202404131656192_Initial.cs" />
-    <Compile Include="Migrations\202404131656192_Initial.Designer.cs">
-      <DependentUpon>202404131656192_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202404281311353_StokHareket.cs" />
+    <Compile Include="Migrations\202404281311353_StokHareket.Designer.cs">
+      <DependentUpon>202404281311353_StokHareket.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
+    <Compile Include="Models\Siniflar\StokHareket.cs" />
     <Compile Include="Models\Siniflar\Marka.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
     <Compile Include="Models\Siniflar\Departman.cs" />
@@ -375,17 +377,21 @@
     <Content Include="Views\Marka\Index.cshtml" />
     <Content Include="Views\Departman\DepartmanDetay.cshtml" />
     <Content Include="Web.config" />
-    <Content Include="Views\Departman\DepartmanPersonelSatis.cshtml" />
+    <Content Include="Views\Departman\DepartmanPersonelStokHareket.cshtml" />
     <Content Include="Views\Cari\Index.cshtml" />
     <Content Include="Views\Cari\CariEkle.cshtml" />
     <Content Include="Views\Cari\CariGetir.cshtml" />
-    <Content Include="Views\Cari\MusteriSatis.cshtml" />
+    <Content Include="Views\Cari\MusteriStokHareket.cshtml" />
     <Content Include="Views\Personel\Index.cshtml" />
     <Content Include="Views\Personel\PersonelEkle.cshtml" />
     <Content Include="Views\Personel\PersonelGetir.cshtml" />
     <Content Include="Views\Satis\Index.cshtml" />
     <Content Include="Views\Satis\SatisEkle.cshtml" />
     <Content Include="Views\Satis\SatisGetir.cshtml" />
+    <Content Include="Views\StokHareket\Index.cshtml" />
+    <Content Include="Views\StokHareket\StokHareketEkle.cshtml" />
+    <Content Include="Views\StokHareket\StokHareketGetir.cshtml" />
+    <Content Include="Views\Urun\UrunStokHareket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -427,8 +433,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404131656192_Initial.resx">
-      <DependentUpon>202404131656192_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202404281311353_StokHareket.resx">
+      <DependentUpon>202404281311353_StokHareket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

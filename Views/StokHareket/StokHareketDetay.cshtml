@@ -1,0 +1,37 @@
+﻿@using mvc_net_Crm.Models.Siniflar
+@model List<StokHareket>
+@{
+    ViewBag.Title = "StokHareketDetay";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Stok Hareket Detay</h2>
+<br />
+<table class="table table-condensed">
+    <tr>
+        <th>Stok Hareket ID</th>
+        <th>Urun</th>
+        <th>Cari</th>
+        <th>Personel</th>
+        <th>Hareket Turu</th>
+        <th>Adet</th>
+        <th>Tarih</th>
+        <th>Yazdir</th>
+
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.StokHareketid</td>
+            <td>@x.Urun.UrunAd</td>
+            <td>@x.Cariler.CariAd @x.Cariler.CariSoyad</td>
+            <td>@x.Personel.PersonelAd @x.Personel.PersonelSoyad</td>
+            <td>@x.StokHareketTuru</td>
+            <td>@x.Fiyat</td>
+            <td>@x.Tarih</td>
+            <td align="center"><a href="/StokHareket/StokHareketPDF/@x.StokHareketid" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i> Hareket Yazdir</a></td>
+        </tr>
+    }
+</table>
+
+

@@ -35,17 +35,32 @@
             <td>@k.ToplamTutar</td>
             <td>@k.Personel.PersonelAd</td>
             <td>@k.Durum</td>
-            <td align="center">
-                <a href="/Satis/SatisGetir/@k.Satisid" class="btn btn-success"><i class="fas fa-database"></i> Detaylar</a>
-            </td>
-            <td align="center">
-                <a href="/Satis/SatisGetir/@k.Satisid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
-            </td>
-            <td align="center">
-                <a href="/Satis/SatisSil/@k.Satisid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
-            </td>
+            <td align="center"><a href="/Satis/SatisGetir/@k.Satisid" class="btn btn-success"><i class="fas fa-database"></i> Detaylar</a></td>
+            <td align="center"><a href="/Satis/SatisGetir/@k.Satisid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a></td>
+            <td align="center"><a href="/Satis/SatisSil/@k.Satisid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a></td>
         </tr>
     }
 </table>
 <a href="/Satis/SatisEkle" class="btn btn-primary">Yeni Satis Islemi</a>
 
+
+@*DATATABLES YAPISI VE UI SEKILLENDIRME BLOGU*@
+
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js "></script>*@
+<link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({
+       "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>
+
+@*DATATABLES YAPISI VE UI SEKILLENDIRME BLOGU*@

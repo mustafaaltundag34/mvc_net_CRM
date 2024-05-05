@@ -116,5 +116,12 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr1 = urun;
             return View(degerler);
         }
+
+        public ActionResult UrunListesiPDF()
+        {
+            //var urunler=c.Uruns.ToList();//KOSULSUZ LISTELEME
+            var urunler = c.Uruns.Where(x => x.Durum == true).ToList();//KOSULLU LISTELEME
+            return View(urunler);
+        }
     }
 }

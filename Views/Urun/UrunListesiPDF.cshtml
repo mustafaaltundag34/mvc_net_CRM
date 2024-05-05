@@ -1,0 +1,85 @@
+﻿@using mvc_net_Crm.Models.Siniflar
+@model List<Urun>
+
+@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Urun Listesi PDF Excel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+</head>
+<body>
+    <br />
+    <table id="tbl1" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kategori</th>
+                <th>Marka</th>
+                <th>Urun Adi</th>
+                <th>Stok</th>
+                @*<th>Alis Fiyati</th>
+                    <th>Satis Fiyati</th>*@
+                <th>Gorsel</th>
+                <th style="width: 150px">#</th>
+                <th style="width: 200px">#</th>
+                <th style="width: 150px">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Urunid</td>
+                    <td>@u.Kategori.KategoriAd<!-- BURDA ILISKILI TABLODAN BILGI CEKILIYOR--></td>
+                    <td>@u.Marka.MarkaAd<!-- BURDA ILISKILI TABLODAN BILGI CEKILIYOR--></td>
+                    <td>@u.UrunAd</td>
+                    <td>@u.Stok</td>
+                    @*<td>@u.AlisFiyat</td>
+                        <td>@u.SatisFiyat</td>*@
+                    <td>@u.UrunGorsel</td>
+                    <td align="center"><a href="/Urun/UrunGetir/@u.Urunid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a></td>
+                    <td align="center"><a href="/Urun/UrunStokHareket/@u.Urunid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Stok Hareketleri</a></td>
+                    <td align="center"><a href="/Urun/UrunSil/@u.Urunid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+           var table2 = $('#tbl1').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
+            });
+            table2.buttons().container()
+                .appendTo('#tbl1_wrapper .col-md-6:eq(0)');
+        });
+
+    </script>
+</body>
+</html>

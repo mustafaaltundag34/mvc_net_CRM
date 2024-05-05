@@ -8,39 +8,41 @@
 <h2>Stok Hareketleri</h2>
 <br />
 
-<table class="table table-striped table-bordered" style="margin-top:20px">
-    <tr>
-        <th>ID</th>
-        <th>Tarih</th>
-        <th>Cari</th>
-        <th>Urun</th>
-        <th>Ambar</th>
-        <th>Hareket Turu</th>
-        <th>Adet</th>
-        <th>Fiyat</th>
-        <th>Toplam Tutar</th>
-        <th>Personel</th>
-        <th>Durum</th>
-        <th style="width: 150px">#</th>
-        <th style="width: 150px">#</th>
-        <th style="width: 150px">#</th>
-    </tr>
+<table id="tbl1" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tarih</th>
+            <th>Urun</th>
+            <th>Cari</th>
+            <th>Ambar</th>
+            <th>H.Turu</th>
+            <th>Adet</th>
+            @*<th>Fiyat</th>
+            <th>Toplam Tutar</th>
+            <th>Personel</th>
+            <th>Durum</th>*@
+            <th style="width: 150px">#</th>
+            <th style="width: 150px">#</th>
+            <th style="width: 150px">#</th>
+        </tr>
+    </thead>
     @foreach (var k in Model)
     {
         <tr>
             <td>@k.StokHareketid</td>
             <td>@k.Tarih</td>
-            <td>@k.Cariler.CariAd @k.Cariler.CariSoyad</td>
             <td>@k.Urun.UrunAd</td>
+            <td>@k.Cariler.CariAd @k.Cariler.CariSoyad</td>
             <td>@k.Ambar.AmbarAdi</td>
             <td>@k.StokHareketTuru</td>
             <td>@k.Adet</td>
-            <td>@k.Fiyat</td>
+            @*<td>@k.Fiyat</td>
             <td>@k.ToplamTutar</td>
             <td>@k.Personel.PersonelAd</td>
-            <td>@k.Durum</td>
+            <td>@k.Durum</td>*@
             <td align="center">
-                <a href="/StokHareket/StokHareketGetir/@k.StokHareketid" class="btn btn-success"><i class="fas fa-database"></i> Detaylar</a>
+                <a href="/StokHareket/StokHareketDetay/@k.StokHareketid" class="btn btn-success"><i class="fas fa-database"></i> Detaylar</a>
             </td>
             <td align="center">
                 <a href="/StokHareket/StokHareketGetir/@k.StokHareketid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
@@ -53,3 +55,24 @@
 </table>
 <a href="/StokHareket/StokHareketEkle" class="btn btn-primary">Yeni Stok Hareket Islemi</a>
 
+
+@*DATATABLES YAPISI VE UI SEKILLENDIRME BLOGU*@
+
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js "></script>*@
+<link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({
+       "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>
+
+@*DATATABLES YAPISI VE UI SEKILLENDIRME BLOGU*@

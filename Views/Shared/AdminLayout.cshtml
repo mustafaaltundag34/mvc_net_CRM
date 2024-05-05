@@ -46,48 +46,78 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">ISLEM MENUSU</div>
-                        <a class="nav-link" href="/Kategori/Index/">
+
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages0" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
-                            Kategoriler
-                        </a>
-                        <a class="nav-link" href="/Marka/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
-                            Markalar
-                        </a>
-                        <a class="nav-link" href="/Urun/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
                             Urunler
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <a class="nav-link" href="/Departman/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
-                            Departman
-                        </a>
-                        <a class="nav-link" href="/Cari/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                            Cariler
-                        </a>
-                        <a class="nav-link" href="/Personel/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-street-view"></i></div>
-                            Personeller
-                        </a>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
-                            Giderler
-                        </a>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
-                            Istatistikler
-                        </a>
+                        <div class="collapse" id="collapsePages0" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" href="/Kategori/Index/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
+                                    Kategori Tanimlari
+                                </a>
+                                <a class="nav-link" href="/Marka/Index/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
+                                    Marka Tanimlari
+                                </a>
+                                <a class="nav-link" href="/Urun/Index/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
+                                    Urun Tanimlari
+                                </a>
+                                <a class="nav-link" href="/Ambar/Index/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                                    Ambar Tanimlari
+                                </a>
+                                <a class="nav-link" href="/Urun/UrunListesiPDF/" target="_blank">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
+                                    Urun Listesi PDF
+                                </a>
+                            </nav>
+                        </div>
+
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
                         </div>
 
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                            Fatura ve Raporlar
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Personel
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages1" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" href="/Departman/Index/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                    Departmanlar
+                                </a>
+                                <a class="nav-link" href="/Personel/Index/">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                    Personel Tanimlari
+                                </a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link" href="/Cari/Index/">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Cariler
+                        </a>
+
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            Faturalar
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" href="index.html">
                                     <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
@@ -97,17 +127,9 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
                                     Fatura Kalemleri
                                 </a>
-                                <a class="nav-link" href="/Ambar/Index/">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
-                                    Ambarlar
-                                </a>
                                 <a class="nav-link" href="/StokHareket/Index/">
                                     <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
                                     Stok Hareketleri
-                                </a>
-                                <a class="nav-link" href="/Satis/Index/">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
-                                    Satis Hareketleri
                                 </a>
                             </nav>
                         </div>
@@ -116,14 +138,34 @@
                             <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
                         </div>
 
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
+                            Finansal Islemler
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages3" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" href="index.html">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                                    Kasa / Banka Tanimlari
+                                </a>
+                                <a class="nav-link" href="index.html">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-bars"></i></div>
+                                    Kasa / Banka Islemleri
+                                </a>
+                            </nav>
+                        </div>
 
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
+                        </div>
 
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
                             Admin
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages4" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                     Yetkilendirme

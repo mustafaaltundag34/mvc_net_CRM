@@ -151,5 +151,18 @@ namespace mvc_net_Crm.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult StokHareketDetay(int id) //PERSONEL STOKHAREKET CAGIRMA
+        {
+            var degerler = c.StokHarekets.Where(x => x.StokHareketid == id && x.Durum == true).ToList();
+            return View(degerler);
+        }
+
+        public ActionResult StokHareketPDF(int id)
+        {
+            //var urunler=c.Uruns.ToList();//KOSULSUZ LISTELEME
+            var degerler = c.StokHarekets.Where(x => x.StokHareketid == id && x.Durum == true).ToList();
+            return View(degerler);
+        }
+
     }
 }

@@ -123,5 +123,6 @@ namespace mvc_net_Crm.Controllers
             var urunler = c.Uruns.Where(x => x.Durum == true).ToList();//KOSULLU LISTELEME
             return View(urunler);
         }
+
     }
 }

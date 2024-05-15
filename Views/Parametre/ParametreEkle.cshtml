@@ -1,0 +1,18 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Parametre
+@{
+    ViewBag.Title = "ParametreEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Yeni Parametre Ekrani</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.ParametreTuru)
+    @Html.TextBoxFor(x => x.ParametreTuru, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.ParametreAciklamasi)
+    @Html.TextBoxFor(x => x.ParametreAciklamasi, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+</form>

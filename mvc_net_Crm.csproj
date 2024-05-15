@@ -209,9 +209,11 @@
     <Compile Include="Controllers\AmbarController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\DepartmanController.cs" />
+    <Compile Include="Controllers\FaturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
+    <Compile Include="Controllers\ParametreController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\SatisController.cs" />
     <Compile Include="Controllers\StokHareketController.cs" />
@@ -223,10 +225,23 @@
     <Compile Include="Migrations\202405011244176_initial.Designer.cs">
       <DependentUpon>202405011244176_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405151002193_guncelleme.cs" />
+    <Compile Include="Migrations\202405151002193_guncelleme.Designer.cs">
+      <DependentUpon>202405151002193_guncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405151111595_faturaguncelleme.cs" />
+    <Compile Include="Migrations\202405151111595_faturaguncelleme.Designer.cs">
+      <DependentUpon>202405151111595_faturaguncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405151147342_Guncelbelgeturu.cs" />
+    <Compile Include="Migrations\202405151147342_Guncelbelgeturu.Designer.cs">
+      <DependentUpon>202405151147342_Guncelbelgeturu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Ambar.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
+    <Compile Include="Models\Siniflar\Parametre.cs" />
     <Compile Include="Models\Siniflar\StokHareket.cs" />
     <Compile Include="Models\Siniflar\Marka.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
@@ -636,6 +651,11 @@
     <Content Include="Views\StokHareket\StokHareketDetay.cshtml" />
     <Content Include="Views\Urun\UrunListesiPDF.cshtml" />
     <Content Include="Views\StokHareket\StokHareketPDF.cshtml" />
+    <Content Include="Views\Fatura\Index.cshtml" />
+    <Content Include="Views\Parametre\Index.cshtml" />
+    <Content Include="Views\Parametre\ParametreEkle.cshtml" />
+    <Content Include="Views\Parametre\ParametreGetir.cshtml" />
+    <Content Include="Views\Fatura\FaturaEkle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -680,6 +700,15 @@
     <EmbeddedResource Include="Migrations\202405011244176_initial.resx">
       <DependentUpon>202405011244176_initial.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405151002193_guncelleme.resx">
+      <DependentUpon>202405151002193_guncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405151111595_faturaguncelleme.resx">
+      <DependentUpon>202405151111595_faturaguncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405151147342_Guncelbelgeturu.resx">
+      <DependentUpon>202405151147342_Guncelbelgeturu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

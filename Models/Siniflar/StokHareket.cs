@@ -12,6 +12,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public StokHareket() //DEFAULT BILGILER VERILIYOR
         {
             Durum = true;
+            BelgeTuru = "StokTekilHareket";
             Tarih=DateTime.Now;
             ToplamTutar = Adet * Fiyat;
         }
@@ -32,6 +33,9 @@ namespace mvc_net_Crm.Models.Siniflar
         [StringLength(30)]
         public string StokHareketTuru { get; set; }
 
+        [Column(TypeName = "Varchar")]
+        [StringLength(30)]
+        public string BelgeTuru { get; set; }
         public int Urunid { get; set; }
         public int Cariid { get; set; }
         public int Personelid { get; set; }

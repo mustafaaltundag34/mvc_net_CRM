@@ -1,0 +1,21 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Parametre
+@{
+    ViewBag.Title = "ParametreGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Parametre Guncelleme</h2>
+<br />
+@using (Html.BeginForm("ParametreGuncelle", "Parametre", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.ParametreID)
+        @Html.LabelFor(x => x.ParametreTuru)
+        @Html.TextBoxFor(x => x.ParametreTuru, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.ParametreAciklamasi)
+        @Html.TextBoxFor(x => x.ParametreAciklamasi, new { @class = "form-control" })
+    <br />
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}

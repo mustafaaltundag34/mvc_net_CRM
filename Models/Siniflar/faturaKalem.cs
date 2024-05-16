@@ -14,13 +14,14 @@ namespace mvc_net_Crm.Models.Siniflar
             Durum = true;
             BelgeTuru = "FaturaKalemHareket";
             Tarih=DateTime.Now;
+            Tutar = Miktar * BirimFiyat;
         }
         [Key]
         public int FaturaKalemid { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(100)]
-        public string Aciklama { get; set; }
+        public string UrunAd { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
@@ -35,10 +36,11 @@ namespace mvc_net_Crm.Models.Siniflar
         public int KdvOrani { get; set; }
         public decimal Tutar { get; set; }
         public bool Durum { get; set; }
+        public int Urunid { get; set; }
+        public virtual Urun Urun { get; set; }
         public int Ambarid { get; set; }
         public virtual Ambar Ambar { get; set; }
         public int Faturaid { get; set; }
-
         public virtual Faturalar Faturalar { get; set; }//Faturalar 1 - % FaturaKalem
 
     }

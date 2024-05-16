@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;   
         }
 
         protected override void Seed(mvc_net_Crm.Models.Siniflar.Context context)

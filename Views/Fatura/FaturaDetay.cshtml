@@ -1,0 +1,42 @@
+﻿@using mvc_net_Crm.Models.Siniflar
+@model List<faturaKalem>
+@{
+    ViewBag.Title = "FaturaDetay";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Fatura Kalemleri</h2>
+<br />
+<ol class="breadcrumb mb-4"><li class="breadcrumb-item active">Fatura No : @ViewBag.dgr1 , Musteri Ad Soyad: @ViewBag.dgr2 </li></ol>
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>Fatura ID</th>
+        <th>Fatura Kalem ID</th>
+        <th>Urun Adi</th>
+        <th>Ambar Adi</th>
+        <th>Hareket Turu</th>
+        <th>Miktar</th>
+        <th>Fiyat</th>
+        <th>Tutar</th>
+        <th style="width: 150px">#</th>
+        <th style="width: 150px">#</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Faturaid</td>
+            <td>@x.FaturaKalemid</td>
+            <td>@x.Urun.UrunAd</td>
+            <td>@x.Ambar.AmbarAdi</td>
+            <td>@x.StokHareketTuru</td>
+            <td>@x.Miktar</td>
+            <td>@x.BirimFiyat</td>
+            <td>@x.Tutar</td>
+            <td align="center"><a href="/Fatura/FaturaKalemGetir/@x.FaturaKalemid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a></td>
+            <td align="center"><a href="/Fatura/FaturaKalemSil/@x.FaturaKalemid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a></td>
+        </tr>
+    }
+</table>
+<br />
+<a href="/Fatura/FaturaKalemEkle/@ViewBag.dgr1" class="btn btn-primary">Yeni Fatura Kalem Ekle</a>
+

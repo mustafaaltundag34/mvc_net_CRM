@@ -21,6 +21,7 @@ namespace mvc_net_Crm.Models.Siniflar
             Durum = true;
             Kategoriid = 1;
             Markaid = 1;
+            Barkod = "1234567890";//DEFAULT BARKOD BILGISI
         }
 
         [Key]

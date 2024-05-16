@@ -7,16 +7,17 @@
 <br />
 <h2>Faturalar</h2>
 <br />
-<table id="tbl1" class="table table-striped table-bordered" style="width:100%">
+<table id="tbl1" class="table table-striped table-bordered table-hover" style="width:100%">
     <thead>
         <tr>
             <th>ID</th>
             <th>Tarih</th>
+            <th>Saat</th>
             <th>Cari</th>
             <th>FaturaTuru</th>
             <th>Tutar</th>
             <th>OdemeTuru</th>
-            <th>Ambar</th>
+            <th style="width: 150px">#</th>
             <th style="width: 150px">#</th>
             <th style="width: 150px">#</th>
         </tr>
@@ -25,13 +26,15 @@
     {
         <tr>
             <td>@u.Faturaid</td>
-            <td>@u.Tarih
+            <td>@u.Tarih.ToString("dd.MM.yyyy")
+            <td>@u.Saat
             <td>@u.Cariler.CariAd @u.Cariler.CariSoyad<!-- BURDA ILISKILI TABLODAN BILGI CEKILIYOR--></td>
             <td>@u.FaturaTuru</td>
             <td>@u.GenelToplam</td>
             <td>@u.OdemeTuru</td>
-            <td>@u.Ambar.AmbarAdi</td>
+            <!--<td>@u.Ambar.AmbarAdi</td>-->
             <td align="center"><a href="/Fatura/FaturaGetir/@u.Faturaid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a></td>
+            <td align="center"><a href="/Fatura/FaturaDetay/@u.Faturaid" class="btn btn-success"><i class="fas fa-database"></i> Kalemler</a></td>
             <td align="center"><a href="/Fatura/FaturaSil/@u.Faturaid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a></td>
         </tr>
     }

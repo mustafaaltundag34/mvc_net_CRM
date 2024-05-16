@@ -105,6 +105,7 @@ namespace mvc_net_Crm.Controllers
             urungun.AlisFiyat = u.AlisFiyat;
             urungun.SatisFiyat = u.SatisFiyat;
             urungun.Kategoriid = u.Kategoriid;
+            urungun.Barkod = u.Barkod;
             c.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -16,10 +16,15 @@ namespace mvc_net_Crm.Models.Siniflar
             Saat = DateTime.Now.ToString("HH:mm");
             GenelToplam = 0;
             KdvTutar = 0;
+            BelgeTuru = "Fatura";
         }
 
         [Key]
         public int Faturaid { get; set; }
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string BelgeTuru { get; set; }
 
         [Column(TypeName = "Char")]
         [StringLength(5)]

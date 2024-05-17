@@ -1,5 +1,5 @@
 ﻿@using mvc_net_Crm.Models.Siniflar
-@model List<StokHareket>
+@model  List<StokHareket>
 @{
     ViewBag.Title = "UrunStokHareket";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -15,72 +15,85 @@
 </ol>
 
 <!--<div style="background:#CCC; width:auto; height:60px; margin-bottom:5px;">Üst</div>-->
-<div style="float: left; margin-left: 0px; background: #ffffff; height: auto; width: 50%; display: inline;">
-    <table class="table table-condensed">
-        <tr>
-            <th>ID</th>
-            <th>Urun</th>
-            <th>Ambar</th>
-            <th>Hareket</th>
-            <th>Adet</th>
-        </tr>
-        @foreach (var x in Model)
-
-        {
-            if (x.StokHareketTuru == "GIRIS")
-            {
-                <tr>
-                    <td>@x.StokHareketid</td>
-                    <td>@x.Urun.UrunAd</td>
-                    <td>@x.Ambar.AmbarAdi</td>
-                    <td>@x.StokHareketTuru</td>
-                    <td>@x.Adet</td>
-                </tr>
-                toplamgiris = toplamgiris + x.Adet;
-            }
-        }
-    </table>
-
-</div>
-<div style="float: left; margin-right: 0px; background: #ffffff; width: 50%; height: auto; display: inline ">
-    <table class="table table-condensed">
-        <tr>
-            <th>ID</th>
-            <th>Urun</th>
-            <th>Ambar</th>
-            <th>Hareket</th>
-            <th>Adet</th>
-
-        </tr>
-        @foreach (var x in Model)
-
-        {
-            if (x.StokHareketTuru == "CIKIS")
-            {
-                <tr>
-                    <td>@x.StokHareketid</td>
-                    <td>@x.Urun.UrunAd</td>
-                    <td>@x.Ambar.AmbarAdi</td>
-                    <td>@x.StokHareketTuru</td>
-                    <td>@x.Adet</td>
-                </tr>
-                toplamcikis = toplamcikis + x.Adet;
-            }
-            geneldurum = toplamgiris - toplamcikis;
-        }
-    </table>
-
-</div>
-<br />
-<br />
-<br />
-<br />
-<br />
 <div>
-    <div class="breadcrumb mb-4" style="float: left; overflow: auto; background: #f5f5f5; margin-left: 0px; width: 50%; height: 50px; margin-top: 5px; ">| Toplam GIRIS: @toplamgiris</div>
-    <div class="breadcrumb mb-4" style="float: right; overflow: auto; background: #f5f5f5; margin-right: 0px; width: 50%; height: 50px; margin-top: 5px; ">| Toplam CIKIS: @toplamcikis</div>
+    <div style="float: left; margin-left: 0px; background: #ffffff; height: auto; width: 50%; display: inline;">
+        <table class="table table-condensed">
+            <tr>
+                <th>ID</th>
+                <th>Urun</th>
+                <th>Ambar</th>
+                <th>Hareket</th>
+                <th>Adet</th>
+            </tr>
+            @foreach (var x in Model)
+
+            {
+                if (x.StokHareketTuru == "GIRIS")
+                {
+                    <tr>
+                        <td>@x.StokHareketid</td>
+                        <td>@x.Urun.UrunAd</td>
+                        <td>@x.Ambar.AmbarAdi</td>
+                        <td>@x.StokHareketTuru</td>
+                        <td>@x.Adet</td>
+                    </tr>
+                    toplamgiris = toplamgiris + x.Adet;
+                }
+            }
+        </table>
+
+    </div>
+    <div style="float: left; margin-right: 0px; background: #ffffff; width: 50%; height: auto; display: inline ">
+        <table class="table table-condensed">
+            <tr>
+                <th>ID</th>
+                <th>Urun</th>
+                <th>Ambar</th>
+                <th>Hareket</th>
+                <th>Adet</th>
+
+            </tr>
+            @foreach (var x in Model)
+
+            {
+                if (x.StokHareketTuru == "CIKIS")
+                {
+                    <tr>
+                        <td>@x.StokHareketid</td>
+                        <td>@x.Urun.UrunAd</td>
+                        <td>@x.Ambar.AmbarAdi</td>
+                        <td>@x.StokHareketTuru</td>
+                        <td>@x.Adet</td>
+                    </tr>
+                    toplamcikis = toplamcikis + x.Adet;
+                }
+                geneldurum = toplamgiris - toplamcikis;
+            }
+
+        </table>
+    </div>
 
 </div>
+<br />
+
+<div class="breadcrumb mb-4" style="width: 100%;">
+    <div class="breadcrumb mb-4" style="width: 50%;">
+        <table>
+            <tr><th style="width: 50%;">| Toplam GIRIS: @toplamgiris </th></tr>
+            @*<tr><td style="width: 50%;"> @toplamgiris</td></tr>*@
+        </table>
+    </div>
+    <div class="breadcrumb mb-4" style="width: 50%;">
+        <table>
+            <tr><th style="width: 50%;">| Toplam CIKIS: @toplamcikis</th></tr>
+            @*<tr><td style="width: 50%;"> @toplamcikis</td></tr>*@
+        </table>
+    </div>
+</div>
+
+
+<br />
+
 @if (geneldurum > 0)
 {
     <div class="breadcrumb mb-4" style="float: left; overflow:auto; background: #58780a; margin-left: 0px; width: 100%; height: 100px; margin-top: 5px; "><span style="text-align:center; color:white;font-size:xx-large;font-weight:bold">STOK DURUMU : @geneldurum </span></div>
@@ -90,8 +103,5 @@ else
 {
     <div class="breadcrumb mb-4" style="float: left; overflow:auto; background: #ff0000; margin-left: 0px; width: 100%; height: 100px; margin-top: 5px; "><span style="text-align: center; color: white; font-size: xx-large; font-weight: bold">STOK DURUMU : @geneldurum </span></div>
 }
-
-
-
 
 

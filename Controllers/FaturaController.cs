@@ -116,7 +116,7 @@ namespace mvc_net_Crm.Controllers
                 p.GenelToplam = 0;
                 c.Faturalars.Add(p);
                 c.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("FaturaKalemEkle", new {id=p.Faturaid});
             }
             catch (DbEntityValidationException ex)
             {
@@ -243,7 +243,8 @@ namespace mvc_net_Crm.Controllers
             fatura.Saat = u.Saat;
             fatura.Ambarid = u.Ambarid;
             c.SaveChanges();
-            return RedirectToAction("Index");
+            //return RedirectToAction("index");
+            return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
         }
 
 
@@ -256,11 +257,17 @@ namespace mvc_net_Crm.Controllers
 
         public ActionResult FaturaDetay(int id) //DETAY CAGIRMA
         {
-            var faturakalemler = c.FaturaKalems.Where(x => x.Faturaid == id).ToList();
+            var faturakalemler = c.FaturaKalems.Where(x => x.Faturaid == id && x.Durum == true).ToList();
             var faturaantet1 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Faturaid).FirstOrDefault();
             ViewBag.dgr1 = faturaantet1;
             var faturaantet2 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Cariler.CariAd + " " + y.Cariler.CariSoyad).FirstOrDefault();
             ViewBag.dgr2 = faturaantet2;
+            var faturaantet3 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.FaturaTuru).FirstOrDefault();
+            ViewBag.dgr3 = faturaantet3;
+            var faturaantet4 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Tarih).FirstOrDefault();
+            ViewBag.dgr4 = faturaantet4;
+            var faturaantet5 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.GenelToplam).FirstOrDefault();
+            ViewBag.dgr5 = faturaantet5;
             return View(faturakalemler);
         }
 
@@ -269,6 +276,8 @@ namespace mvc_net_Crm.Controllers
         {
             int faturaidsecilen = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Faturaid).FirstOrDefault();
             ViewBag.dgr4 = faturaidsecilen;
+            var faturaantet5 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.FaturaTuru).FirstOrDefault();
+            ViewBag.dgr5 = faturaantet5;
 
             List<SelectListItem> stoksecimi = (from x in c.Uruns.Where(x => x.Durum == true).ToList()
                                              select new SelectListItem
@@ -311,7 +320,7 @@ namespace mvc_net_Crm.Controllers
                 p.Durum = true;//AKTIF KAYIT
                 p.Tarih = DateTime.Now;
                 p.KdvOrani = 1;
-                p.Tutar = p.Miktar * p.BirimFiyat;
+                p.Tutar = p.Adet * p.BirimFiyat;
                 c.FaturaKalems.Add(p);
                 c.SaveChanges();
                 return RedirectToAction("Index");
@@ -324,6 +333,15 @@ namespace mvc_net_Crm.Controllers
             }
 
         }
+
+        public ActionResult FaturaKalemSil(int id)//DB SILME ISLEMI
+        {
+            var faturakalembul = c.FaturaKalems.Find(id);
+            faturakalembul.Durum = false;
+            c.SaveChanges();
+            return RedirectToAction("FaturaDetay", new { id = faturakalembul.Faturaid });
+        }
+
 
 
     }

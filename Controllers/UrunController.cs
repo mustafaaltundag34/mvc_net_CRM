@@ -4,7 +4,9 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using mvc_net_Crm.Models.Siniflar;
+using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace mvc_net_Crm.Controllers
 {
@@ -125,5 +127,47 @@ namespace mvc_net_Crm.Controllers
             return View(urunler);
         }
 
+        public ActionResult UrunStokHareketALL(int id) //TUM STOK HAREKETLERI FATURA+STOKHAREKET CAGIRMA
+        {
+            var stokhareketleri = c.StokHarekets.Where(x => x.Urunid == id && x.Durum == true).Select(x => new OrtakStokHareketView
+            {
+                Z_TransactionNo=x.StokHareketid,
+                Z_BelgeTuru = x.BelgeTuru,
+                Z_Tarih = x.Tarih,
+                Z_Urunid = x.Urunid,
+                Z_UrunAd = x.Urun.UrunAd,
+                Z_Adet = x.Adet,
+                Z_StokHareketTuru = x.StokHareketTuru,
+                Z_Ambarid = x.Ambar.AmbarAdi,
+            }).ToList();    
+            var faturakalemleri= c.FaturaKalems.Where(x => x.Urunid == id && x.Durum == true).Select(x => new OrtakStokHareketView
+            {
+                Z_TransactionNo = x.FaturaKalemid,
+                Z_BelgeTuru = x.BelgeTuru,
+                Z_Tarih = x.Tarih,
+                Z_Urunid = x.Urunid,
+                Z_UrunAd=x.Urun.UrunAd,
+                Z_Adet = x.Adet,
+                Z_StokHareketTuru = x.StokHareketTuru,
+                Z_Ambarid = x.Ambar.AmbarAdi
+            }).ToList();
+            var modelyeni = stokhareketleri.Union(faturakalemleri).ToList();
+            var urun = c.Uruns.Where(x => x.Urunid == id).Select(y => y.UrunAd).FirstOrDefault();
+            ViewBag.dgr1 = urun;
+            return View(modelyeni);
+        }
+
+    }
+
+    public class OrtakStokHareketView
+    {
+        public int Z_TransactionNo { get; set; }
+        public string Z_BelgeTuru { get; set; }
+        public DateTime Z_Tarih { get; set; }
+        public int Z_Urunid { get; set; }
+        public string Z_UrunAd { get; set; }
+        public int Z_Adet { get; set; }   
+        public string Z_StokHareketTuru { get; set; }
+        public string Z_Ambarid { get; set; }
     }
 }

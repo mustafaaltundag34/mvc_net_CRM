@@ -164,5 +164,7 @@ namespace mvc_net_Crm.Controllers
             return View(degerler);
         }
 
+
+
     }
 }

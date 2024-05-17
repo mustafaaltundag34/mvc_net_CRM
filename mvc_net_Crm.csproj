@@ -647,6 +647,7 @@
     <Content Include="Views\Fatura\FaturaGetir.cshtml" />
     <Content Include="Views\Fatura\FaturaDetay.cshtml" />
     <Content Include="Views\Fatura\FaturaKalemEkle.cshtml" />
+    <Content Include="Views\Urun\UrunStokHareketALL.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

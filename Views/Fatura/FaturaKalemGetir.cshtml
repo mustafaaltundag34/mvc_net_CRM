@@ -1,0 +1,35 @@
+﻿@model mvc_net_Crm.Models.Siniflar.faturaKalem
+@{
+    ViewBag.Title = "FaturaKalemGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+    <h2>Fatura Kalem Guncelleme</h2>
+    <br />
+    @using (Html.BeginForm("FaturaKalemGuncelle", "Fatura", FormMethod.Post))
+    {
+        <div class="form-popup">
+            @Html.HiddenFor(x => x.FaturaKalemid)
+            @Html.HiddenFor(x => x.Faturaid)
+            @Html.LabelFor(x => x.FaturaKalemid)
+            @Html.TextBoxFor(x => x.FaturaKalemid, new { disabled = "disabled", @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.StokHareketTuru)
+            @Html.TextBoxFor(x => x.StokHareketTuru, new { @Value = ViewBag.dgr2, @readonly = "true", @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.Urunid)
+            @Html.DropDownListFor(x => x.Urunid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.Adet)
+            @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.BirimFiyat)
+            @Html.TextBoxFor(x => x.BirimFiyat, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.Tutar)
+            @Html.TextBoxFor(x => x.Tutar, new { disabled = "disabled", @class = "form-control" })
+            <br />
+        </div>
+        <button class="btn btn-warning">Fatura Kalem Guncelle</button>
+
+    }

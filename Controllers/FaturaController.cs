@@ -342,7 +342,40 @@ namespace mvc_net_Crm.Controllers
             return RedirectToAction("FaturaDetay", new { id = faturakalembul.Faturaid });
         }
 
+        public ActionResult FaturaKalemGetir(int id) //BOS FORM SAYFASI CAGIRIYOR
+        {
+            var faturakalembul = c.FaturaKalems.Find(id);
+            int kalemid = c.FaturaKalems.Where(x => x.FaturaKalemid == id).Select(y => y.FaturaKalemid).FirstOrDefault();
+            ViewBag.dgr1 = kalemid;
+            var kalemhareketturu = c.FaturaKalems.Where(x => x.FaturaKalemid == id).Select(y => y.StokHareketTuru).FirstOrDefault();
+            ViewBag.dgr2 = kalemhareketturu;
 
+            List<SelectListItem> stoksecimi = (from x in c.Uruns.Where(x => x.Durum == true).ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.UrunAd,
+                                                   Value = x.Urunid.ToString()
+                                               }
+      ).ToList();
+            ViewBag.dgr3 = stoksecimi;
+            return View("FaturaKalemGetir", faturakalembul);
+        }
+
+
+        public ActionResult FaturaKalemGuncelle(faturaKalem u) //DB KAYDETME ISLEMI
+        {
+            var faturakalem = c.FaturaKalems.Find(u.FaturaKalemid);
+            faturakalem.Urunid = u.Urunid;
+            //faturakalem.Ambarid = u.Ambarid;
+            faturakalem.Adet = u.Adet;
+            faturakalem.BirimFiyat = u.BirimFiyat;
+            faturakalem.Tutar = u.BirimFiyat * u.Adet;
+            faturakalem.Tarih = DateTime.Now;
+            //faturakalem.StokHareketTuru = u.StokHareketTuru;
+            c.SaveChanges();
+            //return RedirectToAction("index");
+            return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
+        }
 
     }
 }

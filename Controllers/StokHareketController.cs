@@ -137,16 +137,10 @@ namespace mvc_net_Crm.Controllers
         public ActionResult StokHareketGuncelle(StokHareket u) //DB KAYDETME ISLEMI
         {
             var stokhareketler = c.StokHarekets.Find(u.StokHareketid);
-            stokhareketler.Urunid = u.Urunid;
-            stokhareketler.Cariid = u.Cariid;
-            stokhareketler.Personelid = u.Personelid;
             stokhareketler.Adet = u.Adet;
             stokhareketler.Fiyat = u.Fiyat;
             stokhareketler.ToplamTutar = u.Adet * u.Fiyat;
-            stokhareketler.Durum = u.Durum;
-            stokhareketler.StokHareketTuru=u.StokHareketTuru;
-            stokhareketler.Tarih = u.Tarih;
-            stokhareketler.Ambarid = u.Ambarid;
+            stokhareketler.Tarih = DateTime.Now;
             c.SaveChanges();
             return RedirectToAction("Index");
         }

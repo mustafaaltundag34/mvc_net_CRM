@@ -209,13 +209,13 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr8 = teslimeden;
 
-            List<SelectListItem> teslimalan = (from x in c.Personels.Where(x => x.Durum == true).ToList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.PersonelAd + " " + x.PersonelSoyad,
-                                                   Value = x.PersonelAd + " " + x.PersonelSoyad
-                                               }
-).ToList();
+            List<SelectListItem> teslimalan = (from x in c.Carilers.Where(x => x.Durum == true).ToList()
+                                            select new SelectListItem
+                                            {
+                                                Text = x.CariAd + " " + x.CariSoyad,
+                                                Value = x.CariAd + " " + x.CariSoyad
+                                            }
+                               ).ToList();
             ViewBag.dgr9 = teslimalan;
 
             return View("FaturaGetir", faturabul);
@@ -225,23 +225,10 @@ namespace mvc_net_Crm.Controllers
         {
             var fatura = c.Faturalars.Find(u.Faturaid);
             fatura.Faturaid = u.Faturaid;
-            fatura.Cariid = u.Cariid;
-            fatura.FaturaSeriNo = u.FaturaSeriNo;
-            fatura.FaturaSiraNo = u.FaturaSiraNo;
-            fatura.Personelid = u.Personelid;
-            fatura.VergiDairesi = u.VergiDairesi;
-            fatura.VergiNo = u.VergiNo;
-            fatura.Ambarid = u.Ambarid;
-            fatura.KdvTutar = u.KdvTutar;
-            fatura.GenelToplam = u.GenelToplam;
-            fatura.Tarih = u.Tarih;
-            fatura.OdemeTuru = u.OdemeTuru;
             fatura.TeslimEden = u.TeslimEden;
             fatura.TeslimAlan = u.TeslimAlan;
-            fatura.FaturaTuru = u.FaturaTuru;
-            fatura.Tarih = u.Tarih;
-            fatura.Saat = u.Saat;
-            fatura.Ambarid = u.Ambarid;
+            fatura.Tarih = DateTime.Now;
+            fatura.Saat = DateTime.Now.ToString("HH:mm");
             c.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
@@ -268,6 +255,10 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr4 = faturaantet4;
             var faturaantet5 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.GenelToplam).FirstOrDefault();
             ViewBag.dgr5 = faturaantet5;
+            var faturaantet6 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.TeslimEden).FirstOrDefault();
+            ViewBag.dgr6 = faturaantet6;
+            var faturaantet7 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.TeslimAlan).FirstOrDefault();
+            ViewBag.dgr7 = faturaantet7;
             return View(faturakalemler);
         }
 
@@ -365,13 +356,10 @@ namespace mvc_net_Crm.Controllers
         public ActionResult FaturaKalemGuncelle(faturaKalem u) //DB KAYDETME ISLEMI
         {
             var faturakalem = c.FaturaKalems.Find(u.FaturaKalemid);
-            faturakalem.Urunid = u.Urunid;
-            //faturakalem.Ambarid = u.Ambarid;
             faturakalem.Adet = u.Adet;
             faturakalem.BirimFiyat = u.BirimFiyat;
             faturakalem.Tutar = u.BirimFiyat * u.Adet;
             faturakalem.Tarih = DateTime.Now;
-            //faturakalem.StokHareketTuru = u.StokHareketTuru;
             c.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });

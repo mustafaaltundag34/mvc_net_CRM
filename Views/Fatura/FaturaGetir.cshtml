@@ -14,38 +14,7 @@
         @Html.TextBoxFor(x => x.Faturaid, new { disabled = "disabled", @class = "form-control" })
         <br />
         @Html.LabelFor(x => x.Cariid)
-        @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.Ambarid)
-        @Html.DropDownListFor(x => x.Ambarid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.Personel)
-        @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.FaturaTuru)
-        @Html.DropDownListFor(x => x.FaturaTuru, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.OdemeTuru)
-        @Html.DropDownListFor(x => x.OdemeTuru, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.FaturaSeriNo)
-        @Html.DropDownListFor(x => x.FaturaSeriNo, (List<SelectListItem>)ViewBag.dgr6, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.FaturaSiraNo)
-        @Html.TextBoxFor(x => x.FaturaSiraNo, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.FaturaSiraNo, "", new { @style = "color:red" })
-        <br />
-        @Html.LabelFor(x => x.VergiDairesi)
-        @Html.DropDownListFor(x => x.VergiDairesi, (List<SelectListItem>)ViewBag.dgr7, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.VergiNo)
-        @Html.TextBoxFor(x => x.VergiNo, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.Tarih)
-        @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control" })
-        <br />
-        @Html.LabelFor(x => x.GenelToplam)
-        @Html.TextBoxFor(x => x.GenelToplam, new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { disabled = "disabled", @class = "form-control" })
         <br />
         @Html.LabelFor(x => x.TeslimEden)
         @Html.DropDownListFor(x => x.TeslimEden, (List<SelectListItem>)ViewBag.dgr8, new { @class = "form-control" })

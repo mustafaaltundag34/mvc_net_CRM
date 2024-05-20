@@ -188,6 +188,45 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr1 = musteri;
             return View(degerler);
         }
+        public ActionResult CariHareketALL(int id) //TUM STOK HAREKETLERI FATURA+STOKHAREKET CAGIRMA
+        {
+            var caristokhareketleri = c.StokHarekets.Where(x => x.Cariid == id && x.Durum == true).Select(x => new OrtakCariHareketView
+            {
+                Z_TransactionNo = x.StokHareketid,
+                Z_BelgeTuru = x.BelgeTuru,
+                Z_StokHareketTuru = x.StokHareketTuru,
+                Z_Tarih = x.Tarih,
+                Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
+                Z_Tutar = x.ToplamTutar,
+            }).ToList();
+            var carifaturahareketleri = c.Faturalars.Where(x => x.Cariid == id && x.Durum == true).Select(x => new OrtakCariHareketView
+            {
+                Z_TransactionNo = x.Faturaid,
+                Z_BelgeTuru = x.BelgeTuru,
+                Z_StokHareketTuru = x.FaturaTuru,
+                Z_Tarih = x.Tarih,
+                Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
+                Z_Tutar = x.GenelToplam,
+            }).ToList();
+            var modelyeni = caristokhareketleri.Union(carifaturahareketleri).ToList();
+            var secilencari = c.Carilers.Where(x => x.Cariid == id).Select(y => y.CariAd +" "+ y.CariSoyad).FirstOrDefault();
+            ViewBag.dgr1 = secilencari;
+            return View(modelyeni);
+        }
 
+    }
+
+    public class OrtakCariHareketView
+    {
+        public int Z_TransactionNo { get; set; }
+        public string Z_BelgeTuru { get; set; }
+        public DateTime Z_Tarih { get; set; }
+        public int Z_Urunid { get; set; }
+        public string Z_Cari { get; set; }
+        public string Z_UrunAd { get; set; }
+        public int Z_Adet { get; set; }
+        public string Z_StokHareketTuru { get; set; }
+        public string Z_Ambarid { get; set; }
+        public decimal Z_Tutar { get; set; }
     }
 }

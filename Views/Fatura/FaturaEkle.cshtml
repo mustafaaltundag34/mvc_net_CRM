@@ -40,14 +40,11 @@
     @Html.LabelFor(x => x.Tarih)
     @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.GenelToplam)
-    @Html.TextBoxFor(x => x.GenelToplam, new { @class = "form-control" })
-    <br />
     @Html.LabelFor(x => x.TeslimEden)
-    @Html.DropDownListFor(x => x.TeslimEden, (List<SelectListItem>)ViewBag.dgr8, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.TeslimEden, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
     <br />
     @Html.LabelFor(x => x.TeslimAlan)
-    @Html.DropDownListFor(x => x.TeslimAlan, (List<SelectListItem>)ViewBag.dgr9, new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.TeslimAlan, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
     <br />
 
     <button class="btn btn-success">Kaydet</button>

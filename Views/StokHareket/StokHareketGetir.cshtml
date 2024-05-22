@@ -19,8 +19,11 @@
         @Html.LabelFor(x => x.Cariid)
         @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr2, new { disabled = "disabled", @class = "form-control" })
         <br />
+        @Html.LabelFor(x => x.BelgeTuru)
+        @Html.TextBoxFor(x => x.BelgeTuru, new { @readonly = "true", @class = "form-control" })
+        <br />
         @Html.LabelFor(x => x.StokHareketTuru)
-        @Html.DropDownListFor(x => x.StokHareketTuru, (List<SelectListItem>)ViewBag.dgr5, new { disabled = "disabled", @class = "form-control" })
+        @Html.TextBoxFor(x => x.StokHareketTuru, new { @readonly = "true", @class = "form-control" })  
         <br />
         @Html.LabelFor(x => x.Adet)
         @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })

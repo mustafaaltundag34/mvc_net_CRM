@@ -14,6 +14,9 @@
             @Html.LabelFor(x => x.FaturaKalemid)
             @Html.TextBoxFor(x => x.FaturaKalemid, new { disabled = "disabled", @class = "form-control" })
             <br />
+            @Html.LabelFor(x => x.BelgeTuru)
+            @Html.TextBoxFor(x => x.BelgeTuru, new { @Value = ViewBag.dgr4, @readonly = "true", @class = "form-control" })
+            <br />
             @Html.LabelFor(x => x.StokHareketTuru)
             @Html.TextBoxFor(x => x.StokHareketTuru, new { @Value = ViewBag.dgr2, @readonly = "true", @class = "form-control" })
             <br />

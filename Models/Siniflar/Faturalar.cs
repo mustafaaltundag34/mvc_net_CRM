@@ -16,7 +16,7 @@ namespace mvc_net_Crm.Models.Siniflar
             Saat = DateTime.Now.ToString("HH:mm");
             GenelToplam = 0;
             KdvTutar = 0;
-            BelgeTuru = "Fatura";
+            //BelgeTuru = "FATURA_ALIS";//PARAMETRELERDEN CEKILECEK FATURA_ALIS VEYA FATURA_SATIS TURUNE GORE FATURAHAREKETTURU OTOMATIK GELECEK
         }
 
         [Key]
@@ -63,7 +63,7 @@ namespace mvc_net_Crm.Models.Siniflar
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
-        public string FaturaTuru { get; set; }
+        public string FaturaHareketTuru { get; set; }// BELGE TURUNE GORE BORC/ALACAK
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]

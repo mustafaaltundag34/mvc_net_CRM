@@ -203,7 +203,7 @@ namespace mvc_net_Crm.Controllers
             {
                 Z_TransactionNo = x.Faturaid,
                 Z_BelgeTuru = x.BelgeTuru,
-                Z_StokHareketTuru = x.FaturaTuru,
+                Z_StokHareketTuru = x.FaturaHareketTuru,
                 Z_Tarih = x.Tarih,
                 Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
                 Z_Tutar = x.GenelToplam,

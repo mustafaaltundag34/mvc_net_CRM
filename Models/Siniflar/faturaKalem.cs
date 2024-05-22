@@ -12,7 +12,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public faturaKalem() //DEFAULT BILGILER VERILIYOR
         {
             Durum = true;
-            BelgeTuru = "FaturaKalemHareket";
+            //BelgeTuru = "FaturaKalemHareket";// FATURABELGETURUNE GORE OTOMATI GELICEK
             Tarih=DateTime.Now;
             Tutar = Adet * BirimFiyat;
         }

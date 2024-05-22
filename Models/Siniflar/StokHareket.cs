@@ -12,7 +12,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public StokHareket() //DEFAULT BILGILER VERILIYOR
         {
             Durum = true;
-            BelgeTuru = "StokKalemHareket";
+            //BelgeTuru = "IRSALIYE_ALIS"; //OTOMATIKGELECEK
             Tarih=DateTime.Now;
             ToplamTutar = Adet * Fiyat;
         }

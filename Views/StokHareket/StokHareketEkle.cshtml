@@ -19,9 +19,12 @@
     @Html.LabelFor(x => x.Ambar)
     @Html.DropDownListFor(x => x.Ambarid, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.StokHareketTuru)
-    @Html.DropDownListFor(x => x.StokHareketTuru, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
+    @Html.LabelFor(x => x.BelgeTuru)
+    @Html.DropDownListFor(x => x.BelgeTuru, (List<SelectListItem>)ViewBag.dgr6, new { @class = "form-control" })
     <br />
+    @*@Html.LabelFor(x => x.StokHareketTuru)
+    @Html.DropDownListFor(x => x.StokHareketTuru, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
+    <br />*@
     @Html.LabelFor(x => x.Adet)
     @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
     <br />

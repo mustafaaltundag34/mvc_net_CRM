@@ -49,14 +49,14 @@ namespace mvc_net_Crm.Controllers
       ).ToList();
             ViewBag.dgr3 = Personeller;
 
-            List<SelectListItem> faturaturu = (from x in c.Parametres.Where(x=>x.Durum==true && x.ParametreTuru.Contains("FATURATURU") ).ToList()
+            List<SelectListItem> faturabelgeturu = (from x in c.Parametres.Where(x=>x.Durum==true && x.ParametreTuru.Contains("FATURABELGETURU") ).ToList()
                                           select new SelectListItem
                                           {
                                               Text = x.ParametreAciklamasi,
                                               Value = x.ParametreAciklamasi.ToString()
                                           }
 ).ToList();
-            ViewBag.dgr4 = faturaturu;
+            ViewBag.dgr4 = faturabelgeturu;
 
             List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("PAYMENT")).ToList()
                                                select new SelectListItem
@@ -110,6 +110,14 @@ namespace mvc_net_Crm.Controllers
             try
             {
                 Console.WriteLine("Ekleme Islemi Basladi");
+                if (p.BelgeTuru.Contains("ALIS"))
+                {
+                    p.FaturaHareketTuru = "GIRIS";
+                }
+                if (p.BelgeTuru.Contains("SATIS"))
+                {
+                    p.FaturaHareketTuru = "CIKIS";
+                }
                 p.Durum = true;//AKTIF KAYIT
                 p.Tarih = DateTime.Now;
                 p.KdvTutar = 0;
@@ -166,14 +174,14 @@ namespace mvc_net_Crm.Controllers
       ).ToList();
             ViewBag.dgr3 = Personeller;
 
-            List<SelectListItem> faturaturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURATURU")).ToList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.ParametreAciklamasi,
-                                                   Value = x.ParametreAciklamasi.ToString()
-                                               }
+            List<SelectListItem> faturabelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURABELGETURU")).ToList()
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = x.ParametreAciklamasi,
+                                                        Value = x.ParametreAciklamasi.ToString()
+                                                    }
 ).ToList();
-            ViewBag.dgr4 = faturaturu;
+            ViewBag.dgr4 = faturabelgeturu;
 
             List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("PAYMENT")).ToList()
                                               select new SelectListItem
@@ -249,7 +257,7 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr1 = faturaantet1;
             var faturaantet2 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Cariler.CariAd + " " + y.Cariler.CariSoyad).FirstOrDefault();
             ViewBag.dgr2 = faturaantet2;
-            var faturaantet3 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.FaturaTuru).FirstOrDefault();
+            var faturaantet3 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.BelgeTuru).FirstOrDefault();
             ViewBag.dgr3 = faturaantet3;
             var faturaantet4 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Tarih).FirstOrDefault();
             ViewBag.dgr4 = faturaantet4;
@@ -267,8 +275,10 @@ namespace mvc_net_Crm.Controllers
         {
             int faturaidsecilen = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Faturaid).FirstOrDefault();
             ViewBag.dgr4 = faturaidsecilen;
-            var faturaantet5 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.FaturaTuru).FirstOrDefault();
+            var faturaantet5 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.FaturaHareketTuru).FirstOrDefault();
             ViewBag.dgr5 = faturaantet5;
+            var faturaantet6 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.BelgeTuru).FirstOrDefault();
+            ViewBag.dgr6 = faturaantet6;
 
             List<SelectListItem> stoksecimi = (from x in c.Uruns.Where(x => x.Durum == true).ToList()
                                              select new SelectListItem
@@ -289,7 +299,7 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr2 = Ambarlar;
 
 
-            List<SelectListItem> faturaturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURATURU")).ToList()
+            List<SelectListItem> faturaturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURABELGETURU")).ToList()
                                                select new SelectListItem
                                                {
                                                    Text = x.ParametreAciklamasi,
@@ -312,6 +322,7 @@ namespace mvc_net_Crm.Controllers
                 p.Tarih = DateTime.Now;
                 p.KdvOrani = 1;
                 p.Tutar = p.Adet * p.BirimFiyat;
+                p.BelgeTuru = p.BelgeTuru;
                 c.FaturaKalems.Add(p);
                 c.SaveChanges();
                 return RedirectToAction("Index");
@@ -336,10 +347,13 @@ namespace mvc_net_Crm.Controllers
         public ActionResult FaturaKalemGetir(int id) //BOS FORM SAYFASI CAGIRIYOR
         {
             var faturakalembul = c.FaturaKalems.Find(id);
+            var faturabul = c.Faturalars.Find(faturakalembul.Faturaid);
             int kalemid = c.FaturaKalems.Where(x => x.FaturaKalemid == id).Select(y => y.FaturaKalemid).FirstOrDefault();
             ViewBag.dgr1 = kalemid;
             var kalemhareketturu = c.FaturaKalems.Where(x => x.FaturaKalemid == id).Select(y => y.StokHareketTuru).FirstOrDefault();
             ViewBag.dgr2 = kalemhareketturu;
+            var faturabelgeturu = faturabul.BelgeTuru;
+            ViewBag.dgr4 = faturabelgeturu;
 
             List<SelectListItem> stoksecimi = (from x in c.Uruns.Where(x => x.Durum == true).ToList()
                                                select new SelectListItem
@@ -360,6 +374,7 @@ namespace mvc_net_Crm.Controllers
             faturakalem.BirimFiyat = u.BirimFiyat;
             faturakalem.Tutar = u.BirimFiyat * u.Adet;
             faturakalem.Tarih = DateTime.Now;
+            faturakalem.BelgeTuru = u.BelgeTuru;
             c.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });

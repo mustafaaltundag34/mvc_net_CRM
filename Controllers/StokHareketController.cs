@@ -21,6 +21,7 @@ namespace mvc_net_Crm.Controllers
         [HttpGet]
         public ActionResult StokHareketEkle() //BOS FORM SAYFASI CAGIRIYOR
         {
+
             List<SelectListItem> Urunler = (from x in c.Uruns.Where(x => x.Durum == true).ToList()
                                             select new SelectListItem
                                             {
@@ -63,12 +64,28 @@ namespace mvc_net_Crm.Controllers
 
 
             ViewBag.dgr5 = HareketTuruListesi;
+            List<SelectListItem> stokhareketbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("STOKHAREKETBELGETURU")).ToList()
+                                                         select new SelectListItem
+                                                         {
+                                                             Text = x.ParametreAciklamasi,
+                                                             Value = x.ParametreAciklamasi.ToString()
+                                                         }
+).ToList();
+            ViewBag.dgr6 = stokhareketbelgeturu;
             return View();
         }
 
         [HttpPost]
         public ActionResult StokHareketEkle(StokHareket p) //DB KAYDETME ISLEMI
         {
+            if (p.BelgeTuru.Contains ("ALIS"))
+            {
+                p.StokHareketTuru = "GIRIS";
+            }
+            if (p.BelgeTuru.Contains ("SATIS"))
+            {
+                p.StokHareketTuru = "CIKIS";
+            }
             p.Durum = true;//AKTIF KAYIT
             p.Tarih = DateTime.Now;
             p.ToplamTutar = p.Adet * p.Fiyat;
@@ -130,7 +147,14 @@ namespace mvc_net_Crm.Controllers
             HareketTuruListesi.Add(new SelectListItem { Text = "CIKIS", Value = "CIKIS" });
 
             ViewBag.dgr5 = HareketTuruListesi;
-
+            List<SelectListItem> stokhareketbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("STOKHAREKETBELGETURU")).ToList()
+                                                         select new SelectListItem
+                                                         {
+                                                             Text = x.ParametreAciklamasi,
+                                                             Value = x.ParametreAciklamasi.ToString()
+                                                         }
+).ToList();
+            ViewBag.dgr6 = stokhareketbelgeturu;
             return View("StokHareketGetir", stokhareketbul);
         }
 
@@ -141,6 +165,7 @@ namespace mvc_net_Crm.Controllers
             stokhareketler.Fiyat = u.Fiyat;
             stokhareketler.ToplamTutar = u.Adet * u.Fiyat;
             stokhareketler.Tarih = DateTime.Now;
+            stokhareketler.BelgeTuru = u.BelgeTuru;
             c.SaveChanges();
             return RedirectToAction("Index");
         }

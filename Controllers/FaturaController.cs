@@ -92,11 +92,11 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr8 = teslimeden;
 
-            List<SelectListItem> teslimalan = (from x in c.Personels.Where(x => x.Durum == true).ToList()
+            List<SelectListItem> teslimalan = (from x in c.Carilers.Where(x => x.Durum == true).ToList()
                                                 select new SelectListItem
                                                 {
-                                                    Text = x.PersonelAd + " " + x.PersonelSoyad,
-                                                    Value = x.PersonelAd + " " + x.PersonelSoyad
+                                                    Text = x.CariAd + " " + x.CariSoyad,
+                                                    Value = x.CariAd + " " + x.CariSoyad,
                                                 }
 ).ToList();
             ViewBag.dgr9 = teslimalan;
@@ -263,7 +263,7 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr4 = faturaantet4;
             var faturaantet5 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.GenelToplam).FirstOrDefault();
             ViewBag.dgr5 = faturaantet5;
-            var faturaantet6 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.TeslimEden).FirstOrDefault();
+            var faturaantet6 = c.Faturalars.Where(x => x.Faturaid == id ).Select(y => y.TeslimEden).FirstOrDefault();
             ViewBag.dgr6 = faturaantet6;
             var faturaantet7 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.TeslimAlan).FirstOrDefault();
             ViewBag.dgr7 = faturaantet7;
@@ -322,7 +322,8 @@ namespace mvc_net_Crm.Controllers
                 p.Tarih = DateTime.Now;
                 p.KdvOrani = 1;
                 p.Tutar = p.Adet * p.BirimFiyat;
-                p.BelgeTuru = p.BelgeTuru;
+                //p.StokHareketTuru = p.StokHareketTuru;
+                //p.BelgeTuru = p.BelgeTuru;
                 c.FaturaKalems.Add(p);
                 c.SaveChanges();
                 return RedirectToAction("Index");
@@ -352,8 +353,8 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr1 = kalemid;
             var kalemhareketturu = c.FaturaKalems.Where(x => x.FaturaKalemid == id).Select(y => y.StokHareketTuru).FirstOrDefault();
             ViewBag.dgr2 = kalemhareketturu;
-            var faturabelgeturu = faturabul.BelgeTuru;
-            ViewBag.dgr4 = faturabelgeturu;
+            var kalembelgeturu = c.FaturaKalems.Where(x => x.FaturaKalemid == id).Select(y => y.BelgeTuru).FirstOrDefault();
+            ViewBag.dgr4 = kalembelgeturu;
 
             List<SelectListItem> stoksecimi = (from x in c.Uruns.Where(x => x.Durum == true).ToList()
                                                select new SelectListItem
@@ -374,7 +375,8 @@ namespace mvc_net_Crm.Controllers
             faturakalem.BirimFiyat = u.BirimFiyat;
             faturakalem.Tutar = u.BirimFiyat * u.Adet;
             faturakalem.Tarih = DateTime.Now;
-            faturakalem.BelgeTuru = u.BelgeTuru;
+            //faturakalem.BelgeTuru = u.BelgeTuru;
+            //faturakalem.StokHareketTuru = u.BelgeTuru;
             c.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });

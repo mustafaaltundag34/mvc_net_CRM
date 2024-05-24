@@ -74,6 +74,9 @@ namespace mvc_net_Crm.Models.Siniflar
         public int Personelid { get; set; }
         public int Ambarid { get; set; }
 
+        public int Kasaid { get; set; }
+
+        public virtual Kasalar Kasalar { get; set; }
         public virtual Cariler Cariler { get; set; }
         public virtual Personel Personel { get; set; }
         public virtual Ambar Ambar { get; set; }

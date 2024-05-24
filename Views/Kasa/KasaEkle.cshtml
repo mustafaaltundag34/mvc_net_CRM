@@ -1,0 +1,26 @@
+﻿@model mvc_net_Crm.Models.Siniflar.Kasalar
+@{
+    ViewBag.Title = "KasaEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Kasa Ekle</h2>
+<br />
+<form class="form-group" method="post">
+
+    @Html.LabelFor(x => x.Kasaid)
+    @Html.TextBoxFor(x => x.Kasaid, (new { @readonly = "true", @class = "form-control" }))
+    @*Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })*@
+    <br />
+    @Html.LabelFor(x => x.KasaAdi)
+    @*Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })*@
+    @Html.TextBoxFor(x => x.KasaAdi, (new { @class = "form-control" }))
+    <br />
+    @Html.LabelFor(x => x.Personelid, "Kasa Yoneticisi")
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+
+</form>
+

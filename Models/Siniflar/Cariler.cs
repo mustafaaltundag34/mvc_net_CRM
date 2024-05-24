@@ -38,6 +38,8 @@ namespace mvc_net_Crm.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(80)]
         public string CariOzelSoruCevap { get; set; }
+
+        public decimal CariBakiye { get; set; }
         public bool Durum { get; set; }
         public ICollection<SatisHareket> SatisHarekets { get; set; }
     }

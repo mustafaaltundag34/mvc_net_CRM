@@ -19,7 +19,6 @@
             <th style="width: 150px">#</th>
             <th style="width: 150px">#</th>
             <th style="width: 150px">#</th>
-            <th style="width: 150px">#</th>
         </tr>
     </thead>
     @foreach (var u in Model)
@@ -32,8 +31,8 @@
             <td>@u.Stok</td>
             <td>@u.UrunGorsel</td>
             <td align="center"><a href="/Urun/UrunGetir/@u.Urunid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a></td>
-            <td align="center"><a href="/Urun/UrunStokHareket/@u.Urunid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Stok H.</a></td>
-            <td align="center"><a href="/Urun/UrunStokHareketALL/@u.Urunid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Tum Stok H.</a></td>
+            @*<td align="center"><a href="/Urun/UrunStokHareket/@u.Urunid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Stok H.</a></td>*@
+            <td align="center"><a href="/Urun/UrunStokHareketALL/@u.Urunid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Stok Hareketleri</a></td>
             <td align="center"><a href="/Urun/UrunSil/@u.Urunid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a></td>
         </tr>
     }

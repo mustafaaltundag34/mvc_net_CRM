@@ -1,0 +1,39 @@
+﻿@model mvc_net_Crm.Models.Siniflar.FinansalHareket
+@{
+    ViewBag.Title = "FinansalHareketEkle_Kasa";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Finansal Hareket Ekle (Kasa)</h2>
+<br />
+
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.FinansalHareketid)
+    @Html.TextBoxFor(x => x.FinansalHareketid, (new { @readonly = "true", @class = "form-control" }))
+    @*Html.TextBoxFor(x => x.Kategoriid, new { @class = "form-control" })*@
+    <br />
+    @Html.LabelFor(x => x.Cariid)
+    @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Kasaid)
+    @Html.DropDownListFor(x => x.Kasaid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    <br />
+    @*@Html.LabelFor(x => x.Bankaid)
+    @Html.DropDownListFor(x => x.Bankaid, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
+    <br />*@
+    @Html.LabelFor(x => x.Personel)
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BelgeTuru)
+    @Html.DropDownListFor(x => x.BelgeTuru, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Tutar)
+    @Html.TextBoxFor(x => x.Tutar, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Aciklama)
+    @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+

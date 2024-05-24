@@ -1,0 +1,36 @@
+﻿@model mvc_net_Crm.Models.Siniflar.FinansalHareket
+@{
+    ViewBag.Title = "FinansalHareketGetir_Kasa";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Finansal Hareket Guncelleme (Kasa)</h2>
+<br />
+@using (Html.BeginForm("FinansalHareketGuncelle_Kasa", "FinansalHareket", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.FinansalHareketid)
+        @Html.LabelFor(x => x.FinansalHareketid)
+        @Html.TextBoxFor(x => x.FinansalHareketid, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Cariler)
+        @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Kasalar)
+        @Html.DropDownListFor(x => x.Kasaid, (List<SelectListItem>)ViewBag.dgr3, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @*@Html.LabelFor(x => x.Bankalar)
+        @Html.DropDownListFor(x => x.Bankaid, (List<SelectListItem>)ViewBag.dgr5, new { disabled = "disabled", @class = "form-control" })
+        <br />*@
+        @Html.LabelFor(x => x.BelgeTuru)
+        @Html.DropDownListFor(x => x.BelgeTuru, (List<SelectListItem>)ViewBag.dgr4, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Tutar)
+        @Html.TextBoxFor(x => x.Tutar, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Aciklama)
+        @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+        <br />
+    </div>
+    <button class="btn btn-warning">Finansal Hareket Guncelle</button>
+}

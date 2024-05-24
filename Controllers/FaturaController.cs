@@ -100,6 +100,15 @@ namespace mvc_net_Crm.Controllers
                                                 }
 ).ToList();
             ViewBag.dgr9 = teslimalan;
+
+            List<SelectListItem> kasabul = (from x in c.Kasalars.Where(x => x.Durum == true).ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KasaAdi,
+                                                 Value = x.Kasaid.ToString()
+                                             }
+      ).ToList();
+            ViewBag.dgr10 = kasabul;
             return View();
         }
 
@@ -226,6 +235,15 @@ namespace mvc_net_Crm.Controllers
                                ).ToList();
             ViewBag.dgr9 = teslimalan;
 
+            List<SelectListItem> kasabul = (from x in c.Kasalars.Where(x => x.Durum == true).ToList()
+                                            select new SelectListItem
+                                            {
+                                                Text = x.KasaAdi,
+                                                Value = x.Kasaid.ToString()
+                                            }
+).ToList();
+            ViewBag.dgr10 = kasabul;
+
             return View("FaturaGetir", faturabul);
         }
 
@@ -267,6 +285,10 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr6 = faturaantet6;
             var faturaantet7 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.TeslimAlan).FirstOrDefault();
             ViewBag.dgr7 = faturaantet7;
+            var faturaantet8 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Kasalar.KasaAdi).FirstOrDefault();
+            ViewBag.dgr8 = faturaantet8;
+            var faturaantet9 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Personel.PersonelAd +" " + y.Personel.PersonelSoyad).FirstOrDefault();
+            ViewBag.dgr9 = faturaantet9;
             return View(faturakalemler);
         }
 

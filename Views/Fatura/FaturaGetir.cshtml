@@ -22,6 +22,12 @@
         @Html.LabelFor(x => x.TeslimAlan)
         @Html.DropDownListFor(x => x.TeslimAlan, (List<SelectListItem>)ViewBag.dgr9, new { @class = "form-control" })
         <br />
+        @Html.LabelFor(x => x.Tarih)
+        @Html.TextBoxFor(x => x.Tarih, new { @readonly = "true", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Saat)
+        @Html.TextBoxFor(x => x.Saat, new { @readonly = "true", @class = "form-control" })
+        <br />
     </div>
     <button class="btn btn-warning">Fatura Guncelle</button>
 }

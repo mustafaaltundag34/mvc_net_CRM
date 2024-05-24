@@ -20,19 +20,6 @@ namespace mvc_net_Crm.Controllers
         [HttpGet]
         public ActionResult CariEkle() //BOS FORM SAYFASI CAGIRIYOR
         {
-            //List<SelectListItem> Sehirlistesi = new List<SelectListItem>();
-            //Sehirlistesi.Add(new SelectListItem { Text = "Adana", Value = "Adana" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Adiyaman", Value = "Adiyaman" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Afyon", Value = "Afyon" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
-            //Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
-
-            //ViewBag.dgr1 = Sehirlistesi;
 
             List<SelectListItem> Sehirlistesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("SEHIR")).ToList()
                                                  select new SelectListItem
@@ -50,19 +37,7 @@ namespace mvc_net_Crm.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //List<SelectListItem> Sehirlistesi = new List<SelectListItem>();
-                //Sehirlistesi.Add(new SelectListItem { Text = "Adana", Value = "Adana" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Adiyaman", Value = "Adiyaman" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Afyon", Value = "Afyon" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
 
-                //ViewBag.dgr1 = Sehirlistesi;
                 List<SelectListItem> Sehirlistesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("SEHIR")).ToList()
                                                      select new SelectListItem
                                                      {
@@ -133,19 +108,6 @@ namespace mvc_net_Crm.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //List<SelectListItem> Sehirlistesi = new List<SelectListItem>();
-                //Sehirlistesi.Add(new SelectListItem { Text = "Adana", Value = "Adana" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Adiyaman", Value = "Adiyaman" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Afyon", Value = "Afyon" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Ankara", Value = "Ankara" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Antalya", Value = "Antalya" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Istanbul", Value = "Istanbul" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Diyarbakir", Value = "Diyarbakir" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Mardin", Value = "Mardin" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Samsun", Value = "Samsun" });
-                //Sehirlistesi.Add(new SelectListItem { Text = "Zonguldak", Value = "Zonguldak" });
-
-                //ViewBag.dgr1 = Sehirlistesi;
                 List<SelectListItem> Sehirlistesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("SEHIR")).ToList()
                                                      select new SelectListItem
                                                      {

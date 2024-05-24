@@ -14,6 +14,8 @@ namespace mvc_net_Crm.Models.Siniflar
         {
             Durum = true;
             //HareketTuru = "ALACAK/BORC"; DBden Tetiklenecek
+            Bankaid = 1;
+            Kasaid = 1; 
             Tarih = DateTime.Now;
             Saat = DateTime.Now.ToString("HH:mm");
         }
@@ -44,23 +46,16 @@ namespace mvc_net_Crm.Models.Siniflar
 
         public int Cariid { get; set; }
         public int Personelid { get; set; }
+        public int  Kasaid { get; set; }
+        public int Bankaid { get; set; }
 
         public virtual Cariler Cariler { get; set; }
         public virtual Personel Personel { get; set; }
+        public virtual Kasalar Kasalar { get; set; }
+        public virtual Bankalar Bankalar { get; set; }
 
         public bool Durum { get; set; }
 
-        [Column(TypeName = "Varchar")]
-        [StringLength(50)]
-        public string IbanNo { get; set; }
-
-        [Column(TypeName = "Varchar")]
-        [StringLength(50)]
-        public string BankaAdi { get; set; }
-
-        [Column(TypeName = "Varchar")]
-        [StringLength(50)]
-        public string BankaSubeAdi { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
@@ -79,12 +74,7 @@ namespace mvc_net_Crm.Models.Siniflar
         [StringLength(50)]
         public string CekSenetNo { get; set; }
 
-        [Column(TypeName = "Varchar")]
-        [StringLength(50)]
-        public string CekSenetOdemeTarihi { get; set; }
-        [Column(TypeName = "Varchar")]
-        [StringLength(50)]
-        public string KasaAdi { get; set; }
+        public DateTime CekSenetOdemeTarihi { get; set; }
 
 
         [Column(TypeName = "Varchar")]

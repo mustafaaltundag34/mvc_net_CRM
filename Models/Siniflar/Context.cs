@@ -33,6 +33,8 @@ namespace mvc_net_Crm.Models.Siniflar
         public DbSet<Ambar> Ambars { get; set; }
         public DbSet<Parametre> Parametres { get; set; }
         public DbSet<FinansalHareket> FinansalHarekets { get; set; }
+        public DbSet<Kasalar> Kasalars { get; set; }
+        public DbSet<Bankalar> Bankalars { get; set; }
         public Context(): base("Context") { }//MYSQLDE FARKLI OLARAK BURASI EKLENDI //Reference the name of your connection string:
     }
 }

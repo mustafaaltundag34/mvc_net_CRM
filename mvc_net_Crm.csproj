@@ -210,7 +210,9 @@
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\DepartmanController.cs" />
     <Compile Include="Controllers\FaturaController.cs" />
+    <Compile Include="Controllers\FinansalHareketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KasaController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\ParametreController.cs" />
@@ -228,8 +230,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
     <Compile Include="Models\Siniflar\Ambar.cs" />
+    <Compile Include="Models\Siniflar\Bankalar.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
     <Compile Include="Models\Siniflar\FinansalHareket.cs" />
+    <Compile Include="Models\Siniflar\Kasalar.cs" />
     <Compile Include="Models\Siniflar\Parametre.cs" />
     <Compile Include="Models\Siniflar\StokHareket.cs" />
     <Compile Include="Models\Siniflar\Marka.cs" />
@@ -651,6 +655,12 @@
     <Content Include="Views\Urun\UrunStokHareketALL.cshtml" />
     <Content Include="Views\Fatura\FaturaKalemGetir.cshtml" />
     <Content Include="Views\Cari\CariHareketALL.cshtml" />
+    <Content Include="Views\Kasa\KasaEkle.cshtml" />
+    <Content Include="Views\Kasa\Index.cshtml" />
+    <Content Include="Views\Kasa\KasaGetir.cshtml" />
+    <Content Include="Views\FinansalHareket\Index.cshtml" />
+    <Content Include="Views\FinansalHareket\FinansalHareketEkle_Kasa.cshtml" />
+    <Content Include="Views\FinansalHareket\FinansalHareketGetir_Kasa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

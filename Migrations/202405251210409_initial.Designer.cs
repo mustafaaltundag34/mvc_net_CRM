@@ -13,7 +13,7 @@ namespace mvc_net_Crm.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202405161543441_initial"; }
+            get { return "202405251210409_initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -34,14 +34,14 @@
         @foreach (var x in Model)
 
         {
-            if (x.Z_StokHareketTuru == "GIRIS")
+            if (x.Z_HareketTuru == "GIRIS" || x.Z_HareketTuru == "ALACAK")
             {
                 <tr>
                     <td>@x.Z_TransactionNo</td>
                     <td>@x.Z_Tarih.ToString("dd.MM.yyy")</td>
                     <td>@x.Z_Cari</td>
                     <td>@x.Z_BelgeTuru</td>
-                    <td>@x.Z_StokHareketTuru</td>
+                    <td>@x.Z_HareketTuru</td>
                     <td style="text-align:right">@x.Z_Tutar.ToString("###,##0.00")</td>
                 </tr>
                 toplamalacak = toplamalacak + x.Z_Tutar;
@@ -63,14 +63,14 @@
         @foreach (var x in Model)
 
         {
-            if (x.Z_StokHareketTuru == "CIKIS")
+            if (x.Z_HareketTuru == "CIKIS" || x.Z_HareketTuru == "BORC")
             {
                 <tr>
                     <td>@x.Z_TransactionNo</td>
                     <td>@x.Z_Tarih.ToString("dd.MM.yyy")</td>
                     <td>@x.Z_Cari</td>
                     <td>@x.Z_BelgeTuru</td>
-                    <td>@x.Z_StokHareketTuru</td>
+                    <td>@x.Z_HareketTuru</td>
                     <td style="text-align:right" >@x.Z_Tutar.ToString("###,##0.00")</td>
                 </tr>
                 toplamborc = toplamborc + x.Z_Tutar;

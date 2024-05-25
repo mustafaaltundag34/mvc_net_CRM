@@ -1,10 +1,10 @@
 ﻿@model mvc_net_Crm.Models.Siniflar.FinansalHareket
 @{
-    ViewBag.Title = "FinansalHareketEkle_Kasa";
+    ViewBag.Title = "FinansalHareketEkle";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Finansal Hareket Ekle (Kasa)</h2>
+<h2>Finansal Hareket Ekle</h2>
 <br />
 
 <form class="form-group" method="post">
@@ -15,12 +15,9 @@
     @Html.LabelFor(x => x.Cariid)
     @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Kasaid)
-    @Html.DropDownListFor(x => x.Kasaid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    @Html.LabelFor(x => x.FinansHesapid)
+    @Html.DropDownListFor(x => x.FinansHesapid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
     <br />
-    @*@Html.LabelFor(x => x.Bankaid)
-    @Html.DropDownListFor(x => x.Bankaid, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
-    <br />*@
     @Html.LabelFor(x => x.Personel)
     @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
     <br />

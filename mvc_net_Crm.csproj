@@ -211,6 +211,7 @@
     <Compile Include="Controllers\DepartmanController.cs" />
     <Compile Include="Controllers\FaturaController.cs" />
     <Compile Include="Controllers\FinansalHareketController.cs" />
+    <Compile Include="Controllers\FinansHesaplariController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KasaController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
@@ -223,9 +224,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202405161543441_initial.cs" />
-    <Compile Include="Migrations\202405161543441_initial.Designer.cs">
-      <DependentUpon>202405161543441_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202405251210409_initial.cs" />
+    <Compile Include="Migrations\202405251210409_initial.Designer.cs">
+      <DependentUpon>202405251210409_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Siniflar\Admin.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Models\Siniflar\Bankalar.cs" />
     <Compile Include="Models\Siniflar\Cariler.cs" />
     <Compile Include="Models\Siniflar\FinansalHareket.cs" />
+    <Compile Include="Models\Siniflar\FinansHesaplari.cs" />
     <Compile Include="Models\Siniflar\Kasalar.cs" />
     <Compile Include="Models\Siniflar\Parametre.cs" />
     <Compile Include="Models\Siniflar\StokHareket.cs" />
@@ -659,8 +661,12 @@
     <Content Include="Views\Kasa\Index.cshtml" />
     <Content Include="Views\Kasa\KasaGetir.cshtml" />
     <Content Include="Views\FinansalHareket\Index.cshtml" />
-    <Content Include="Views\FinansalHareket\FinansalHareketEkle_Kasa.cshtml" />
-    <Content Include="Views\FinansalHareket\FinansalHareketGetir_Kasa.cshtml" />
+    <Content Include="Views\FinansalHareket\FinansalHareketEkle.cshtml" />
+    <Content Include="Views\FinansalHareket\FinansalHareketGetir.cshtml" />
+    <Content Include="Views\FinansHesaplari\Index.cshtml" />
+    <Content Include="Views\FinansHesaplari\FinansHesapEkle.cshtml" />
+    <Content Include="Views\FinansHesaplari\FinansHesapGetir.cshtml" />
+    <Content Include="Views\FinansHesaplari\FinansHareketleriALL.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -702,8 +708,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405161543441_initial.resx">
-      <DependentUpon>202405161543441_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405251210409_initial.resx">
+      <DependentUpon>202405251210409_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

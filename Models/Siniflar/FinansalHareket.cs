@@ -14,14 +14,14 @@ namespace mvc_net_Crm.Models.Siniflar
         {
             Durum = true;
             //HareketTuru = "ALACAK/BORC"; DBden Tetiklenecek
-            Bankaid = 1;
-            Kasaid = 1; 
+            //Bankaid = 1;
+            //Kasaid = 1; 
             Tarih = DateTime.Now;
             Saat = DateTime.Now.ToString("HH:mm");
         }
         //cari
         //personel
-        //kasa parametrelerden cekilecek
+        //finans hesaplari
         //belgeturu parametrelerden cekilecek
 
         [Key]
@@ -36,7 +36,7 @@ namespace mvc_net_Crm.Models.Siniflar
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string BelgeTuru { get; set; }
+        public string BelgeTuru { get; set; }//PARAMETRE TABLOSUNDAN
 
 
         [Column(TypeName = "Varchar")]
@@ -46,13 +46,12 @@ namespace mvc_net_Crm.Models.Siniflar
 
         public int Cariid { get; set; }
         public int Personelid { get; set; }
-        public int  Kasaid { get; set; }
-        public int Bankaid { get; set; }
+        public int FinansHesapid { get; set; }
 
         public virtual Cariler Cariler { get; set; }
         public virtual Personel Personel { get; set; }
-        public virtual Kasalar Kasalar { get; set; }
-        public virtual Bankalar Bankalar { get; set; }
+        public virtual FinansHesaplari FinansHesaplari { get; set; }
+
 
         public bool Durum { get; set; }
 

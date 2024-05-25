@@ -156,7 +156,7 @@ namespace mvc_net_Crm.Controllers
             {
                 Z_TransactionNo = x.StokHareketid,
                 Z_BelgeTuru = x.BelgeTuru,
-                Z_StokHareketTuru = x.StokHareketTuru,
+                Z_HareketTuru = x.StokHareketTuru,
                 Z_Tarih = x.Tarih,
                 Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
                 Z_Tutar = x.ToplamTutar,
@@ -165,12 +165,21 @@ namespace mvc_net_Crm.Controllers
             {
                 Z_TransactionNo = x.Faturaid,
                 Z_BelgeTuru = x.BelgeTuru,
-                Z_StokHareketTuru = x.FaturaHareketTuru,
+                Z_HareketTuru = x.FaturaHareketTuru,
                 Z_Tarih = x.Tarih,
                 Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
                 Z_Tutar = x.GenelToplam,
             }).ToList();
-            var modelyeni = caristokhareketleri.Union(carifaturahareketleri).ToList();
+            var carifinanshareketleri = c.FinansalHarekets.Where(x => x.Cariid == id && x.Durum == true).Select(x => new OrtakCariHareketView
+            {
+                Z_TransactionNo = x.FinansalHareketid,
+                Z_BelgeTuru = x.BelgeTuru,
+                Z_HareketTuru = x.FinansalHareketTuru,
+                Z_Tarih = x.Tarih,
+                Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
+                Z_Tutar = x.Tutar,
+            }).ToList();
+            var modelyeni = caristokhareketleri.Union(carifaturahareketleri).Union(carifinanshareketleri).ToList();
             var secilencari = c.Carilers.Where(x => x.Cariid == id).Select(y => y.CariAd +" "+ y.CariSoyad).FirstOrDefault();
             ViewBag.dgr1 = secilencari;
             return View(modelyeni);
@@ -187,7 +196,7 @@ namespace mvc_net_Crm.Controllers
         public string Z_Cari { get; set; }
         public string Z_UrunAd { get; set; }
         public int Z_Adet { get; set; }
-        public string Z_StokHareketTuru { get; set; }
+        public string Z_HareketTuru { get; set; }
         public string Z_Ambarid { get; set; }
         public decimal Z_Tutar { get; set; }
     }

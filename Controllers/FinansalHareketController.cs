@@ -20,7 +20,7 @@ namespace mvc_net_Crm.Controllers
         }
 
         [HttpGet]
-        public ActionResult FinansalHareketEkle_Kasa() //BOS FORM SAYFASI CAGIRIYOR
+        public ActionResult FinansalHareketEkle() //BOS FORM SAYFASI CAGIRIYOR
         {
 
 
@@ -42,14 +42,14 @@ namespace mvc_net_Crm.Controllers
       ).ToList();
             ViewBag.dgr2 = Personeller;
 
-            List<SelectListItem> kasalar = (from x in c.Kasalars.Where(x => x.Durum == true).ToList()
+            List<SelectListItem> finansaltanim = (from x in c.FinansHesaplaris.Where(x => x.Durum == true).ToList()
                                           select new SelectListItem
                                           {
-                                              Text = x.KasaAdi,
-                                              Value = x.Kasaid.ToString()
+                                              Text = x.FinansHesapAdi,
+                                              Value = x.FinansHesapid.ToString()
                                           }
 ).ToList();
-            ViewBag.dgr3 = kasalar;
+            ViewBag.dgr3 = finansaltanim;
 
             List<SelectListItem> finansalbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
                                                          select new SelectListItem
@@ -60,19 +60,11 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr4 = finansalbelgeturu;
 
-            List<SelectListItem> bankalar = (from x in c.Bankalars.Where(x => x.Durum == true).ToList()
-                                            select new SelectListItem
-                                            {
-                                                Text = x.BankaAdi + " " + x.BankaHesapNo,
-                                                Value = x.Bankaid.ToString()
-                                            }
-).ToList();
-            ViewBag.dgr5 = bankalar;
             return View();
         }
 
         [HttpPost]
-        public ActionResult FinansalHareketEkle_Kasa(FinansalHareket p) //DB KAYDETME ISLEMI
+        public ActionResult FinansalHareketEkle(FinansalHareket p) //DB KAYDETME ISLEMI
         {
             if (p.BelgeTuru.Contains("TAHSILAT"))
             {
@@ -82,7 +74,6 @@ namespace mvc_net_Crm.Controllers
             {
                 p.FinansalHareketTuru = "BORC";
             }
-            p.Bankaid = 1;
             p.Durum = true;//AKTIF KAYIT
             p.Tarih = DateTime.Now;
             c.FinansalHarekets.Add(p);
@@ -98,7 +89,7 @@ namespace mvc_net_Crm.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult FinansalHareketGetir_Kasa(int id) //BOS FORM SAYFASI CAGIRIYOR
+        public ActionResult FinansalHareketGetir(int id) //BOS FORM SAYFASI CAGIRIYOR
         {
             var finansalhareketbul = c.FinansalHarekets.Find(id);
 
@@ -120,14 +111,14 @@ namespace mvc_net_Crm.Controllers
       ).ToList();
             ViewBag.dgr2 = Personeller;
 
-            List<SelectListItem> kasalar = (from x in c.Kasalars.Where(x => x.Durum == true).ToList()
-                                            select new SelectListItem
-                                            {
-                                                Text = x.KasaAdi,
-                                                Value = x.Kasaid.ToString()
-                                            }
+            List<SelectListItem> finansaltanim = (from x in c.FinansHesaplaris.Where(x => x.Durum == true).ToList()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.FinansHesapAdi,
+                                                      Value = x.FinansHesapid.ToString()
+                                                  }
 ).ToList();
-            ViewBag.dgr3 = kasalar;
+            ViewBag.dgr3 = finansaltanim;
 
             List<SelectListItem> finansalbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
                                                       select new SelectListItem
@@ -138,19 +129,11 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr4 = finansalbelgeturu;
 
-            List<SelectListItem> bankalar = (from x in c.Bankalars.Where(x => x.Durum == true).ToList()
-                                             select new SelectListItem
-                                             {
-                                                 Text = x.BankaAdi + " " + x.BankaHesapNo,
-                                                 Value = x.Bankaid.ToString()
-                                             }
-).ToList();
-            ViewBag.dgr5 = bankalar;
-            return View("FinansalHareketGetir_Kasa", finansalhareketbul);
+            return View("FinansalHareketGetir", finansalhareketbul);
         }
 
 
-        public ActionResult FinansalHareketGuncelle_Kasa(FinansalHareket u) //DB KAYDETME ISLEMI
+        public ActionResult FinansalHareketGuncelle(FinansalHareket u) //DB KAYDETME ISLEMI
         {
             var finansalhareket = c.FinansalHarekets.Find(u.FinansalHareketid);
             finansalhareket.Tutar = u.Tutar;

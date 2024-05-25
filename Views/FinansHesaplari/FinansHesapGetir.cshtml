@@ -1,0 +1,40 @@
+﻿@model mvc_net_Crm.Models.Siniflar.FinansHesaplari
+@{
+    ViewBag.Title = "FinansHesapGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Finans Hesap Guncelleme</h2>
+<br />
+<br />
+@using (Html.BeginForm("FinansHesapGuncelle", "FinansHesaplari", FormMethod.Post))
+{
+    <div class="form-group">
+        <br />
+        @Html.HiddenFor(x => x.FinansHesapid)
+        @Html.LabelFor(x => x.FinansHesapid)
+        @Html.TextBoxFor(x => x.FinansHesapid, (new { @readonly = "true", @class = "form-control" }))
+        <br />
+        @Html.LabelFor(x => x.FinansHesapAdi)
+        @Html.TextBoxFor(x => x.FinansHesapAdi, (new { @class = "form-control" }))
+        <br />
+        @Html.LabelFor(x => x.FinansHesapTuru)
+        @Html.DropDownListFor(x => x.FinansHesapTuru, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.FinansHesapNo)
+        @Html.TextBoxFor(x => x.FinansHesapNo, (new { @class = "form-control" }))
+        <br />
+        @Html.LabelFor(x => x.FinansHesapIbanNo)
+        @Html.TextBoxFor(x => x.FinansHesapIbanNo, (new { @class = "form-control" }))
+        <br />
+        @Html.LabelFor(x => x.FinansHesapSahibi)
+        @Html.TextBoxFor(x => x.FinansHesapSahibi, (new { @class = "form-control" }))
+        <br />
+        @Html.LabelFor(x => x.FinansHesapAciklama)
+        @Html.TextBoxFor(x => x.FinansHesapAciklama, (new { @class = "form-control" }))
+        <br />
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}
+
+

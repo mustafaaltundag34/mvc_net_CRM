@@ -220,6 +220,7 @@
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\SatisController.cs" />
     <Compile Include="Controllers\StokHareketController.cs" />
+    <Compile Include="Controllers\TransactionTaskController.cs" />
     <Compile Include="Controllers\UrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +248,7 @@
     <Compile Include="Models\Siniflar\Kategori.cs" />
     <Compile Include="Models\Siniflar\Personel.cs" />
     <Compile Include="Models\Siniflar\SatisHareket.cs" />
+    <Compile Include="Models\Siniflar\TransactionTask.cs" />
     <Compile Include="Models\Siniflar\Urun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -667,6 +669,7 @@
     <Content Include="Views\FinansHesaplari\FinansHesapEkle.cshtml" />
     <Content Include="Views\FinansHesaplari\FinansHesapGetir.cshtml" />
     <Content Include="Views\FinansHesaplari\FinansHareketleriALL.cshtml" />
+    <Content Include="Views\TransactionTask\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

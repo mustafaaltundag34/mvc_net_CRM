@@ -16,6 +16,7 @@ namespace mvc_net_Crm.Models.Siniflar
             Saat = DateTime.Now.ToString("HH:mm");
             GenelToplam = 0;
             KdvTutar = 0;
+            OnayStatusu = "OnayBekliyor";
             //BelgeTuru = "FATURA_ALIS";//PARAMETRELERDEN CEKILECEK FATURA_ALIS VEYA FATURA_SATIS TURUNE GORE FATURAHAREKETTURU OTOMATIK GELECEK
         }
 
@@ -82,6 +83,16 @@ namespace mvc_net_Crm.Models.Siniflar
         public virtual Ambar Ambar { get; set; }
 
         public ICollection<faturaKalem> FaturaKalems { get; set; }//Faturalar 1 - % FaturaKalem
+
+
+        // // // ONAYKONTROLU
+
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string OnayStatusu { get; set; }
+
+        //public DateTime OnayTarih { get; set; }
     }
 
 }

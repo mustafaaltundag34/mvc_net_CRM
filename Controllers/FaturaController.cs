@@ -58,7 +58,7 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr4 = faturabelgeturu;
 
-            List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("PAYMENT")).ToList()
+            List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
                                                select new SelectListItem
                                                {
                                                    Text = x.ParametreAciklamasi,
@@ -192,7 +192,7 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr4 = faturabelgeturu;
 
-            List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("PAYMENT")).ToList()
+            List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
                                               select new SelectListItem
                                               {
                                                   Text = x.ParametreAciklamasi,

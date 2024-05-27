@@ -18,6 +18,7 @@ namespace mvc_net_Crm.Models.Siniflar
             //Kasaid = 1; 
             Tarih = DateTime.Now;
             Saat = DateTime.Now.ToString("HH:mm");
+            OnayStatusu = "OnayBekliyor";
         }
         //cari
         //personel
@@ -79,6 +80,16 @@ namespace mvc_net_Crm.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(200)]
         public string Aciklama { get; set; }
+
+
+        // // // ONAYKONTROLU
+
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string OnayStatusu { get; set; }
+
+        //public DateTime OnayTarih { get; set; }
 
     }
 }

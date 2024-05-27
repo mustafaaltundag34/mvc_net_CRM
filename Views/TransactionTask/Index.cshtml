@@ -1,25 +1,24 @@
 ﻿@using mvc_net_Crm.Models.Siniflar
-@model List<FinansalHareket>
+@model List<TransactionTask>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Finansal Islemler</h2>
+<h2>Transaction Onaylari</h2>
 <br />
 
 <table id="tbl1" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Tarih</th>
-            <th>Saat</th>
-            <th>Cari</th>
-            <th>FinansalHesap</th>
+            <th>BelgeID</th>
             <th>BelgeTuru</th>
-            <th>HareketTuru</th>
-            <th>Tutar</th>
-            <th>OnayStatusu</th>
+            <th>AcilisTarihi</th>
+            <th>KayitAcan</th>
+            <th>OnayVeren</th>
+            <th>KayitStatusu</th>
+            <th>SonIslemTarihi</th>
             <th style="width: 150px">#</th>
             <th style="width: 150px">#</th>
         </tr>
@@ -27,25 +26,24 @@
     @foreach (var k in Model)
     {
         <tr>
-            <td>@k.FinansalHareketid</td>
-            <td>@k.Tarih.ToString("dd.MM.yyyy")</td>
-            <td>@k.Saat</td>
-            <td>@k.Cariler.CariAd @k.Cariler.CariSoyad</td>
-            <td>@k.FinansHesaplari.FinansHesapAdi</td>
+            <td>@k.TransactionTaskid</td>
+            <td>@k.Belgeid</td>
             <td>@k.BelgeTuru</td>
-            <td>@k.FinansalHareketTuru</td>
-            <td>@k.Tutar</td>
+            <td>@k.AcilisTarihi.ToString("dd.MM.yyyy")</td>
+            <td>@k.KayitAcanUser</td>
+            <td>@k.KayitOnaylayanUser</td>
             <td>@k.OnayStatusu</td>
+            <td>@k.SonIslemTarihi</td>
             <td align="center">
-                <a href="/FinansalHareket/FinansalHareketGetir/@k.FinansalHareketid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
+                <a href="/Transaction/TransactionGetir/@k.TransactionTaskid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
             </td>
             <td align="center">
-                <a href="/FinansalHareket/FinansalHareketSil/@k.FinansalHareketid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
+                <a href="/Transaction/TransactionSil/@k.TransactionTaskid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
             </td>
         </tr>
     }
 </table>
-<a href="/FinansalHareket/FinansalHareketEkle" class="btn btn-primary">Yeni Finansal Islem</a>
+@*<a href="/FinansalHareket/FinansalHareketEkle" class="btn btn-primary">Yeni Finansal Islem</a>*@
 
 
 @*DATATABLES YAPISI VE UI SEKILLENDIRME BLOGU*@
@@ -68,4 +66,5 @@
 </script>
 
 @*DATATABLES YAPISI VE UI SEKILLENDIRME BLOGU*@
+
 

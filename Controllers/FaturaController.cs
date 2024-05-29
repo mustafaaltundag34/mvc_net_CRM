@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Google.Protobuf.WellKnownTypes;
 using mvc_net_Crm.Models.Siniflar;
+using static Google.Protobuf.Compiler.CodeGeneratorResponse.Types;
 
 namespace mvc_net_Crm.Controllers
 {
@@ -13,6 +14,7 @@ namespace mvc_net_Crm.Controllers
     {
         // GET: Fatura
         Context c =new Context();
+        Context d= new Context();
         public ActionResult Index()
         {
             var faturalar = c.Faturalars.Where(x => x.Durum == true).ToList();
@@ -129,8 +131,9 @@ namespace mvc_net_Crm.Controllers
                 }
                 p.Durum = true;//AKTIF KAYIT
                 p.Tarih = DateTime.Now;
-                p.KdvTutar = 0;
-                p.GenelToplam = 0;
+                //p.KdvTutar = 0;
+                //p.GenelToplam = 0;
+                //p.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
                 c.Faturalars.Add(p);
                 c.SaveChanges();
                 return RedirectToAction("FaturaKalemEkle", new {id=p.Faturaid});
@@ -255,7 +258,8 @@ namespace mvc_net_Crm.Controllers
             fatura.TeslimAlan = u.TeslimAlan;
             fatura.Tarih = DateTime.Now;
             fatura.Saat = DateTime.Now.ToString("HH:mm");
-            c.SaveChanges();
+            fatura.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
+            c.SaveChanges();    
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
         }
@@ -289,6 +293,8 @@ namespace mvc_net_Crm.Controllers
             ViewBag.dgr8 = faturaantet8;
             var faturaantet9 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.Personel.PersonelAd +" " + y.Personel.PersonelSoyad).FirstOrDefault();
             ViewBag.dgr9 = faturaantet9;
+            var faturaantet10 = c.Faturalars.Where(x => x.Faturaid == id).Select(y => y.OnayStatusu).FirstOrDefault();
+            ViewBag.dgr10 = faturaantet10;
             return View(faturakalemler);
         }
 
@@ -340,14 +346,19 @@ namespace mvc_net_Crm.Controllers
             try
             {
                 Console.WriteLine("Ekleme Islemi Basladi");
+                var fatura = d.Faturalars.Find(p.Faturaid);
                 p.Durum = true;//AKTIF KAYIT
                 p.Tarih = DateTime.Now;
                 p.KdvOrani = 1;
                 p.Tutar = p.Adet * p.BirimFiyat;
+                //p.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
                 //p.StokHareketTuru = p.StokHareketTuru;
                 //p.BelgeTuru = p.BelgeTuru;
+                p.OnayStatusu = "OnayBekliyor";
+                fatura.OnayStatusu = "OnayBekliyor";
                 c.FaturaKalems.Add(p);
                 c.SaveChanges();
+                d.SaveChanges();   
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException ex)
@@ -393,13 +404,18 @@ namespace mvc_net_Crm.Controllers
         public ActionResult FaturaKalemGuncelle(faturaKalem u) //DB KAYDETME ISLEMI
         {
             var faturakalem = c.FaturaKalems.Find(u.FaturaKalemid);
+            var fatura = d.Faturalars.Find(u.Faturaid);
             faturakalem.Adet = u.Adet;
             faturakalem.BirimFiyat = u.BirimFiyat;
             faturakalem.Tutar = u.BirimFiyat * u.Adet;
             faturakalem.Tarih = DateTime.Now;
+            faturakalem.OnayStatusu = "OnayBekliyor";
+            fatura.OnayStatusu = "OnayBekliyor";
+            //faturakalem.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
             //faturakalem.BelgeTuru = u.BelgeTuru;
             //faturakalem.StokHareketTuru = u.BelgeTuru;
             c.SaveChanges();
+            d.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
         }

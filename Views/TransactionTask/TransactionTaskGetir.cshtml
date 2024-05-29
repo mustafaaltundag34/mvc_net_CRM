@@ -1,0 +1,32 @@
+﻿@model mvc_net_Crm.Models.Siniflar.TransactionTask
+@{
+    ViewBag.Title = "TransactionTaskGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Transaction Task Onay Islemleri</h2>
+<br />
+@using (Html.BeginForm("TransactionTaskGuncelle", "TransactionTask", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(x => x.TransactionTaskid)
+        @Html.LabelFor(x => x.TransactionTaskid)
+        @Html.TextBoxFor(x => x.TransactionTaskid, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.BelgeTuru)
+        @Html.TextBoxFor(x => x.BelgeTuru, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Belgeid)
+        @Html.TextBoxFor(x => x.Belgeid, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.KayitOnaylayanUser)
+        @Html.DropDownListFor(x => x.KayitOnaylayanUser, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.OnayStatusu)
+        @Html.DropDownListFor(x => x.OnayStatusu, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-warning">Guncelle</button>
+}
+
+

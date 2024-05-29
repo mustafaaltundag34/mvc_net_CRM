@@ -15,6 +15,7 @@ namespace mvc_net_Crm.Models.Siniflar
             //BelgeTuru = "FaturaKalemHareket";// FATURABELGETURUNE GORE OTOMATI GELICEK
             Tarih=DateTime.Now;
             Tutar = Adet * BirimFiyat;
+            OnayStatusu = "OnayBekliyor";
         }
         [Key]
         public int FaturaKalemid { get; set; }
@@ -40,6 +41,15 @@ namespace mvc_net_Crm.Models.Siniflar
         public virtual Ambar Ambar { get; set; }
         public int Faturaid { get; set; }
         public virtual Faturalar Faturalar { get; set; }//Faturalar 1 - % FaturaKalem
+
+        // // // ONAYKONTROLU // FATURA ONAYLANDIGINDA OTOMATIK ONAYLANIP HESAPLAMALAR YAPILACAK
+
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string OnayStatusu { get; set; }
+
+        //public DateTime OnayTarih { get; set; }
 
     }
 }

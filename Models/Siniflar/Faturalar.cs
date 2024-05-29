@@ -85,7 +85,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public ICollection<faturaKalem> FaturaKalems { get; set; }//Faturalar 1 - % FaturaKalem
 
 
-        // // // ONAYKONTROLU
+        // // // ONAYKONTROLU  //FATURA ONAYLANDIGINDA FATURAKALEMLERI OTOMATIK ONAYLANIP HESAPLAMALAR YAPILACAK
 
 
         [Column(TypeName = "Varchar")]

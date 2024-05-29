@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,10 +14,70 @@ namespace mvc_net_Crm.Controllers
     {
         // GET: TransactionTask
         Context c = new Context();
+        Context d = new Context();
+        Context e=new Context();
         public ActionResult Index()
         {
-            var transaction = c.TransactionTasks.Where(x => x.Durum == true && x.OnayStatusu.Contains("Bekliyor")).ToList();
+            //var transaction = c.TransactionTasks.Where(x => x.Durum == true && x.OnayStatusu.Contains("Bekliyor")).ToList();
+            var transaction = c.TransactionTasks.Where(x => x.Durum == true).ToList();
             return View(transaction);
+        }
+
+
+        [HttpPost]
+        public ActionResult TransactionTaskEkle(TransactionTask k) //DB KAYDETME ISLEMI
+        {
+            //k.Durum = true;
+            //c.Ambars.Add(k);
+            //c.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult TransactionTaskGetir(int id) //DB KAYDETME ISLEMI
+        {
+            var Transaction = c.TransactionTasks.Find(id);
+            List<SelectListItem> onaycilar = (from x in c.Personels.Where(x => x.Durum == true).ToList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.PersonelAd + " " + x.PersonelSoyad,
+                                                    Value = x.PersonelAd + " " + x.PersonelSoyad,
+                                                }
+                              ).ToList();
+            ViewBag.dgr1 = onaycilar;
+
+            List<SelectListItem> OnayParametrelistesi = new List<SelectListItem>();
+            OnayParametrelistesi.Add(new SelectListItem { Text = "OnayBekliyor", Value = "OnayBekliyor" });
+            OnayParametrelistesi.Add(new SelectListItem { Text = "Onaylandi", Value = "Onaylandi" });
+            OnayParametrelistesi.Add(new SelectListItem { Text = "RedEdildi", Value = "RedEdildi" });
+
+            ViewBag.dgr2 = OnayParametrelistesi;
+            return View("TransactionTaskGetir", Transaction);
+        }
+
+        public ActionResult TransactionTaskGuncelle(TransactionTask k) //DB KAYDETME ISLEMI
+        {
+            var Transaction = c.TransactionTasks.Find(k.TransactionTaskid);
+            int id  = c.TransactionTasks.Find(k.TransactionTaskid).Belgeid;
+            var fatura = d.Faturalars.Find(id);
+            Transaction.OnayStatusu = k.OnayStatusu;
+            //Transaction.SonIslemTarihi=DateTime.Now;
+            Transaction.KayitOnaylayanUser = k.KayitOnaylayanUser;
+            fatura.OnayStatusu= k.OnayStatusu;
+            e.FaturaKalems.AsEnumerable().Where(x => x.Faturaid == id).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = k.OnayStatusu;
+            });
+            c.SaveChanges();
+            d.SaveChanges();
+            e.SaveChanges();    
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult TransactionTaskSil(int id)//DB SILME ISLEMI
+        {
+            var transaction = c.TransactionTasks.Find(id);
+            transaction.Durum = false;
+            c.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

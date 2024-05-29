@@ -670,6 +670,7 @@
     <Content Include="Views\FinansHesaplari\FinansHesapGetir.cshtml" />
     <Content Include="Views\FinansHesaplari\FinansHareketleriALL.cshtml" />
     <Content Include="Views\TransactionTask\Index.cshtml" />
+    <Content Include="Views\TransactionTask\TransactionTaskGetir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

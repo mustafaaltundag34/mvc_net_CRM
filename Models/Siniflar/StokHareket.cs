@@ -15,6 +15,7 @@ namespace mvc_net_Crm.Models.Siniflar
             //BelgeTuru = "IRSALIYE_ALIS"; //OTOMATIKGELECEK
             Tarih=DateTime.Now;
             ToplamTutar = Adet * Fiyat;
+            OnayStatusu = "OnayBekliyor";//KAYITLAR OTOMATIK OLARAK ONAY BEKLIYOR STATUSUNDE ACILIYOR
         }
 
         [Key]
@@ -47,6 +48,15 @@ namespace mvc_net_Crm.Models.Siniflar
         public virtual Ambar Ambar { get; set; }
 
         public bool Durum { get; set; }
+
+        // // // ONAYKONTROLU // FATURA ONAYLANDIGINDA OTOMATIK ONAYLANIP HESAPLAMALAR YAPILACAK
+
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string OnayStatusu { get; set; }
+
+        //public DateTime OnayTarih { get; set; }
     }
 }
 

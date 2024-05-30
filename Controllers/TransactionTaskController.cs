@@ -13,9 +13,10 @@ namespace mvc_net_Crm.Controllers
     public class TransactionTaskController : Controller
     {
         // GET: TransactionTask
-        Context c = new Context();
-        Context d = new Context();
-        Context e=new Context();
+        Context c = new Context(); //TRANSACTION DATASET
+        Context d = new Context(); //FATURA-FATURAKALEM DATASET
+        Context e = new Context(); //STOKHAREKET DATASET
+        Context f = new Context(); //FINANSALHAREKET DATASET
         public ActionResult Index()
         {
             //var transaction = c.TransactionTasks.Where(x => x.Durum == true && x.OnayStatusu.Contains("Bekliyor")).ToList();
@@ -58,17 +59,37 @@ namespace mvc_net_Crm.Controllers
             var Transaction = c.TransactionTasks.Find(k.TransactionTaskid);
             int id  = c.TransactionTasks.Find(k.TransactionTaskid).Belgeid;
             var fatura = d.Faturalars.Find(id);
+            var stokhareket=e.StokHarekets.Find(id);
+            var finansalhareket = f.FinansalHarekets.Find(id);
             Transaction.OnayStatusu = k.OnayStatusu;
-            //Transaction.SonIslemTarihi=DateTime.Now;
+            Transaction.SonIslemTarihi = DateTime.Now;
             Transaction.KayitOnaylayanUser = k.KayitOnaylayanUser;
-            fatura.OnayStatusu= k.OnayStatusu;
-            e.FaturaKalems.AsEnumerable().Where(x => x.Faturaid == id).ToList().ForEach(x =>
+            if (Transaction.BelgeTuru.Contains("FATURA"))
             {
-                x.OnayStatusu = k.OnayStatusu;
-            });
-            c.SaveChanges();
-            d.SaveChanges();
-            e.SaveChanges();    
+                fatura.OnayStatusu = k.OnayStatusu;
+                e.FaturaKalems.AsEnumerable().Where(x => x.Faturaid == id).ToList().ForEach(x =>
+                {
+                    x.OnayStatusu = k.OnayStatusu;
+                });
+                c.SaveChanges();
+                d.SaveChanges();
+                e.SaveChanges();
+            }
+
+            if (Transaction.BelgeTuru.Contains("IRSALIYE"))
+            {
+                stokhareket.OnayStatusu = k.OnayStatusu;
+                c.SaveChanges();
+                e.SaveChanges();
+            }
+
+            if ((Transaction.BelgeTuru.Contains("ODEME")) || (Transaction.BelgeTuru.Contains("TAHSILAT")))
+            {
+                finansalhareket.OnayStatusu = k.OnayStatusu;
+                c.SaveChanges();
+                f.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 

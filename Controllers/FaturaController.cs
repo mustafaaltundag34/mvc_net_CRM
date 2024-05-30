@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
@@ -13,8 +14,9 @@ namespace mvc_net_Crm.Controllers
     public class FaturaController : Controller
     {
         // GET: Fatura
-        Context c =new Context();
-        Context d= new Context();
+        Context c =new Context();//c FATURA DATASET
+        Context d= new Context();//d FATURAKALEM DATASET
+        Context e = new Context();//e TRANSACTION DATASET
         public ActionResult Index()
         {
             var faturalar = c.Faturalars.Where(x => x.Durum == true).ToList();
@@ -136,6 +138,18 @@ namespace mvc_net_Crm.Controllers
                 //p.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
                 c.Faturalars.Add(p);
                 c.SaveChanges();
+
+                var kayitacanpersonelbul = c.Personels.Find(p.Personelid);
+                TransactionTask yenitransaction = new TransactionTask();
+                yenitransaction.Belgeid = p.Faturaid;
+                yenitransaction.BelgeTuru = p.BelgeTuru;
+                yenitransaction.AcilisTarihi = p.Tarih;
+                yenitransaction.SonIslemTarihi = p.Tarih;
+                yenitransaction.KayitAcanUser = kayitacanpersonelbul.PersonelAd + " " + kayitacanpersonelbul.PersonelSoyad;
+                yenitransaction.KayitOnaylayanUser = "";
+                yenitransaction.Durum = p.Durum;
+                d.TransactionTasks.Add(yenitransaction);
+                d.SaveChanges();
                 return RedirectToAction("FaturaKalemEkle", new {id=p.Faturaid});
             }
             catch (DbEntityValidationException ex)
@@ -259,7 +273,17 @@ namespace mvc_net_Crm.Controllers
             fatura.Tarih = DateTime.Now;
             fatura.Saat = DateTime.Now.ToString("HH:mm");
             fatura.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
-            c.SaveChanges();    
+            c.SaveChanges();
+            e.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == fatura.Faturaid & x.BelgeTuru == fatura.BelgeTuru).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+            });
+            e.SaveChanges();
+            d.FaturaKalems.AsEnumerable().Where(x => x.Faturaid == u.Faturaid).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII FATURA KALEMLERI DE ONAY BEKLIYORA GECER
+            });
+            d.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
         }
@@ -410,12 +434,20 @@ namespace mvc_net_Crm.Controllers
             faturakalem.Tutar = u.BirimFiyat * u.Adet;
             faturakalem.Tarih = DateTime.Now;
             faturakalem.OnayStatusu = "OnayBekliyor";
-            fatura.OnayStatusu = "OnayBekliyor";
-            //faturakalem.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
-            //faturakalem.BelgeTuru = u.BelgeTuru;
-            //faturakalem.StokHareketTuru = u.BelgeTuru;
             c.SaveChanges();
+
+            c.FaturaKalems.AsEnumerable().Where(x => x.Faturaid == u.Faturaid).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA TUM FATURA ICI SATIRLARI ONAY BEKLIYORA GECER
+            });
+            c.SaveChanges();
+            fatura.OnayStatusu = "OnayBekliyor";
             d.SaveChanges();
+            e.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == u.Faturaid & x.BelgeTuru == u.BelgeTuru).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+            });
+            e.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });
         }

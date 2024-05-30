@@ -11,7 +11,8 @@ namespace mvc_net_Crm.Controllers
     public class FinansalHareketController : Controller
     {
         // GET: FinansalHareket
-        Context c = new Context();
+        Context c = new Context(); //FINANSALHAREKET
+        Context d = new Context(); //TRANSACTION
         public ActionResult Index()
         {
             var finansalhareket = c.FinansalHarekets.Where(x => x.Durum == true).ToList();
@@ -78,6 +79,18 @@ namespace mvc_net_Crm.Controllers
             p.Tarih = DateTime.Now;
             c.FinansalHarekets.Add(p);
             c.SaveChanges();
+
+            var kayitacanpersonelbul = c.Personels.Find(p.Personelid);
+            TransactionTask yenitransaction = new TransactionTask();
+            yenitransaction.Belgeid = p.FinansalHareketid;
+            yenitransaction.BelgeTuru = p.BelgeTuru;
+            yenitransaction.AcilisTarihi = p.Tarih;
+            yenitransaction.SonIslemTarihi = p.Tarih;
+            yenitransaction.KayitAcanUser = kayitacanpersonelbul.PersonelAd + " " + kayitacanpersonelbul.PersonelSoyad;
+            yenitransaction.KayitOnaylayanUser = "";
+            yenitransaction.Durum = p.Durum;
+            d.TransactionTasks.Add(yenitransaction);
+            d.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -140,7 +153,15 @@ namespace mvc_net_Crm.Controllers
             finansalhareket.Aciklama = u.Aciklama;
             finansalhareket.Tarih = DateTime.Now;
             finansalhareket.Saat = DateTime.Now.ToString("HH:mm");
+            finansalhareket.OnayStatusu = "OnayBekliyor";
             c.SaveChanges();
+
+            d.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == finansalhareket.FinansalHareketid & x.BelgeTuru == finansalhareket.BelgeTuru).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+            });
+            d.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

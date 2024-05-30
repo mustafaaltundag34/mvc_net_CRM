@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using mvc_net_Crm.Models.Siniflar;
+using static Google.Protobuf.Compiler.CodeGeneratorResponse.Types;
 
 namespace mvc_net_Crm.Controllers
 {
@@ -11,7 +12,8 @@ namespace mvc_net_Crm.Controllers
     {
         // GET: StokHareket
 
-        Context c = new Context();
+        Context c = new Context(); //STOKHAREKET DATA SET 
+        Context d = new Context(); //TRANSACTION DATA SET
         public ActionResult Index()
         {
             var stokhareketler = c.StokHarekets.Where(x => x.Durum == true).ToList();
@@ -91,6 +93,18 @@ namespace mvc_net_Crm.Controllers
             p.ToplamTutar = p.Adet * p.Fiyat;
             c.StokHarekets.Add(p);
             c.SaveChanges();
+            var kayitacanpersonelbul = c.Personels.Find(p.Personelid);
+            TransactionTask yenitransaction = new TransactionTask();
+            yenitransaction.Belgeid = p.StokHareketid;
+            yenitransaction.BelgeTuru = p.BelgeTuru;
+            yenitransaction.AcilisTarihi = p.Tarih;
+            yenitransaction.SonIslemTarihi = p.Tarih;
+            yenitransaction.KayitAcanUser = kayitacanpersonelbul.PersonelAd + " " + kayitacanpersonelbul.PersonelSoyad;
+            yenitransaction.KayitOnaylayanUser = "";
+            yenitransaction.Durum = p.Durum;
+            d.TransactionTasks.Add(yenitransaction);
+            d.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -166,7 +180,13 @@ namespace mvc_net_Crm.Controllers
             stokhareketler.ToplamTutar = u.Adet * u.Fiyat;
             stokhareketler.Tarih = DateTime.Now;
             stokhareketler.BelgeTuru = u.BelgeTuru;
+            stokhareketler.OnayStatusu = "OnayBekliyor";
             c.SaveChanges();
+            d.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == stokhareketler.StokHareketid & x.BelgeTuru == stokhareketler.BelgeTuru).ToList().ForEach(x =>
+            {
+                x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+            });
+            d.SaveChanges();
             return RedirectToAction("Index");
         }
 

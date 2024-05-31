@@ -21,26 +21,25 @@
     @*<table class="table table-condensed">*@
     <table class="table table-bordered">
         <tr>
-            <th>TransactionNo</th>
+            <th>Trns_No</th>
             <th>Tarih</th>
             <th>Cari</th>
-            <th>FinansHesabi</th>
             <th>BelgeTuru</th>
+            <th>FinansHesabi</th>
             <th>HareketTuru</th>
             <th>Tutar</th>
-
         </tr>
         @foreach (var x in Model)
 
         {
-            if (x.BelgeTuru.Contains("TAHSILAT"))
+            if ((x.BelgeTuru.Contains("TAHSILAT"))|| (x.BelgeTuru.Contains("PARA_GONDERME")))
             {
                 <tr>
                     <td>@x.FinansalHareketid</td>
-                    <td>@x.Tarih.ToString("dd.MM.yyy")</td>
+                    <td>@x.Tarih.ToString("dd.MM.yyyy")</td>
                     <td>@x.Cariler.CariAd</td>
-                    <td>@x.FinansHesaplari.FinansHesapAdi</td>
                     <td>@x.BelgeTuru</td>
+                    <td>@x.FinansHesaplari.FinansHesapAdi</td>
                     <td>@x.FinansalHareketTuru</td>
                     <td style="text-align:right">@x.Tutar.ToString("###,##0.00")</td>
                 </tr>
@@ -53,11 +52,11 @@
 <div style="float: left; margin-right: 0px; background: #ffffff; width: 50%; height: auto; display: inline ">
     <table class="table table-bordered">
         <tr>
-            <th>TransactionNo</th>
+            <th>Trns_No</th>
             <th>Tarih</th>
             <th>Cari</th>
-            <th>FinansHesabi</th>
             <th>BelgeTuru</th>
+            <th>FinansHesabi</th>
             <th>HareketTuru</th>
             <th>Tutar</th>
         </tr>
@@ -68,10 +67,10 @@
             {
                 <tr>
                     <td>@x.FinansalHareketid</td>
-                    <td>@x.Tarih.ToString("dd.MM.yyy")</td>
+                    <td>@x.Tarih.ToString("dd.MM.yyyy")</td>
                     <td>@x.Cariler.CariAd</td>
-                    <td>@x.FinansHesaplari.FinansHesapAdi</td>
                     <td>@x.BelgeTuru</td>
+                    <td>@x.FinansHesaplari.FinansHesapAdi</td>
                     <td>@x.FinansalHareketTuru</td>
                     <td style="text-align:right">@x.Tutar.ToString("###,##0.00")</td>
                 </tr>

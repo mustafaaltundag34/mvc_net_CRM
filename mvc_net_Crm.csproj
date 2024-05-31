@@ -217,6 +217,7 @@
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MarkaController.cs" />
     <Compile Include="Controllers\ParametreController.cs" />
+    <Compile Include="Controllers\ParaTransferController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\SatisController.cs" />
     <Compile Include="Controllers\StokHareketController.cs" />
@@ -671,6 +672,8 @@
     <Content Include="Views\FinansHesaplari\FinansHareketleriALL.cshtml" />
     <Content Include="Views\TransactionTask\Index.cshtml" />
     <Content Include="Views\TransactionTask\TransactionTaskGetir.cshtml" />
+    <Content Include="Views\ParaTransfer\Index.cshtml" />
+    <Content Include="Views\ParaTransfer\ParaTransferEkle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

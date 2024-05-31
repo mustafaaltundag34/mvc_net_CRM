@@ -11,11 +11,11 @@ namespace mvc_net_Crm.Controllers
     public class FinansalHareketController : Controller
     {
         // GET: FinansalHareket
-        Context c = new Context(); //FINANSALHAREKET
+        Context c = new Context(); //FINANSALHAREKET TAHSILAT ODEME ISLEMLERI
         Context d = new Context(); //TRANSACTION
         public ActionResult Index()
         {
-            var finansalhareket = c.FinansalHarekets.Where(x => x.Durum == true).ToList();
+            var finansalhareket = c.FinansalHarekets.Where(x => x.Durum == true && (x.BelgeTuru.Contains("TAHSILAT") || x.BelgeTuru.Contains("ODEME")) ).ToList();
             return View(finansalhareket);
 
         }
@@ -52,14 +52,31 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr3 = finansaltanim;
 
-            List<SelectListItem> finansalbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
-                                                         select new SelectListItem
-                                                         {
-                                                             Text = x.ParametreAciklamasi,
-                                                             Value = x.ParametreAciklamasi.ToString()
-                                                         }
-).ToList();
-            ViewBag.dgr4 = finansalbelgeturu;
+            List<SelectListItem> finansalislemturleri = new List<SelectListItem>();
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_NAKIT", Value = "ODEME_NAKIT" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_HAVALE_EFT_FAST", Value = "ODEME_HAVALE_EFT_FAST" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_KREDI_KARTI", Value = "ODEME_KREDI_KARTI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_YEMEK_CEKI", Value = "ODEME_YEMEK_CEKI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_CEK_SENET", Value = "ODEME_CEK_SENET" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_PARA_CEKME_HESAPTAN", Value = "ODEME_PARA_CEKME_HESAPTAN" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_NAKIT", Value = "TAHSILAT_NAKIT" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_HAVALE_EFT_FAST", Value = "TAHSILAT_HAVALE_EFT_FAST" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_KREDI_KARTI", Value = "TAHSILAT_KREDI_KARTI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_YEMEK_CEKI", Value = "TAHSILAT_YEMEK_CEKI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_CEK_SENET", Value = "TAHSILAT_CEK_SENET" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_PARA_YATIRMA_HESABA", Value = "TAHSILAT_PARA_YATIRMA_HESABA" });
+
+
+
+            ViewBag.dgr4 = finansalislemturleri;
+//            List<SelectListItem> finansalbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
+//                                                         select new SelectListItem
+//                                                         {
+//                                                             Text = x.ParametreAciklamasi,
+//                                                             Value = x.ParametreAciklamasi.ToString()
+//                                                         }
+//).ToList();
+//            ViewBag.dgr4 = finansalbelgeturu;
 
             return View();
         }
@@ -133,14 +150,23 @@ namespace mvc_net_Crm.Controllers
 ).ToList();
             ViewBag.dgr3 = finansaltanim;
 
-            List<SelectListItem> finansalbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
-                                                      select new SelectListItem
-                                                      {
-                                                          Text = x.ParametreAciklamasi,
-                                                          Value = x.ParametreAciklamasi.ToString()
-                                                      }
-).ToList();
-            ViewBag.dgr4 = finansalbelgeturu;
+            List<SelectListItem> finansalislemturleri = new List<SelectListItem>();
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_NAKIT", Value = "ODEME_NAKIT" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_HAVALE_EFT_FAST", Value = "ODEME_HAVALE_EFT_FAST" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_KREDI_KARTI", Value = "ODEME_KREDI_KARTI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_YEMEK_CEKI", Value = "ODEME_YEMEK_CEKI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_CEK_SENET", Value = "ODEME_CEK_SENET" });
+            finansalislemturleri.Add(new SelectListItem { Text = "ODEME_PARA_CEKME_HESAPTAN", Value = "ODEME_PARA_CEKME_HESAPTAN" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_NAKIT", Value = "TAHSILAT_NAKIT" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_HAVALE_EFT_FAST", Value = "TAHSILAT_HAVALE_EFT_FAST" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_KREDI_KARTI", Value = "TAHSILAT_KREDI_KARTI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_YEMEK_CEKI", Value = "TAHSILAT_YEMEK_CEKI" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_CEK_SENET", Value = "TAHSILAT_CEK_SENET" });
+            finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_PARA_YATIRMA_HESABA", Value = "TAHSILAT_PARA_YATIRMA_HESABA" });
+
+
+
+            ViewBag.dgr4 = finansalislemturleri;
 
             return View("FinansalHareketGetir", finansalhareketbul);
         }
@@ -159,6 +185,8 @@ namespace mvc_net_Crm.Controllers
             d.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == finansalhareket.FinansalHareketid & x.BelgeTuru == finansalhareket.BelgeTuru).ToList().ForEach(x =>
             {
                 x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                x.KayitOnaylayanUser = "";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                x.SonIslemTarihi = DateTime.Now;//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
             });
             d.SaveChanges();
 

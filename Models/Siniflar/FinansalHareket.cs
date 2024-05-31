@@ -23,7 +23,7 @@ namespace mvc_net_Crm.Models.Siniflar
         //cari
         //personel
         //finans hesaplari
-        //belgeturu parametrelerden cekilecek
+        //belgeturu
 
         [Key]
         public int FinansalHareketid { get; set; }

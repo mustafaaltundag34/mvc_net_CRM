@@ -35,7 +35,6 @@ namespace mvc_net_Crm.Models.Siniflar
         public DbSet<Kasalar> Kasalars { get; set; }
         public DbSet<Bankalar> Bankalars { get; set; }
         public DbSet<FinansHesaplari> FinansHesaplaris { get; set; }
-
         public DbSet<TransactionTask> TransactionTasks { get; set; }
         public Context(): base("Context") { }//MYSQLDE FARKLI OLARAK BURASI EKLENDI //Reference the name of your connection string:
     }

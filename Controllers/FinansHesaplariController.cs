@@ -20,14 +20,24 @@ namespace mvc_net_Crm.Controllers
         [HttpGet]
         public ActionResult FinansHesapEkle() //BOS FORM SAYFASI CAGIRIYOR
         {
-            List<SelectListItem> finanshesapturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSHESAPTURU")).ToList()
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = x.ParametreAciklamasi,
-                                                        Value = x.ParametreAciklamasi.ToString()
-                                                    }
-).ToList();
+
+            List<SelectListItem> finanshesapturu = new List<SelectListItem>();
+            finanshesapturu.Add(new SelectListItem { Text = "KASA_NAKIT", Value = "KASA_NAKIT" }); ;
+            finanshesapturu.Add(new SelectListItem { Text = "BANKA_HESABI", Value = "BANKA_HESABI" });
+            finanshesapturu.Add(new SelectListItem { Text = "DIJITAL_BANKACILIK", Value = "DIJITAL_BANKACILIK" });
+            finanshesapturu.Add(new SelectListItem { Text = "YEMEK_CEKI_KARTI", Value = "YEMEK_CEKI_KARTI" });
+            finanshesapturu.Add(new SelectListItem { Text = "FIZIKI_POS", Value = "FIZIKI_POS" });
+            finanshesapturu.Add(new SelectListItem { Text = "SANAL_POS", Value = "SANAL_POS" });
             ViewBag.dgr1 = finanshesapturu;
+
+//            List<SelectListItem> finanshesapturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSHESAPTURU")).ToList()
+//                                                    select new SelectListItem
+//                                                    {
+//                                                        Text = x.ParametreAciklamasi,
+//                                                        Value = x.ParametreAciklamasi.ToString()
+//                                                    }
+//).ToList();
+//            ViewBag.dgr1 = finanshesapturu;
 
             return View();
         }
@@ -46,14 +56,23 @@ namespace mvc_net_Crm.Controllers
         {
             var finanshesap = c.FinansHesaplaris.Find(id);
 
-            List<SelectListItem> finanshesapturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSHESAPTURU")).ToList()
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = x.ParametreAciklamasi,
-                                                        Value = x.ParametreAciklamasi.ToString()
-                                                    }
-).ToList();
+            List<SelectListItem> finanshesapturu = new List<SelectListItem>();
+            finanshesapturu.Add(new SelectListItem { Text = "KASA_NAKIT", Value = "KASA_NAKIT" });;
+            finanshesapturu.Add(new SelectListItem { Text = "BANKA_HESABI", Value = "BANKA_HESABI" });
+            finanshesapturu.Add(new SelectListItem { Text = "DIJITAL_BANKACILIK", Value = "DIJITAL_BANKACILIK" });
+            finanshesapturu.Add(new SelectListItem { Text = "YEMEK_CEKI_KARTI", Value = "YEMEK_CEKI_KARTI" });
+            finanshesapturu.Add(new SelectListItem { Text = "FIZIKI_POS", Value = "FIZIKI_POS" });
+            finanshesapturu.Add(new SelectListItem { Text = "SANAL_POS", Value = "SANAL_POS" });
+
             ViewBag.dgr1 = finanshesapturu;
+//            List<SelectListItem> finanshesapturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSHESAPTURU")).ToList()
+//                                                    select new SelectListItem
+//                                                    {
+//                                                        Text = x.ParametreAciklamasi,
+//                                                        Value = x.ParametreAciklamasi.ToString()
+//                                                    }
+//).ToList();
+//            ViewBag.dgr1 = finanshesapturu;
 
             return View("FinansHesapGetir", finanshesap);
         }

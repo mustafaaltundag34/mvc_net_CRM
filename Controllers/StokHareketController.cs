@@ -66,14 +66,21 @@ namespace mvc_net_Crm.Controllers
 
 
             ViewBag.dgr5 = HareketTuruListesi;
-            List<SelectListItem> stokhareketbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("STOKHAREKETBELGETURU")).ToList()
-                                                         select new SelectListItem
-                                                         {
-                                                             Text = x.ParametreAciklamasi,
-                                                             Value = x.ParametreAciklamasi.ToString()
-                                                         }
-).ToList();
+
+            List<SelectListItem> stokhareketbelgeturu = new List<SelectListItem>();
+            stokhareketbelgeturu.Add(new SelectListItem { Text = "IRSALIYE_ALIS", Value = "IRSALIYE_ALIS" });
+            stokhareketbelgeturu.Add(new SelectListItem { Text = "IRSALIYE_SATIS", Value = "IRSALIYE_SATIS" });
             ViewBag.dgr6 = stokhareketbelgeturu;
+
+
+//            List<SelectListItem> stokhareketbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("STOKHAREKETBELGETURU")).ToList()
+//                                                         select new SelectListItem
+//                                                         {
+//                                                             Text = x.ParametreAciklamasi,
+//                                                             Value = x.ParametreAciklamasi.ToString()
+//                                                         }
+//).ToList();
+//            ViewBag.dgr6 = stokhareketbelgeturu;
             return View();
         }
 
@@ -161,14 +168,20 @@ namespace mvc_net_Crm.Controllers
             HareketTuruListesi.Add(new SelectListItem { Text = "CIKIS", Value = "CIKIS" });
 
             ViewBag.dgr5 = HareketTuruListesi;
-            List<SelectListItem> stokhareketbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("STOKHAREKETBELGETURU")).ToList()
-                                                         select new SelectListItem
-                                                         {
-                                                             Text = x.ParametreAciklamasi,
-                                                             Value = x.ParametreAciklamasi.ToString()
-                                                         }
-).ToList();
+
+            List<SelectListItem> stokhareketbelgeturu = new List<SelectListItem>();
+            stokhareketbelgeturu.Add(new SelectListItem { Text = "IRSALIYE_ALIS", Value = "IRSALIYE_ALIS" });
+            stokhareketbelgeturu.Add(new SelectListItem { Text = "IRSALIYE_SATIS", Value = "IRSALIYE_SATIS" });
             ViewBag.dgr6 = stokhareketbelgeturu;
+
+//            List<SelectListItem> stokhareketbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("STOKHAREKETBELGETURU")).ToList()
+//                                                         select new SelectListItem
+//                                                         {
+//                                                             Text = x.ParametreAciklamasi,
+//                                                             Value = x.ParametreAciklamasi.ToString()
+//                                                         }
+//).ToList();
+//            ViewBag.dgr6 = stokhareketbelgeturu;
             return View("StokHareketGetir", stokhareketbul);
         }
 
@@ -185,6 +198,8 @@ namespace mvc_net_Crm.Controllers
             d.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == stokhareketler.StokHareketid & x.BelgeTuru == stokhareketler.BelgeTuru).ToList().ForEach(x =>
             {
                 x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                x.KayitOnaylayanUser = "";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                x.SonIslemTarihi = DateTime.Now;//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
             });
             d.SaveChanges();
             return RedirectToAction("Index");

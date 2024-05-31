@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Transaction Onaylari</h2>
+<h2><span style="color:red">.|Transaction Loglari  </span> .|Tum Transaction Islem Onaylari</h2>
 <br />
 
 <table id="tbl1" class="table table-striped table-bordered" style="width:100%">
@@ -16,7 +16,7 @@
             <th>BelgeTuru</th>
             <th>AcilisTarihi</th>
             <th>KayitAcan</th>
-            <th>OnayVeren</th>
+            <th>OnayVeren/Kaldiran</th>
             <th>KayitStatusu</th>
             <th>SonIslemTarihi</th>
             <th style="width: 150px">#</th>
@@ -29,7 +29,8 @@
             <td>@k.TransactionTaskid</td>
             <td>@k.Belgeid</td>
             <td>@k.BelgeTuru</td>
-            <td>@k.AcilisTarihi.ToString("dd.MM.yyyy")</td>
+            @*<td>@k.AcilisTarihi.ToString("dd.MM.yyyy")</td>*@
+            <td>@k.AcilisTarihi</td>
             <td>@k.KayitAcanUser</td>
             <td>@k.KayitOnaylayanUser</td>
             <td>@k.OnayStatusu</td>

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Finansal Islemler</h2>
+<h2><span style="color:red">.|Finans Islemleri </span>  .|Tahsilat .|Odeme .|Para Yatirma .|Para Cekme </h2>
 <br />
 
 <table id="tbl1" class="table table-striped table-bordered" style="width:100%">
@@ -13,11 +13,10 @@
         <tr>
             <th>ID</th>
             <th>Tarih</th>
-            <th>Saat</th>
             <th>Cari</th>
-            <th>FinansalHesap</th>
             <th>BelgeTuru</th>
             <th>HareketTuru</th>
+            <th>FinansalHesap</th>
             <th>Tutar</th>
             <th>OnayStatusu</th>
             <th style="width: 150px">#</th>
@@ -28,12 +27,11 @@
     {
         <tr>
             <td>@k.FinansalHareketid</td>
-            <td>@k.Tarih.ToString("dd.MM.yyyy")</td>
-            <td>@k.Saat</td>
+            <td>@k.Tarih</td>
             <td>@k.Cariler.CariAd @k.Cariler.CariSoyad</td>
-            <td>@k.FinansHesaplari.FinansHesapAdi</td>
             <td>@k.BelgeTuru</td>
             <td>@k.FinansalHareketTuru</td>
+            <td>@k.FinansHesaplari.FinansHesapAdi</td>
             <td>@k.Tutar</td>
             <td>@k.OnayStatusu</td>
             <td align="center">

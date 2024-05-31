@@ -1,0 +1,35 @@
+﻿@model mvc_net_Crm.Models.Siniflar.FinansalHareket
+@{
+    ViewBag.Title = "ParaTransferEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Para Transfer Islemi</h2>
+<br />
+
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.FinansalHareketid)
+    @Html.TextBoxFor(x => x.FinansalHareketid, (new { @readonly = "true", @class = "form-control" }))
+    <br />
+    @Html.LabelFor(x => x.BelgeTuru)
+    @Html.TextBoxFor(x => x.BelgeTuru, (new { @readonly = "true", @class = "form-control" }))
+    <br />
+    @Html.LabelFor(x => x.Cariler,"Gonderen Cari Hesap")
+    @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Personel, "Islem Yapan Gorevli")
+    @Html.DropDownListFor(x => x.Personelid, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.FinansHesaplari, "Alici Cari Hesap")
+    @Html.DropDownListFor(x => x.FinansHesapid, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Tutar)
+    @Html.TextBoxFor(x => x.Tutar, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Aciklama)
+    @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+

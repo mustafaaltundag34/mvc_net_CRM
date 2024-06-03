@@ -16,6 +16,8 @@ namespace mvc_net_Crm.Models.Siniflar
             OnayStatusu = "OnayBekliyor"; //Onaylandi //RedEdildi
             AcilisTarihi = DateTime.Now;
             SonIslemTarihi = DateTime.Now;
+            Tutar = 0;
+
             //ToplamTutar = Adet * Fiyat;
         }
 
@@ -28,6 +30,12 @@ namespace mvc_net_Crm.Models.Siniflar
         public DateTime AcilisTarihi { get; set; }
         public DateTime SonIslemTarihi { get; set; }
 
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string CariBilgisi { get; set; } //TRANSACTIONA ISLEMDEN GELECEK
+
+        public decimal Tutar { get; set; } //TRANSACTIONA ISLEMDEN GELECEK
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]

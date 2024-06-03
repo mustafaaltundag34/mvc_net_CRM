@@ -25,9 +25,11 @@
             <th>Tarih</th>
             <th>Cari</th>
             <th>BelgeTuru</th>
+            <th>CariHareketTuru</th>
             <th>FinansHesabi</th>
-            <th>HareketTuru</th>
+            <th>FinansHareketTuru</th>
             <th>Tutar</th>
+            <th>OnayDurumu</th>
         </tr>
         @foreach (var x in Model)
 
@@ -39,9 +41,11 @@
                     <td>@x.Tarih.ToString("dd.MM.yyyy")</td>
                     <td>@x.Cariler.CariAd</td>
                     <td>@x.BelgeTuru</td>
+                    <td>@x.FinansalHareketTuruCari</td>
                     <td>@x.FinansHesaplari.FinansHesapAdi</td>
-                    <td>@x.FinansalHareketTuru</td>
+                    <td>@x.FinansalHareketTuruFinansHesap</td>
                     <td style="text-align:right">@x.Tutar.ToString("###,##0.00")</td>
+                    <td>@x.OnayStatusu</td>
                 </tr>
                 toplamtahsilat = toplamtahsilat + x.Tutar;
             }
@@ -56,9 +60,11 @@
             <th>Tarih</th>
             <th>Cari</th>
             <th>BelgeTuru</th>
+            <th>CariHareketTuru</th>
             <th>FinansHesabi</th>
-            <th>HareketTuru</th>
+            <th>FinansHareketTuru</th>
             <th>Tutar</th>
+            <th>OnayDurumu</th>
         </tr>
         @foreach (var x in Model)
 
@@ -70,9 +76,11 @@
                     <td>@x.Tarih.ToString("dd.MM.yyyy")</td>
                     <td>@x.Cariler.CariAd</td>
                     <td>@x.BelgeTuru</td>
+                    <td>@x.FinansalHareketTuruCari</td>
                     <td>@x.FinansHesaplari.FinansHesapAdi</td>
-                    <td>@x.FinansalHareketTuru</td>
+                    <td>@x.FinansalHareketTuruFinansHesap</td>
                     <td style="text-align:right">@x.Tutar.ToString("###,##0.00")</td>
+                    <td>@x.OnayStatusu</td>
                 </tr>
                 toplamodeme = toplamodeme + x.Tutar;
             }

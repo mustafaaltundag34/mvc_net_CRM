@@ -13,10 +13,11 @@
             <th>ID</th>
             <th>FinansHesapAdi</th>
             <th>FinansHesapTuru</th>
-            <th style="width: 300px">Bakiye</th>
-            <th style="width: 300px" align="center">#</th>
-            <th style="width: 300px" align="center">#</th>
-            <th style="width: 300px" align="center">#</th>
+            <th style="width: 200px">Bakiye</th>
+            <th style="width: 200px" align="center">#</th>
+            <th style="width: 200px" align="center">#</th>
+            <th style="width: 200px" align="center">#</th>
+            <th style="width: 200px" align="center">#</th>
         </tr>
     </thead>
     @foreach (var k in Model)
@@ -32,7 +33,15 @@
                 @k.FinansHesapTuru
             </td>
             <td>
-                @k.FinansHesapBakiye
+                @k.FinansHesapBakiye.ToString("###,##0.00")
+            </td>
+            <td>
+                @if (k.FinansHesapBakiye > 0)
+                {<span style="color:green">BAKIYE MEVCUT</span>}
+                else if (k.FinansHesapBakiye == 0)
+                {<span></span>}
+                else if (k.FinansHesapBakiye < 0)
+                {<span style="color:red">BAKIYE BORCLU</span>}
             </td>
             <td align="center">
                 <a href="/FinansHesaplari/FinansHesapGetir/@k.FinansHesapid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>

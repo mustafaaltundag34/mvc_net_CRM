@@ -12,7 +12,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public Faturalar() //DEFAULT BILGILER VERILIYOR
         {
             Durum = true;
-            Tarih = DateTime.Now;
+            Tarih = DateTime.Today;
             Saat = DateTime.Now.ToString("HH:mm");
             GenelToplam = 0;
             KdvTutar = 0;
@@ -74,13 +74,15 @@ namespace mvc_net_Crm.Models.Siniflar
         public int Cariid { get; set; }
         public int Personelid { get; set; }
         public int Ambarid { get; set; }
-
         public int Kasaid { get; set; }
+        public int FinansHesapid { get; set; }
 
         public virtual Kasalar Kasalar { get; set; }
         public virtual Cariler Cariler { get; set; }
         public virtual Personel Personel { get; set; }
         public virtual Ambar Ambar { get; set; }
+
+        public virtual FinansHesaplari FinansHesaplari { get; set; } //FATURA BITIMINDE FINANSAL HAREKET BASLATIYOR BU BAG ILE
 
         public ICollection<faturaKalem> FaturaKalems { get; set; }//Faturalar 1 - % FaturaKalem
 

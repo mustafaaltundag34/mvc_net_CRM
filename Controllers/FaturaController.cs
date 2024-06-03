@@ -5,6 +5,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Google.Protobuf.WellKnownTypes;
 using mvc_net_Crm.Models.Siniflar;
 using static Google.Protobuf.Compiler.CodeGeneratorResponse.Types;
@@ -59,14 +60,6 @@ namespace mvc_net_Crm.Controllers
             faturabelgeturu.Add(new SelectListItem { Text = "FATURA_SATIS", Value = "FATURA_SATIS" });
             ViewBag.dgr4 = faturabelgeturu;
 
-            //            List<SelectListItem> faturabelgeturu = (from x in c.Parametres.Where(x=>x.Durum==true && x.ParametreTuru.Contains("FATURABELGETURU") ).ToList()
-            //                                          select new SelectListItem
-            //                                          {
-            //                                              Text = x.ParametreAciklamasi,
-            //                                              Value = x.ParametreAciklamasi.ToString()
-            //                                          }
-            //).ToList();
-            //            ViewBag.dgr4 = faturabelgeturu;
 
             List<SelectListItem> finansalislemturleri = new List<SelectListItem>();
             finansalislemturleri.Add(new SelectListItem { Text = "ODEME_NAKIT", Value = "ODEME_NAKIT" });
@@ -81,14 +74,6 @@ namespace mvc_net_Crm.Controllers
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_CEK_SENET", Value = "TAHSILAT_CEK_SENET" });
             ViewBag.dgr5 = finansalislemturleri;
 
-            //            List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
-            //                                               select new SelectListItem
-            //                                               {
-            //                                                   Text = x.ParametreAciklamasi,
-            //                                                   Value = x.ParametreAciklamasi.ToString()
-            //                                               }
-            //).ToList();
-            //            ViewBag.dgr5 = odemeturu;
 
             List<SelectListItem> faturaserilistesi = new List<SelectListItem>();
             faturaserilistesi.Add(new SelectListItem { Text = "A", Value = "A" });
@@ -97,14 +82,7 @@ namespace mvc_net_Crm.Controllers
             faturaserilistesi.Add(new SelectListItem { Text = "D", Value = "D" });
             faturaserilistesi.Add(new SelectListItem { Text = "E", Value = "E" });
             ViewBag.dgr6 = faturaserilistesi;
-//            List<SelectListItem> faturaserilistesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURASERI")).ToList()
-//                                              select new SelectListItem
-//                                              {
-//                                                  Text = x.ParametreAciklamasi,
-//                                                  Value = x.ParametreAciklamasi.ToString()
-//                                              }
-//).ToList();
-            //ViewBag.dgr6 = faturaserilistesi;
+
             List<SelectListItem> vergidairesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("VERGIDAIRE")).ToList()
                                                       select new SelectListItem
                                                       {
@@ -140,6 +118,15 @@ namespace mvc_net_Crm.Controllers
                                              }
       ).ToList();
             ViewBag.dgr10 = kasabul;
+
+            List<SelectListItem> finanshesapbul = (from x in c.FinansHesaplaris.Where(x => x.Durum == true).ToList()
+                                            select new SelectListItem
+                                            {
+                                                Text = x.FinansHesapAdi,
+                                                Value = x.FinansHesapid.ToString()
+                                            }
+).ToList();
+            ViewBag.dgr11 = finanshesapbul;
             return View();
         }
 
@@ -159,7 +146,8 @@ namespace mvc_net_Crm.Controllers
                     p.FaturaHareketTuru = "CIKIS";
                 }
                 p.Durum = true;//AKTIF KAYIT
-                p.Tarih = DateTime.Now;
+                p.Tarih = DateTime.Today;
+                p.Saat = DateTime.Now.ToString("HH:mm");
                 //p.KdvTutar = 0;
                 //p.GenelToplam = 0;
                 //p.OnayStatusu = "OnayBekliyor";//ONAY GELDIKTEN SONRA ISLEM YURUSUN
@@ -167,6 +155,7 @@ namespace mvc_net_Crm.Controllers
                 c.SaveChanges();
 
                 var kayitacanpersonelbul = c.Personels.Find(p.Personelid);
+                var caribilgisibul = c.Carilers.Find(p.Cariid);
                 TransactionTask yenitransaction = new TransactionTask();
                 yenitransaction.Belgeid = p.Faturaid;
                 yenitransaction.BelgeTuru = p.BelgeTuru;
@@ -175,6 +164,8 @@ namespace mvc_net_Crm.Controllers
                 yenitransaction.KayitAcanUser = kayitacanpersonelbul.PersonelAd + " " + kayitacanpersonelbul.PersonelSoyad;
                 yenitransaction.KayitOnaylayanUser = "";
                 yenitransaction.Durum = p.Durum;
+                yenitransaction.CariBilgisi = caribilgisibul.CariAd + " " + caribilgisibul.CariSoyad;
+                yenitransaction.Tutar = p.GenelToplam;
                 d.TransactionTasks.Add(yenitransaction);
                 d.SaveChanges();
                 return RedirectToAction("FaturaKalemEkle", new {id=p.Faturaid});
@@ -231,14 +222,6 @@ namespace mvc_net_Crm.Controllers
             faturabelgeturu.Add(new SelectListItem { Text = "FATURA_ALIS", Value = "FATURA_ALIS" });
             faturabelgeturu.Add(new SelectListItem { Text = "FATURA_SATIS", Value = "FATURA_SATIS" });
             ViewBag.dgr4 = faturabelgeturu;
-            //            List<SelectListItem> faturabelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURABELGETURU")).ToList()
-            //                                                    select new SelectListItem
-            //                                                    {
-            //                                                        Text = x.ParametreAciklamasi,
-            //                                                        Value = x.ParametreAciklamasi.ToString()
-            //                                                    }
-            //).ToList();
-            //            ViewBag.dgr4 = faturabelgeturu;
 
             List<SelectListItem> finansalislemturleri = new List<SelectListItem>();
             finansalislemturleri.Add(new SelectListItem { Text = "ODEME_NAKIT", Value = "ODEME_NAKIT" });
@@ -252,14 +235,6 @@ namespace mvc_net_Crm.Controllers
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_YEMEK_CEKI", Value = "TAHSILAT_YEMEK_CEKI" });
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_CEK_SENET", Value = "TAHSILAT_CEK_SENET" });
             ViewBag.dgr5 = finansalislemturleri;
-            //            List<SelectListItem> odemeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
-            //                                              select new SelectListItem
-            //                                              {
-            //                                                  Text = x.ParametreAciklamasi,
-            //                                                  Value = x.ParametreAciklamasi.ToString()
-            //                                              }
-            //).ToList();
-            //            ViewBag.dgr5 = odemeturu;
 
             List<SelectListItem> faturaserilistesi = new List<SelectListItem>();
             faturaserilistesi.Add(new SelectListItem { Text = "A", Value = "A" });
@@ -269,14 +244,6 @@ namespace mvc_net_Crm.Controllers
             faturaserilistesi.Add(new SelectListItem { Text = "E", Value = "E" });
             ViewBag.dgr6 = faturaserilistesi;
 
-//            List<SelectListItem> faturaserilistesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURASERI")).ToList()
-//                                                      select new SelectListItem
-//                                                      {
-//                                                          Text = x.ParametreAciklamasi,
-//                                                          Value = x.ParametreAciklamasi.ToString()
-//                                                      }
-//).ToList();
-//            ViewBag.dgr6 = faturaserilistesi;
             List<SelectListItem> vergidairesi = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("VERGIDAIRE")).ToList()
                                                  select new SelectListItem
                                                  {
@@ -331,6 +298,7 @@ namespace mvc_net_Crm.Controllers
                 x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
                 x.KayitOnaylayanUser = "";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
                 x.SonIslemTarihi = DateTime.Now;//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                x.Tutar =fatura.GenelToplam;
             });
             e.SaveChanges();
             d.FaturaKalems.AsEnumerable().Where(x => x.Faturaid == u.Faturaid).ToList().ForEach(x =>
@@ -408,14 +376,7 @@ namespace mvc_net_Crm.Controllers
             faturabelgeturu.Add(new SelectListItem { Text = "FATURA_ALIS", Value = "FATURA_ALIS" });
             faturabelgeturu.Add(new SelectListItem { Text = "FATURA_SATIS", Value = "FATURA_SATIS" });
             ViewBag.dgr3 = faturabelgeturu;
-//            List<SelectListItem> faturaturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FATURABELGETURU")).ToList()
-//                                               select new SelectListItem
-//                                               {
-//                                                   Text = x.ParametreAciklamasi,
-//                                                   Value = x.ParametreAciklamasi.ToString()
-//                                               }
-//).ToList();
-//            ViewBag.dgr3 = faturaturu;
+
             return View();
         }
 
@@ -500,12 +461,17 @@ namespace mvc_net_Crm.Controllers
             c.SaveChanges();
             fatura.OnayStatusu = "OnayBekliyor";
             d.SaveChanges();
+            
+            var faturabul = d.Faturalars.Find(u.Faturaid);
             e.TransactionTasks.AsEnumerable().Where(x => x.Belgeid == u.Faturaid & x.BelgeTuru == u.BelgeTuru).ToList().ForEach(x =>
             {
                 x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
                 x.KayitOnaylayanUser = "";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
                 x.SonIslemTarihi = DateTime.Now;//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                //x.Tutar = fatura.GenelToplam;
+                Console.WriteLine(x.Tutar); 
             });
+
             e.SaveChanges();
             //return RedirectToAction("index");
             return RedirectToAction("FaturaDetay", new { id = u.Faturaid });

@@ -16,6 +16,7 @@
             <th>BelgeTuru</th>
             <th>GonderenHareketTuru</th>
             <th>Alici Cari/Finans</th>
+            <th>FinansHareketTuru</th>
             <th>Tutar</th>
             <th>OnayStatusu</th>
             <th style="width: 150px">#</th>
@@ -29,15 +30,16 @@
             <td>@k.Tarih</td>
             <td>@k.Cariler.CariAd @k.Cariler.CariSoyad</td>
             <td>@k.BelgeTuru</td>
-            <td>@k.FinansalHareketTuru</td>
+            <td>@k.FinansalHareketTuruCari</td>
             <td>@k.FinansHesaplari.FinansHesapAdi</td>
-            <td>@k.Tutar</td>
+            <td>@k.FinansalHareketTuruFinansHesap</td>
+            <td>@k.Tutar.ToString("###,##0.00")</td>
             <td>@k.OnayStatusu</td>
             <td align="center">
-                <a href="/ParaTransferi/@k.FinansalHareketid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
+                <a href="/ParaTransfer/ParaTransferGetir/@k.FinansalHareketid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
             </td>
             <td align="center">
-                <a href="/ParaTransferi/@k.FinansalHareketid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
+                <a href="/ParaTransfer/ParaTransferSil/@k.FinansalHareketid" class="btn btn-danger" align="right"><i class="fas fa-trash"></i> Sil</a>
             </td>
         </tr>
     }

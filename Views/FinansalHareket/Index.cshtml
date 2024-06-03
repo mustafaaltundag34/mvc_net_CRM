@@ -15,8 +15,9 @@
             <th>Tarih</th>
             <th>Cari</th>
             <th>BelgeTuru</th>
-            <th>HareketTuru</th>
+            <th>CariHareketTuru</th>
             <th>FinansalHesap</th>
+            <th>FinansHareketTuru</th>
             <th>Tutar</th>
             <th>OnayStatusu</th>
             <th style="width: 150px">#</th>
@@ -30,9 +31,10 @@
             <td>@k.Tarih</td>
             <td>@k.Cariler.CariAd @k.Cariler.CariSoyad</td>
             <td>@k.BelgeTuru</td>
-            <td>@k.FinansalHareketTuru</td>
+            <td>@k.FinansalHareketTuruCari</td>
             <td>@k.FinansHesaplari.FinansHesapAdi</td>
-            <td>@k.Tutar</td>
+            <td>@k.FinansalHareketTuruFinansHesap</td>
+            <td>@k.Tutar.ToString("###,##0.00")</td>
             <td>@k.OnayStatusu</td>
             <td align="center">
                 <a href="/FinansalHareket/FinansalHareketGetir/@k.FinansalHareketid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>

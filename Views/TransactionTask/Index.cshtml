@@ -13,10 +13,12 @@
         <tr>
             <th>ID</th>
             <th>BelgeID</th>
+            <th>CariBilgisi</th>
             <th>BelgeTuru</th>
             <th>AcilisTarihi</th>
             <th>KayitAcan</th>
             <th>OnayVeren/Kaldiran</th>
+            <th>Tutar</th>
             <th>KayitStatusu</th>
             <th>SonIslemTarihi</th>
             <th style="width: 150px">#</th>
@@ -28,11 +30,12 @@
         <tr>
             <td>@k.TransactionTaskid</td>
             <td>@k.Belgeid</td>
+            <td>@k.CariBilgisi</td>
             <td>@k.BelgeTuru</td>
-            @*<td>@k.AcilisTarihi.ToString("dd.MM.yyyy")</td>*@
             <td>@k.AcilisTarihi</td>
             <td>@k.KayitAcanUser</td>
             <td>@k.KayitOnaylayanUser</td>
+            <td>@k.Tutar</td>
             <td>@k.OnayStatusu</td>
             <td>@k.SonIslemTarihi</td>
             <td align="center">

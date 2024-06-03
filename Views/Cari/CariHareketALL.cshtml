@@ -29,7 +29,7 @@
             <th>BelgeTuru</th>
             <th>HareketTuru</th>
             <th>Tutar</th>
-
+            <th>OnayDurumu</th>
         </tr>
         @foreach (var x in Model)
 
@@ -43,6 +43,7 @@
                     <td>@x.Z_BelgeTuru</td>
                     <td>@x.Z_HareketTuru</td>
                     <td style="text-align:right">@x.Z_Tutar.ToString("###,##0.00")</td>
+                    <td>@x.Z_OnayDurumu</td>
                 </tr>
                 toplamalacak = toplamalacak + x.Z_Tutar;
             }
@@ -59,6 +60,7 @@
             <th>BelgeTuru</th>
             <th>HareketTuru</th>
             <th>Tutar</th>
+            <th>OnayDurumu</th>
         </tr>
         @foreach (var x in Model)
 
@@ -71,7 +73,8 @@
                     <td>@x.Z_Cari</td>
                     <td>@x.Z_BelgeTuru</td>
                     <td>@x.Z_HareketTuru</td>
-                    <td style="text-align:right" >@x.Z_Tutar.ToString("###,##0.00")</td>
+                    <td style="text-align:right">@x.Z_Tutar.ToString("###,##0.00")</td>
+                    <td>@x.Z_OnayDurumu</td>
                 </tr>
                 toplamborc = toplamborc + x.Z_Tutar;
             }

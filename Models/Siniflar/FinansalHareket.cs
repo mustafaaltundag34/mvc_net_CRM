@@ -13,7 +13,8 @@ namespace mvc_net_Crm.Models.Siniflar
         public FinansalHareket() //DEFAULT BILGILER VERILIYOR
         {
             Durum = true;
-            //HareketTuru = "ALACAK/BORC"; DBden Tetiklenecek
+            //FinansalHareketTuruCari = "ALACAK/BORC"; IslemeGore Fonksiyondan Gelecek
+            //FinansalHareketTuruFinansHesap = "ALACAK/BORC"; IslemeGore Fonksiyondan Gelecek
             //Bankaid = 1;
             //Kasaid = 1; 
             Tarih = DateTime.Now;
@@ -42,8 +43,11 @@ namespace mvc_net_Crm.Models.Siniflar
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
-        public string FinansalHareketTuru { get; set; } //BORC/ALACAK BELGE TURUNE GORE OTOMATIK BELIRLENECEK
+        public string FinansalHareketTuruCari { get; set; } //BORC/ALACAK BELGE TURUNE GORE OTOMATIK BELIRLENECEK
 
+        [Column(TypeName = "Varchar")]
+        [StringLength(30)]
+        public string FinansalHareketTuruFinansHesap { get; set; } //BORC/ALACAK BELGE TURUNE GORE OTOMATIK BELIRLENECEK
 
         public int Cariid { get; set; }
         public int Personelid { get; set; }

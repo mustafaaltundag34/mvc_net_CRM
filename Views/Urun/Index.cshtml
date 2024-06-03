@@ -15,6 +15,7 @@
             <th>Marka</th>
             <th>Urun Adi</th>
             <th>Stok</th>
+            <th>StokDurumu</th>
             <th>Gorsel</th>
             <th style="width: 150px">#</th>
             <th style="width: 150px">#</th>
@@ -29,6 +30,14 @@
             <td>@u.Marka.MarkaAd<!-- BURDA ILISKILI TABLODAN BILGI CEKILIYOR--></td>
             <td>@u.UrunAd</td>
             <td>@u.Stok</td>
+            <td>
+                @if (u.Stok > 0)
+                {<span style="color:green">STOKTA VAR</span>}
+                else if (u.Stok == 0)
+                {<span>STOKTA YOK</span>}
+                else if (u.Stok < 0)
+                {<span style="color:red">STOK NEGATIF</span>}
+            </td>
             <td>@u.UrunGorsel</td>
             <td align="center"><a href="/Urun/UrunGetir/@u.Urunid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a></td>
             @*<td align="center"><a href="/Urun/UrunStokHareket/@u.Urunid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Stok H.</a></td>*@

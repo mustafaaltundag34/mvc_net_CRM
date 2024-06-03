@@ -83,7 +83,7 @@ namespace mvc_net_Crm.Controllers
                 e.SaveChanges();
             }
 
-            if ((Transaction.BelgeTuru.Contains("ODEME")) || (Transaction.BelgeTuru.Contains("TAHSILAT")))
+            if ((Transaction.BelgeTuru.Contains("ODEME")) || (Transaction.BelgeTuru.Contains("TAHSILAT")) || (Transaction.BelgeTuru.Contains("PARA_GONDERME")) )
             {
                 finansalhareket.OnayStatusu = k.OnayStatusu;
                 c.SaveChanges();

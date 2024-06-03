@@ -160,6 +160,7 @@ namespace mvc_net_Crm.Controllers
                 Z_Tarih = x.Tarih,
                 Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
                 Z_Tutar = x.ToplamTutar,
+                Z_OnayDurumu = x.OnayStatusu,
             }).ToList();
             var carifaturahareketleri = c.Faturalars.Where(x => x.Cariid == id && x.Durum == true).Select(x => new OrtakCariHareketView
             {
@@ -169,15 +170,17 @@ namespace mvc_net_Crm.Controllers
                 Z_Tarih = x.Tarih,
                 Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
                 Z_Tutar = x.GenelToplam,
+                Z_OnayDurumu = x.OnayStatusu,
             }).ToList();
             var carifinanshareketleri = c.FinansalHarekets.Where(x => x.Cariid == id && x.Durum == true).Select(x => new OrtakCariHareketView
             {
                 Z_TransactionNo = x.FinansalHareketid,
                 Z_BelgeTuru = x.BelgeTuru,
-                Z_HareketTuru = x.FinansalHareketTuru,
+                Z_HareketTuru = x.FinansalHareketTuruCari,
                 Z_Tarih = x.Tarih,
                 Z_Cari = x.Cariler.CariAd, //+ " " + x.Cariler.CariSoyad,
                 Z_Tutar = x.Tutar,
+                Z_OnayDurumu = x.OnayStatusu,
             }).ToList();
             var modelyeni = caristokhareketleri.Union(carifaturahareketleri).Union(carifinanshareketleri).ToList();
             var secilencari = c.Carilers.Where(x => x.Cariid == id).Select(y => y.CariAd +" "+ y.CariSoyad).FirstOrDefault();
@@ -199,5 +202,7 @@ namespace mvc_net_Crm.Controllers
         public string Z_HareketTuru { get; set; }
         public string Z_Ambarid { get; set; }
         public decimal Z_Tutar { get; set; }
+
+        public string Z_OnayDurumu { get; set; }
     }
 }

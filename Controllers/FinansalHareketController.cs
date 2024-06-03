@@ -66,17 +66,7 @@ namespace mvc_net_Crm.Controllers
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_CEK_SENET", Value = "TAHSILAT_CEK_SENET" });
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_PARA_YATIRMA_HESABA", Value = "TAHSILAT_PARA_YATIRMA_HESABA" });
 
-
-
             ViewBag.dgr4 = finansalislemturleri;
-//            List<SelectListItem> finansalbelgeturu = (from x in c.Parametres.Where(x => x.Durum == true && x.ParametreTuru.Contains("FINANSALISLEM")).ToList()
-//                                                         select new SelectListItem
-//                                                         {
-//                                                             Text = x.ParametreAciklamasi,
-//                                                             Value = x.ParametreAciklamasi.ToString()
-//                                                         }
-//).ToList();
-//            ViewBag.dgr4 = finansalbelgeturu;
 
             return View();
         }
@@ -86,11 +76,13 @@ namespace mvc_net_Crm.Controllers
         {
             if (p.BelgeTuru.Contains("TAHSILAT"))
             {
-                p.FinansalHareketTuru = "ALACAK";
+                p.FinansalHareketTuruCari = "ALACAK";
+                p.FinansalHareketTuruFinansHesap = "BORC";
             }
             if (p.BelgeTuru.Contains("ODEME"))
             {
-                p.FinansalHareketTuru = "BORC";
+                p.FinansalHareketTuruCari = "BORC";
+                p.FinansalHareketTuruFinansHesap = "ALACAK";
             }
             p.Durum = true;//AKTIF KAYIT
             p.Tarih = DateTime.Now;
@@ -98,6 +90,7 @@ namespace mvc_net_Crm.Controllers
             c.SaveChanges();
 
             var kayitacanpersonelbul = c.Personels.Find(p.Personelid);
+            var caribilgisibul=c.Carilers.Find(p.Cariid);
             TransactionTask yenitransaction = new TransactionTask();
             yenitransaction.Belgeid = p.FinansalHareketid;
             yenitransaction.BelgeTuru = p.BelgeTuru;
@@ -106,6 +99,8 @@ namespace mvc_net_Crm.Controllers
             yenitransaction.KayitAcanUser = kayitacanpersonelbul.PersonelAd + " " + kayitacanpersonelbul.PersonelSoyad;
             yenitransaction.KayitOnaylayanUser = "";
             yenitransaction.Durum = p.Durum;
+            yenitransaction.Tutar=p.Tutar;
+            yenitransaction.CariBilgisi = caribilgisibul.CariAd + " " + caribilgisibul.CariSoyad;
             d.TransactionTasks.Add(yenitransaction);
             d.SaveChanges();
             return RedirectToAction("Index");
@@ -163,9 +158,6 @@ namespace mvc_net_Crm.Controllers
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_YEMEK_CEKI", Value = "TAHSILAT_YEMEK_CEKI" });
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_CEK_SENET", Value = "TAHSILAT_CEK_SENET" });
             finansalislemturleri.Add(new SelectListItem { Text = "TAHSILAT_PARA_YATIRMA_HESABA", Value = "TAHSILAT_PARA_YATIRMA_HESABA" });
-
-
-
             ViewBag.dgr4 = finansalislemturleri;
 
             return View("FinansalHareketGetir", finansalhareketbul);
@@ -187,6 +179,7 @@ namespace mvc_net_Crm.Controllers
                 x.OnayStatusu = "OnayBekliyor";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
                 x.KayitOnaylayanUser = "";//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
                 x.SonIslemTarihi = DateTime.Now;//1 SATIRDA GUNCELLEME YAPINCA ILGILII TRANSACTION ONAY BEKLIYORA GECER
+                x.Tutar = finansalhareket.Tutar;
             });
             d.SaveChanges();
 

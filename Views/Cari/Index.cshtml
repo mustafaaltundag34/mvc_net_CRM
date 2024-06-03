@@ -14,7 +14,8 @@
             <th>Ad</th>
             <th>Soyad</th>
             <th>Sehir</th>
-            <th>Durum</th>
+            <th>CariBakiye</th>
+            <th>#</th>
             <th>#</th>
             <th>#</th>
             <th>#</th>
@@ -27,13 +28,21 @@
             <td>@x.CariAd</td>
             <td>@x.CariSoyad</td>
             <td>@x.CariSehir</td>
-            <td>@x.Durum</td>
+            <td>@x.CariBakiye.ToString("###,##0.00")</td>
+            <td>
+                @if (x.CariBakiye > 0)
+                {<span style="color:green">ALACAKLI</span>}
+                else if (x.CariBakiye == 0)
+                {<span></span>}
+                else if (x.CariBakiye < 0)
+                {<span style="color:red">BORCLU</span>}
+            </td>
             <td align="center">
                 <a href="/Cari/CariGetir/@x.Cariid" class="btn btn-success"><i class="fas fa-database"></i> Guncelle</a>
             </td>
             @*<td align="center">
-                <a href="/Cari/MusteriStokHareket/@x.Cariid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Cari Hareketler</a>
-            </td>*@
+            <a href="/Cari/MusteriStokHareket/@x.Cariid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Cari Hareketler</a>
+        </td>*@
             <td align="center">
                 <a href="/Cari/CariHareketALL/@x.Cariid" class="btn btn-success" align="right"><i class="fas fa-database"></i> Cari Hareketler</a>
             </td>

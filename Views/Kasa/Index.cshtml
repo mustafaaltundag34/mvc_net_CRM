@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 <br />
-<h2>Kasalar</h2>
+<h2><span style="color:red">.|Kasalar  </span>.|Kasa POS Tanimlari</h2>
 <br />
 <table id="tbl1" class="table table-striped table-bordered" style="width:100%">
     <thead>
@@ -29,7 +29,7 @@
                 @k.KasaAdi
             </td>
             <td>
-                @k.KasaBakiye
+                @k.KasaBakiye.ToString("###,##0.00")
             </td>
             @*<td>
             @k.Personel.PersonelAd  @k.Personel.PersonelSoyad

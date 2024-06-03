@@ -1,0 +1,30 @@
+﻿@model mvc_net_Crm.Models.Siniflar.FinansalHareket
+@{
+    ViewBag.Title = "ParaTransferGetir";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Para Transfer Guncelleme</h2>
+<br />
+@using (Html.BeginForm("ParaTransferGuncelle", "ParaTransfer", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.FinansalHareketid)
+        @Html.LabelFor(x => x.FinansalHareketid)
+        @Html.TextBoxFor(x => x.FinansalHareketid, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Cariler, "Gonderici Hesap")
+        @Html.DropDownListFor(x => x.Cariid, (List<SelectListItem>)ViewBag.dgr1, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.FinansHesapid,"Alici Hesap")
+        @Html.DropDownListFor(x => x.FinansHesapid, (List<SelectListItem>)ViewBag.dgr3, new { disabled = "disabled", @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Tutar)
+        @Html.TextBoxFor(x => x.Tutar, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.Aciklama)
+        @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+        <br />
+    </div>
+    <button class="btn btn-warning">Para Transfer Guncelle</button>
+}

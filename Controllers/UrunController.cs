@@ -139,6 +139,7 @@ namespace mvc_net_Crm.Controllers
                 Z_Adet = x.Adet,
                 Z_StokHareketTuru = x.StokHareketTuru,
                 Z_Ambarid = x.Ambar.AmbarAdi,
+                Z_OnayDurumu=x.OnayStatusu
             }).ToList();    
             var faturakalemleri= c.FaturaKalems.Where(x => x.Urunid == id && x.Durum == true).Select(x => new OrtakStokHareketView
             {
@@ -149,7 +150,8 @@ namespace mvc_net_Crm.Controllers
                 Z_UrunAd=x.Urun.UrunAd,
                 Z_Adet = x.Adet,
                 Z_StokHareketTuru = x.StokHareketTuru,
-                Z_Ambarid = x.Ambar.AmbarAdi
+                Z_Ambarid = x.Ambar.AmbarAdi,
+                Z_OnayDurumu = x.OnayStatusu
             }).ToList();
             var modelyeni = stokhareketleri.Union(faturakalemleri).ToList();
             var urun = c.Uruns.Where(x => x.Urunid == id).Select(y => y.UrunAd).FirstOrDefault();
@@ -169,5 +171,6 @@ namespace mvc_net_Crm.Controllers
         public int Z_Adet { get; set; }   
         public string Z_StokHareketTuru { get; set; }
         public string Z_Ambarid { get; set; }
+        public string Z_OnayDurumu { get; set; }
     }
 }

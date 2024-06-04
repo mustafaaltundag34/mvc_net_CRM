@@ -22,7 +22,7 @@ namespace mvc_net_Crm.Controllers
             var deger3 = c.Personels.Count().ToString();
             ViewBag.d3 = deger3;
 
-            var deger4 = c.Kategoris.Count().ToString();
+            var deger4 = c.FinansHesaplaris.Count().ToString();
             ViewBag.d4 = deger4;
 
             var deger5 = c.Uruns.Sum(x=>x.Stok).ToString();
@@ -35,20 +35,22 @@ namespace mvc_net_Crm.Controllers
             var deger7 = c.Uruns.Count(x=>x.Stok<=20).ToString();
             ViewBag.d7 = deger7;
 
-            var deger8 = (from x in c.Uruns orderby x.SatisFiyat descending select x.UrunAd).FirstOrDefault(); //ISTEDIGIMIZ TABLO ICINDE SORGU
+
+            var deger8 = c.Kategoris.Count().ToString();
             ViewBag.d8 = deger8;
 
-
-            var deger9 = (from x in c.Uruns orderby x.SatisFiyat ascending select x.UrunAd).FirstOrDefault(); //ISTEDIGIMIZ TABLO ICINDE SORGU
+            var deger9 = (from x in c.Uruns orderby x.SatisFiyat descending select x.UrunAd).FirstOrDefault(); //ISTEDIGIMIZ TABLO ICINDE SORGU
             ViewBag.d9 = deger9;
 
-            var deger10 = c.Uruns.GroupBy(x => x.Marka.MarkaAd).OrderByDescending(z => z.Count()).Select(y => y.Key).FirstOrDefault().ToString(); //MAX MARKA
+
+            var deger10 = (from x in c.Uruns orderby x.SatisFiyat ascending select x.UrunAd).FirstOrDefault(); //ISTEDIGIMIZ TABLO ICINDE SORGU
             ViewBag.d10 = deger10;
 
-            var deger11 = c.Uruns.Where(x => x.UrunAd.Contains("Buzdolabi")).Sum(y => y.Stok).ToString();
+            var deger11 = c.Uruns.GroupBy(x => x.Marka.MarkaAd).OrderByDescending(z => z.Count()).Select(y => y.Key).FirstOrDefault().ToString(); //MAX MARKA
             ViewBag.d11 = deger11;
 
-            var deger12 = c.Uruns.Where(x=> x.UrunAd.Contains("MacBook")).Sum(y=>y.Stok).ToString();
+
+            var deger12 = c.Ambars.Count().ToString();
             ViewBag.d12 = deger12;
 
             //var deger13 = c.FaturaKalems.GroupBy(x=>x.Urun.UrunAd).OrderByDescending(z=>z.Count()).Select(y=>y.Key).FirstOrDefault();

@@ -41,7 +41,7 @@ namespace mvc_net_Crm.Models.Siniflar
         public bool Durum { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(80)]
+        [StringLength(200)]
 
         public string UrunGorsel { get; set; }
 

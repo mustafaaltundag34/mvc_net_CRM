@@ -67,11 +67,15 @@ namespace mvc_net_Crm.Controllers
             ViewBag.d15 = deger15;
 
 
-            var deger16 = c.Faturalars.Where(x =>x.Tarih== bugun).Sum(y=>y.GenelToplam).ToString();
-            ViewBag.d16 = deger16;
+            //var deger16 = c.Faturalars.Where(x =>x.Tarih== bugun).Sum(y=>y.GenelToplam).ToString();
+            //ViewBag.d16 = deger16;
 
 
             return View();
         }
+        public ActionResult BasitTablolar()
+        { 
+            return View(); 
+        }  
     }
 }

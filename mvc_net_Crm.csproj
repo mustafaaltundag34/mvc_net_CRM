@@ -249,6 +249,7 @@
     <Compile Include="Models\Siniflar\Kasalar.cs" />
     <Compile Include="Models\Siniflar\Parametre.cs" />
     <Compile Include="Models\Siniflar\SanalDetay.cs" />
+    <Compile Include="Models\Siniflar\SinifGrup.cs" />
     <Compile Include="Models\Siniflar\StokHareket.cs" />
     <Compile Include="Models\Siniflar\Marka.cs" />
     <Compile Include="Models\Siniflar\Context.cs" />
